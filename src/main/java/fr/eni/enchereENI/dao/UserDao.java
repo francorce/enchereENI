@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import fr.eni.enchereENI.bo.User;
 
-public  class UserDao implements Dao<User>{
+public class UserDao implements Dao<User>{
 
 	@Override
 	public Optional<User> get(long id) {
