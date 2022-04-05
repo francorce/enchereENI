@@ -1,4 +1,4 @@
-package fr.eni.enchereENI;
+package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -29,6 +29,7 @@ public class Connexion extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Connexion.jsp").forward(request, response);
+		
 	}
 
 	/**
