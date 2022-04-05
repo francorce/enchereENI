@@ -111,14 +111,6 @@
 			</div>
 	    	
 	    	
-	    	
-	    	
-	    	
-	    	
-	    	
-		        
-		        
-		
 		  	<ul>
 		        <c:forEach var="utilisateur" items="${ utilisateurs }">
 		            <li><c:out value="${ utilisateur.prenom }" /> <c:out value="${ utilisateur.nom }" /></li>
