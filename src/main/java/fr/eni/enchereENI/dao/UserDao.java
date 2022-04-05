@@ -9,7 +9,7 @@ import fr.eni.enchereENI.bo.User;
 public interface UserDao extends Dao<User>{
 
 	@Override
-	public Optional<User> get(long id) throws SQLException;
+	public User get(int id) throws SQLException;
 	
 	@Override
 	public List<User> getAll() throws SQLException;
@@ -19,7 +19,7 @@ public interface UserDao extends Dao<User>{
 	public void save(User t) throws SQLException;
 
 	@Override
-	public void update(User t, String[] params) throws SQLException;
+	public void update(User t) throws SQLException;
 
 	@Override
 	public void delete(User t) throws SQLException;

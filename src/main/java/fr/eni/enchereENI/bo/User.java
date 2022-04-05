@@ -14,6 +14,35 @@ public class User {
 	private String password;
 	private int credit;
 	private boolean isAdmin;
+	
+	
+	
+	
+	public User( String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String cp, String ville, String password, int credit, boolean isAdmin) {
+		super();
+		this.no_utilisateur = no_utilisateur;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.cp = cp;
+		this.ville = ville;
+		this.password = password;
+		this.credit = credit;
+		this.isAdmin = isAdmin;
+	}
+	
+	
+	
+	public User() {
+		super();
+	}
+
+
+
 	public int getNo_utilisateur() {
 		return no_utilisateur;
 	}
