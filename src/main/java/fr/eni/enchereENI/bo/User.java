@@ -8,6 +8,7 @@ public class User {
 	private String prenom;
 	private String email;
 	private String telephone;
+	private String rue;
 	private String cp;
 	private String ville;
 	private String password;
@@ -79,15 +80,15 @@ public class User {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
-	@Override
-	public String toString() {
-		return "User [no_utilisateur=" + no_utilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom
-				+ ", email=" + email + ", telephone=" + telephone + ", cp=" + cp + ", ville=" + ville + ", password="
-				+ password + ", credit=" + credit + ", isAdmin=" + isAdmin + "]";
+	public String getRue() {
+		return rue;
+	}
+	public void setRue(String rue) {
+		this.rue = rue;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(cp, credit, email, isAdmin, no_utilisateur, nom, password, prenom, pseudo, telephone,
+		return Objects.hash(cp, credit, email, isAdmin, no_utilisateur, nom, password, prenom, pseudo, rue, telephone,
 				ville);
 	}
 	@Override
@@ -102,9 +103,17 @@ public class User {
 		return Objects.equals(cp, other.cp) && credit == other.credit && Objects.equals(email, other.email)
 				&& isAdmin == other.isAdmin && no_utilisateur == other.no_utilisateur && Objects.equals(nom, other.nom)
 				&& Objects.equals(password, other.password) && Objects.equals(prenom, other.prenom)
-				&& Objects.equals(pseudo, other.pseudo) && Objects.equals(telephone, other.telephone)
-				&& Objects.equals(ville, other.ville);
+				&& Objects.equals(pseudo, other.pseudo) && Objects.equals(rue, other.rue)
+				&& Objects.equals(telephone, other.telephone) && Objects.equals(ville, other.ville);
 	}
+	@Override
+	public String toString() {
+		return "User [no_utilisateur=" + no_utilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom=" + prenom
+				+ ", email=" + email + ", telephone=" + telephone + ", rue=" + rue + ", cp=" + cp + ", ville=" + ville
+				+ ", password=" + password + ", credit=" + credit + ", isAdmin=" + isAdmin + "]";
+	}
+	
+	
 	
 
 }
