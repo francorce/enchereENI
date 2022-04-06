@@ -8,9 +8,12 @@
 </head>
 	<body>
 	<div class="header clearfix">
-        <nav>
-        	<a class="nav nav-pills float-right" href="/enchereENI/Connexion">S'incrire / Se connecter</a>
-        </nav>
+        
+        	<form action="/enchereENI/Connexion">
+        	<button class="btn btn-primary" style="float: right;">S'incrire / Se connecter</button>
+        	</form>
+        	
+    
         <h3 class="text-muted">ENI - Enchère&nbsp;</h3>
       </div>
       <div class="container">

@@ -14,8 +14,11 @@
 <body>
 	<div class="header clearfix">
 
-       <form action="Deconnexion" method="get">
-			<button class="nav nav-pills float-right" type="submit">Déconnexion</button>
+       	<form action="Deconnexion" method="get">
+			<button class="btn btn-primary" style="float: right;" type="submit">Déconnexion</button>
+		</form>
+		<form action="/enchereENI/Profil">
+			<button class="btn btn-primary" style="float: right;" type="submit">Mon profil</button>
 		</form>
         <h3 class="text-muted">ENI - Enchère&nbsp;</h3>
       </div>
