@@ -9,7 +9,7 @@
 	<body>
 	<div class="header clearfix">
         <nav>
-        	<a class="nav nav-pills float-right" href="/enchereENI/Connexion">S'incrire / Se connecter</a>
+        	<a class="nav nav-pills float-right" href="/enchereENI/">Déconnexion</a>
         </nav>
         <h3 class="text-muted">ENI - Enchère&nbsp;</h3>
       </div>
@@ -17,12 +17,17 @@
 <div class="jumbotron">
         <h1 class="display-3">Listes des enchères</h1>
         <button class="btn btn-primary" style="float: right;">Rechercher</button>
+        
         <label style="float: left;">filtres :&nbsp;</label>
           <input type="text" class="form-control">
         <div class="form-group" style="">
         <label style="float: left;">Catégories :&nbsp;</label>
           <select class="form-control">
             </select>
+            <label class="radio" style="">
+            <input type="radio"> Achats
+            <label class="radio" style="">
+            <input type="radio"> Mes ventes
         </div>
         <div class="card" style="">
           <div class="card-body" style="float: none;">
