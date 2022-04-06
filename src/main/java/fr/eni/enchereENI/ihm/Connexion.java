@@ -1,14 +1,23 @@
 package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import fr.eni.enchereENI.bo.User;
+import fr.eni.enchereENI.dao.UserDao;
+import fr.eni.enchereENI.dao.UserDaoFactory;
 
 /**
- * Servlet implementation class Inscription
+ * Servlet implementation class Connexion
  */
 @WebServlet("/Connexion")
 public class Connexion extends HttpServlet {
@@ -25,19 +34,58 @@ public class Connexion extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		this.getServletContext().getRequestDispatcher("/WEB-INF/Connexion.jsp").forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		boolean hasErrors = false;
+		if (request.getAttribute("hasErrors") != null) {
+			hasErrors = (Boolean) request.getAttribute("hasErrors");
+		}
+
+		if (hasErrors) {
+			request.setAttribute("hasErrors", "Username ou password invalide");
+		}
 		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/Connexion.jsp").forward(request, response);
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		UserDao userDao = UserDaoFactory.getDao();
+		String pseudoOuEmail = request.getParameter("username");
+		String password = request.getParameter("password");
+		Boolean useEmail = isValidEmailAddress(pseudoOuEmail);
+		User user = null;
+		try {
+			user = useEmail ? userDao.getByEmail(pseudoOuEmail) : userDao.getByPseudo(pseudoOuEmail);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		if (user.getPassword().equals(password)) {
+			HttpSession session = request.getSession();
+			session.setAttribute("isAuth", user);
+			this.getServletContext().getRequestDispatcher("/WEB-INF/Accueil.jsp").forward(request, response);
+		} else {
+			request.setAttribute("hasErrors", true);
+			doGet(request, response);
+		}
+
+	}
+
+	public static boolean isValidEmailAddress(String email) {
+		boolean result = true;
+		try {
+			InternetAddress emailAddr = new InternetAddress(email);
+			emailAddr.validate();
+		} catch (AddressException ex) {
+			result = false;
+		}
+		return result;
 	}
 
 }
