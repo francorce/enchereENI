@@ -23,8 +23,8 @@ public interface UserDao extends Dao<User>{
 	@Override
 	public void delete(User t) throws SQLException;
 	
-	public User getByEmail(String email)throws SQLException;
+	public User getByEmail(String email, String password)throws SQLException;
 	
-	public User getByPseudo(String pseudo)throws SQLException;
+	public User getByPseudo(String pseudo, String password)throws SQLException;
 
 }

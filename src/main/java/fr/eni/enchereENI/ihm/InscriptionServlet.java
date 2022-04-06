@@ -48,6 +48,10 @@ public class InscriptionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			if("Annuler".equals(request.getParameter("action"))) {
+				response.sendRedirect("/enchereENI/");
+				return;
+			}
 		 	User utilisateur = new User();
 		 	//utilisateur.setNo_utilisateur(request.getParameter("no_utilisateur"));
 		 	utilisateur.setPseudo(request.getParameter("pseudo"));
