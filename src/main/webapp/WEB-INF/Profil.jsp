@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Mon profil</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -25,10 +25,10 @@
 	              <li class="list-group-item" style="text-align: left; border-width: 0px;">Code postal :<input type="text" class="form-control"readonly></li>
 	              <li class="list-group-item" style="text-align: left; border-width: 0px;">Ville :<input type="text" class="form-control"readonly></li>
 	          	</ul>
+	          	<form action="/enchereENI/ProfilModifier">
+     				<button type="submit" class="btn btn-primary" style="float: right;">Modifier</button></div>
+     			</form>
      		</div>
-     		<form action="/enchereENI/">
-     			<button type="submit" class="btn btn-primary" style="float: right;">Modifier</button></div>
-     		</form>
      		
     	</div> <!-- /container -->
 </body>
