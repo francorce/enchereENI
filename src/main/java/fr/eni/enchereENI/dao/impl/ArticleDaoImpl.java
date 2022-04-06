@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.enchereENI.bo.Article;
+import fr.eni.enchereENI.bo.Categorie;
 import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dal.ConnectionProvider;
 import fr.eni.enchereENI.dao.ArticleDao;
@@ -40,6 +41,11 @@ public class ArticleDaoImpl implements ArticleDao {
 			User vendeur = new User();
 			vendeur = DaoFactory.getUserDao().get(rs.getInt("no_utilisateur"));
 			article.setVendeur(vendeur);
+			
+			Categorie cat = new Categorie();
+			cat = DaoFactory.getCategorieDao().getById(rs.getInt("no_categorie"));
+			article.setCategorie(cat);
+			
 			articleList.add(article);
 		}
 		con.close();
