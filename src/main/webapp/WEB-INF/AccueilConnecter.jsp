@@ -1,16 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Enchère ENI</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
 </head>
-	<body>
+<body>
 	<div class="header clearfix">
-        <nav>
-        	<a class="nav nav-pills float-right" href="/enchereENI/">Déconnexion</a>
-        </nav>
+
+       <form action="Deconnexion" method="get">
+			<button class="nav nav-pills float-right" type="submit">Déconnexion</button>
+		</form>
         <h3 class="text-muted">ENI - Enchère&nbsp;</h3>
       </div>
       <div class="container">
@@ -24,11 +29,24 @@
         <label style="float: left;">Catégories :&nbsp;</label>
           <select class="form-control">
             </select>
-            <label class="radio" style="">
-            <input type="radio"> Achats
-            <label class="radio" style="">
-            <input type="radio"> Mes ventes
+            
         </div>
+        <div>
+            <input type="radio" name="radio" checked>Achats
+            <input type="radio" name="radio"> Mes ventes 
+            	
+         </div>
+         <div>
+         <ul>
+         	<li><input type="checkbox"> enchère ouvertes</li>
+         	<li><input type="checkbox"> mes enchères</li>
+         	<li><input type="checkbox">mes enchères remportées</li>
+         	<li><input type="checkbox"> mes ventes en cours</li>
+         	<li><input type="checkbox"> ventes non débutées</li>
+         	<li><input type="checkbox">ventes termiées</li>
+         </ul>
+        </div>
+       
         <div class="card" style="">
           <div class="card-body" style="float: none;">
             <h4 class="card-title"></h4>

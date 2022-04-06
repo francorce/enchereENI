@@ -16,8 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.enchereENI.bll.UserManager;
 import fr.eni.enchereENI.bo.User;
-import fr.eni.enchereENI.dao.UserDao;
-import fr.eni.enchereENI.dao.UserDaoFactory;
+
 
 /**
  * Servlet implementation class Connexion
@@ -61,6 +60,7 @@ public class ConnexionServlet extends HttpServlet {
 		String pseudoOuEmail = request.getParameter("username");
 		String password = request.getParameter("password");
 		User user = UserManager.connectUser(pseudoOuEmail, password);
+		
 		if (user == null) {
 			request.setAttribute("hasErrors", true);
 			doGet(request, response);
@@ -68,7 +68,7 @@ public class ConnexionServlet extends HttpServlet {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
-		response.sendRedirect(request.getContextPath() + "/Accueil");
+		response.sendRedirect(request.getContextPath() + "/AccueilConnecter");
 
 //		
 //		 MessageDigest md;
@@ -84,9 +84,5 @@ public class ConnexionServlet extends HttpServlet {
 //			}
 
 		// TODO
-
 	}
-
-
-
 }
