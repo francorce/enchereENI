@@ -1,6 +1,8 @@
 package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 import javax.mail.internet.AddressException;
@@ -71,7 +73,18 @@ public class ConnexionServlet extends HttpServlet {
 			doGet(request, response);
 			return;
 		}
-		
+//		
+//		 MessageDigest md;
+//			try {
+//				md = MessageDigest.getInstance("MD5");
+//				 md.update("toto".getBytes());
+//				    byte[] digest = md.digest();
+//				    String mp = new String(digest);
+//				 System.out.println(mp);   
+//			} catch (NoSuchAlgorithmException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 
 		//TODO
 		if (user.getPassword().equals(password)) {
@@ -80,6 +93,9 @@ public class ConnexionServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/Accueil.jsp").forward(request, response);
 		} 
 
+		
+		   
+		
 	}
 
 	public static boolean isValidEmailAddress(String email) {
