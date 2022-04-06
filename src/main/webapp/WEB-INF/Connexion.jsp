@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,36 +15,47 @@
 
 <body>
 
-    <div class="header clearfix">
-        <h3 class="text-muted">ENI - Enchère</h3>
-    </div>
-    <div class="container">
-      <div class="jumbotron">
-        <div class="form-group" style="">
-          <label style="float: left;">Identifiant :&nbsp;</label>
-          <input type="text" class="form-control">
-        </div>
-        <div class="form-group" style="">
-          <label style="float: left;">Mot de passe :&nbsp;</label>
-          <input type="text" class="form-control">
-        </div>
-      <ul class="list-group" style="">
-  <li class="list-group-item" style="background-color: rgb(233, 236, 239); border-width: 0px;">
-    <button type="button" class="btn btn-primary" style="float: left;">Connexion</button>
-    <br><br>
-    <label class="checkbox" style="">
-      <input type="checkbox">Se souvenir de moi&nbsp;
-      <br>
-      <a href="www.google.com">Mot de passe oublié</a>
-    </label>
-    </li>
-  <li class="list-group-item" style="background-color: rgb(233, 236, 239); border-width: 0px;">
-  <form action="/enchereENI/Inscription">
-  <input type="submit" class="btn btn-primary" value="Créer un compte" style="float: left; text-align: left;"/>
-  </form>
-    </li>
-    </ul>
-      </div>    
-</div>
+	<div class="header clearfix">
+		<h3 class="text-muted">ENI - Enchère</h3>
+	</div>
+	<div class="container">
+		<div class="jumbotron">
+			<form action="Connexion" method="post">
+				<div class="form-group" style="">
+					<label style="float: left;" for="username">Identifiant
+						:&nbsp;</label> <input type="text" class="form-control" name="username"
+						id="username" />
+				</div>
+				<div class="form-group" style="">
+					<label style="float: left;" for="password">Mot de passe
+						:&nbsp;</label> <input type="text" class="form-control" name="password"
+						id="password">
+				</div>
+
+				<button type="submit" class="btn btn-primary" style="float: left;">Connexion</button>
+
+			</form>
+		
+			<ul class="list-group" style="">
+				<li class="list-group-item"
+					style="background-color: rgb(233, 236, 239); border-width: 0px;">
+					<br> <br> <label class="checkbox" style=""> <input
+						type="checkbox">Se souvenir de moi&nbsp; <br> <a
+						href="www.google.com">Mot de passe oublié</a>
+				</label>
+				</li>
+				<li class="list-group-item"
+					style="background-color: rgb(233, 236, 239); border-width: 0px;">
+					<form action="/enchereENI/Inscription">
+						<input type="submit" class="btn btn-primary"
+							value="Créer un compte" style="float: left; text-align: left;" />
+					</form>
+				</li>
+			</ul>
+				<c:if test="${hasErrors != null}">
+				<div class="alert alert-danger">${hasErrors}</div>
+			</c:if>
+		</div>
+	</div>
 </body>
 </html>
