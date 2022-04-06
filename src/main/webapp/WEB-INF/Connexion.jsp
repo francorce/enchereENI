@@ -29,6 +29,7 @@
       <ul class="list-group" style="">
   <li class="list-group-item" style="background-color: rgb(233, 236, 239); border-width: 0px;">
     <button type="button" class="btn btn-primary" style="float: left;">Connexion</button>
+    <br><br>
     <label class="checkbox" style="">
       <input type="checkbox">Se souvenir de moi&nbsp;
       <br>

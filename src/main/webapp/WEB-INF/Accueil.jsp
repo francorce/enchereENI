@@ -13,7 +13,7 @@
         </nav>
         <h3 class="text-muted">ENI - Enchère&nbsp;</h3>
       </div>
-      
+      <div class="container">
 <div class="jumbotron">
         <h1 class="display-3">Listes des enchères</h1>
         <button class="btn btn-primary" style="float: right;">Rechercher</button>
@@ -36,6 +36,7 @@
       <div class="row marketing">
         <div class="col-lg-6">
         </div>  
+      </div>
       </div>
 	</body>
 </html>
