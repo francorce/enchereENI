@@ -69,7 +69,7 @@ public class ConnexionServlet extends HttpServlet {
 		}
 		
 		if (user == null) {
-			request.setAttribute("hasErrors", true);
+			request.setAttribute("hasErrors", true); 
 			doGet(request, response);
 			return;
 		}
