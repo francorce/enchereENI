@@ -24,11 +24,24 @@
         <label style="float: left;">Catégories :&nbsp;</label>
           <select class="form-control">
             </select>
-            <label class="radio" style="">
-            <input type="radio"> Achats
-            <label class="radio" style="">
-            <input type="radio"> Mes ventes
+            
         </div>
+        <div>
+            <input type="radio" name="radio" checked>Achats
+            <input type="radio" name="radio"> Mes ventes 
+            	
+         </div>
+         <div>
+         <ul>
+         	<li><input type="checkbox"> enchère ouvertes</li>
+         	<li><input type="checkbox"> mes enchères</li>
+         	<li><input type="checkbox">mes enchères remportées</li>
+         	<li><input type="checkbox"> mes ventes en cours</li>
+         	<li><input type="checkbox"> ventes non débutées</li>
+         	<li><input type="checkbox">ventes termiées</li>
+         </ul>
+        </div>
+       
         <div class="card" style="">
           <div class="card-body" style="float: none;">
             <h4 class="card-title"></h4>
