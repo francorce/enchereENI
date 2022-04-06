@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.enchereENI.bll.UserManager;
 import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dao.UserDao;
 import fr.eni.enchereENI.dao.UserDaoFactory;
@@ -24,19 +25,20 @@ import fr.eni.enchereENI.dao.UserDaoFactory;
 @WebServlet("/Connexion")
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ConnexionServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	public ConnexionServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		boolean hasErrors = false;
 		if (request.getAttribute("hasErrors") != null) {
@@ -46,38 +48,28 @@ public class ConnexionServlet extends HttpServlet {
 		if (hasErrors) {
 			request.setAttribute("hasErrors", "Username ou password invalide");
 		}
-		
+
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Connexion.jsp").forward(request, response);
 	}
 
-
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		UserDao userDao = UserDaoFactory.getDao();
 		String pseudoOuEmail = request.getParameter("username");
 		String password = request.getParameter("password");
-		Boolean useEmail = isValidEmailAddress(pseudoOuEmail);
-		User user = null;
-		try {
-			user = useEmail ? userDao.getByEmail(pseudoOuEmail, password) : userDao.getByPseudo(pseudoOuEmail, password);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		User user = UserManager.connectUser(pseudoOuEmail, password);
 		if (user == null) {
-			request.setAttribute("hasErrors", true); 
+			request.setAttribute("hasErrors", true);
 			doGet(request, response);
 			return;
 		}
-		
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
-		  response.sendRedirect(request.getContextPath() + "/Accueil");
-		
+		response.sendRedirect(request.getContextPath() + "/Accueil");
+
 //		
 //		 MessageDigest md;
 //			try {
@@ -91,23 +83,10 @@ public class ConnexionServlet extends HttpServlet {
 //				e.printStackTrace();
 //			}
 
-		//TODO
-	
+		// TODO
 
-		
-		   
-		
 	}
 
-	public static boolean isValidEmailAddress(String email) {
-		boolean result = true;
-		try {
-			InternetAddress emailAddr = new InternetAddress(email);
-			emailAddr.validate();
-		} catch (AddressException ex) {
-			result = false;
-		}
-		return result;
-	}
+
 
 }
