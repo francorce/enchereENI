@@ -20,14 +20,15 @@ public class UserDaoImpl implements UserDao {
 	private static String DELETE = "DELETE from utilisateurs where no_utilisateur = ?";
 	private static String UPDATE = "UPDATE utilisateurs SET pseudo =  ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_utilisateur = ?";
 	private static String SAVE = "INSERT into utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-	private static String GET_BY_PSEUDO = "SELECT * from utilisateurs where pseudo = ?";
-	private static String GET_BY_EMAIL = "SELECT * from utilisateurs where email = ?";
+	private static String GET_BY_PSEUDO_AND_PASSWORD = "SELECT * from utilisateurs where pseudo = ? and mot_de_passe = ?";
+	private static String GET_BY_EMAIL_AND_PASSWORD = "SELECT * from utilisateurs where email = ? and mot_de_passe = ?";
 
-	public User getByEmail(String email) throws SQLException {
+	public User getByEmail(String email, String password) throws SQLException {
 		User user = null;
 		Connection con = ConnectionProvider.getConnection();
-		PreparedStatement getUser = con.prepareStatement(GET_BY_EMAIL);
+		PreparedStatement getUser = con.prepareStatement(GET_BY_EMAIL_AND_PASSWORD);
 		getUser.setString(1, email);
+		getUser.setString(2, password);
 		ResultSet rs = getUser.executeQuery();
 		while (rs.next()) {
 			user = new User();
@@ -49,11 +50,13 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 	
-	public User getByPseudo(String pseudo) throws SQLException {
+	public User getByPseudo(String pseudo, String password) throws SQLException {
 		User user = null;
 		Connection con = ConnectionProvider.getConnection();
-		PreparedStatement getUser = con.prepareStatement(GET_BY_PSEUDO);
+		PreparedStatement getUser = con.prepareStatement(GET_BY_PSEUDO_AND_PASSWORD);
 		getUser.setString(1, pseudo);
+		getUser.setString(2, password);
+
 		ResultSet rs = getUser.executeQuery();
 		while (rs.next()) {
 			user = new User();
