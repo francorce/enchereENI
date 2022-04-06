@@ -9,6 +9,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+
 </head>
 <body>
 	<div class="header clearfix">
@@ -30,22 +31,27 @@
           <select class="form-control">
             </select>
             
+            
+           
         </div>
-        <div>
-            <input type="radio" name="radio" checked>Achats
-            <input type="radio" name="radio"> Mes ventes 
-            	
-         </div>
-         <div>
-         <ul>
-         	<li><input type="checkbox"> enchère ouvertes</li>
-         	<li><input type="checkbox"> mes enchères</li>
-         	<li><input type="checkbox">mes enchères remportées</li>
-         	<li><input type="checkbox"> mes ventes en cours</li>
-         	<li><input type="checkbox"> ventes non débutées</li>
-         	<li><input type="checkbox">ventes termiées</li>
-         </ul>
-        </div>
+	         <div class="row">
+	         	<div class="col">
+	      			<input type="radio" name="radio" values="Achats">Achats
+	      			<ul>
+	      				<li><input name="check" type="checkbox"> enchère ouvertes</li>
+			         	<li><input name="check" type="checkbox"> mes enchères</li>
+			         	<li><input name="check" type="checkbox">mes enchères remportées</li>
+	      			</ul>
+	    		</div>
+	    		<div class="col">
+	      			<input type="radio" name="radio" values="Mes_ventes"> Mes ventes 
+	      			<ul>
+			         	<li><input name="check" type="checkbox"> mes ventes en cours</li>
+			         	<li><input name="check" type="checkbox"> ventes non débutées</li>
+			         	<li><input name="check" type="checkbox">ventes termiées</li>
+			        </ul>
+	    		</div>
+	    	</div>
        
         <div class="card" style="">
           <div class="card-body" style="float: none;">
