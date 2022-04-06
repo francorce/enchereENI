@@ -10,16 +10,14 @@
 	<body>
 	<div class="header clearfix">
         <nav>
-          
-              <a class="nav nav-pills float-right" href="/enchereENI/Connexion">S'incrire / Se connecter</a>
-            
+        	<a class="nav nav-pills float-right" href="/enchereENI/Connexion">S'incrire / Se connecter</a>
         </nav>
         <h3 class="text-muted">ENI - Enchère&nbsp;</h3>
       </div>
       
 <div class="jumbotron">
         <h1 class="display-3">Listes des enchères</h1>
-        <a class="btn btn-lg btn-success" role="button"style="float: right;">Rechercher</a>
+        <button class="btn btn-primary" style="float: right;">Rechercher</button>
         <p class="lead" style="float: left;">filtres :&nbsp;</p>
       <div class="form-group" style=""><input type="text" class="form-control" >
         </div>

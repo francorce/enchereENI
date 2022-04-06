@@ -18,7 +18,7 @@
 		    document.getElementById('message').innerHTML = 'Les mots de passe ne correspondent pas';
 		  }
 		}</script>
-    <form method="post" action="bonjour">
+    <form method="post" action="/enchereENI/Inscription">
 	
 	    	<div class="container">
 	    	
@@ -108,8 +108,9 @@
 			<span id='message'></span>
 			<br>
 			<input type="submit" />
+
+				<input type = "submit" value = "Annuler"/>
 			</div>
-	    	
 	    	
 		  	<ul>
 		        <c:forEach var="utilisateur" items="${ utilisateurs }">
