@@ -65,15 +65,20 @@ public class ConnexionServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		if (user == null) {
+			request.setAttribute("hasErrors", true);
+			doGet(request, response);
+			return;
+		}
+		
 
+		//TODO
 		if (user.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("isAuth", user);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/Accueil.jsp").forward(request, response);
-		} else {
-			request.setAttribute("hasErrors", true);
-			doGet(request, response);
-		}
+		} 
 
 	}
 
