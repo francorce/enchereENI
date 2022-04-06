@@ -67,7 +67,7 @@ public class InscriptionServlet extends HttpServlet {
 	        utilisateur.setCredit(100);
 	        utilisateur.setAdmin(false);
 	     	        
-	        UserDao userDao = UserDaoFactory.getDao();
+	        UserDao userDao = DaoFactory.getUserDao();
 	        try {
 				userDao.save(utilisateur);
 				
