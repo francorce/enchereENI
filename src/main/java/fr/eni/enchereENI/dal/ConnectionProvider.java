@@ -16,16 +16,18 @@ public abstract class ConnectionProvider {
 		try {
 			Context context = new InitialContext();
 			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/pool_cnx");
+			System.out.println("Connexion réussie");
 		} catch (NamingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			throw new RuntimeException("Impossible d'acc�der à la base de donn�es");
+			throw new RuntimeException("Impossible d'accéder à la base de données");
 		}
 		
 	}
 	
 	public static Connection getConnection() throws SQLException
 	{
+		
 		
 		return dataSource.getConnection();
 	}

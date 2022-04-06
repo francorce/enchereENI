@@ -15,12 +15,66 @@ import fr.eni.enchereENI.dao.UserDao;
 
 public class UserDaoImpl implements UserDao {
 
-	private static String GET = "SELECT * from utilisateurs where no_utilisateur = ?";
+	private static String GET_BY_ID = "SELECT * from utilisateurs where no_utilisateur = ?";
 	private static String GET_ALL = "SELECT * from utilisateurs";
 	private static String DELETE = "DELETE from utilisateurs where no_utilisateur = ?";
 	private static String UPDATE = "UPDATE utilisateurs SET pseudo =  ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ?, code_postal = ?, ville = ?, mot_de_passe = ?, credit = ?, administrateur = ? WHERE no_utilisateur = ?";
 	private static String SAVE = "INSERT into utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static String GET_BY_PSEUDO = "SELECT * from utilisateurs where pseudo = ?";
+	private static String GET_BY_EMAIL = "SELECT * from utilisateurs where email = ?";
 
+	public User getByEmail(String email) throws SQLException {
+		User user = null;
+		Connection con = ConnectionProvider.getConnection();
+		PreparedStatement getUser = con.prepareStatement(GET_BY_EMAIL);
+		getUser.setString(1, email);
+		ResultSet rs = getUser.executeQuery();
+		while (rs.next()) {
+			user = new User();
+			user.setNo_utilisateur(rs.getInt("no_utilisateur"));
+			user.setPseudo(rs.getString("pseudo"));
+			user.setNom(rs.getString("nom"));
+			user.setPrenom(rs.getString("prenom"));
+			user.setEmail(rs.getString("email"));
+			user.setTelephone(rs.getString("telephone"));
+			user.setRue(rs.getString("rue"));
+			user.setCp(rs.getString("code_postal"));
+			user.setVille(rs.getString("ville"));
+			user.setPassword(rs.getString("mot_de_passe"));
+			user.setCredit(rs.getInt("credit"));
+			user.setAdmin(rs.getBoolean("administrateur"));
+		}
+		con.close();
+		rs.close();
+		return user;
+	}
+	
+	public User getByPseudo(String pseudo) throws SQLException {
+		User user = null;
+		Connection con = ConnectionProvider.getConnection();
+		PreparedStatement getUser = con.prepareStatement(GET_BY_PSEUDO);
+		getUser.setString(1, pseudo);
+		ResultSet rs = getUser.executeQuery();
+		while (rs.next()) {
+			user = new User();
+			user.setNo_utilisateur(rs.getInt("no_utilisateur"));
+			user.setPseudo(rs.getString("pseudo"));
+			user.setNom(rs.getString("nom"));
+			user.setPrenom(rs.getString("prenom"));
+			user.setEmail(rs.getString("email"));
+			user.setTelephone(rs.getString("telephone"));
+			user.setRue(rs.getString("rue"));
+			user.setCp(rs.getString("code_postal"));
+			user.setVille(rs.getString("ville"));
+			user.setPassword(rs.getString("mot_de_passe"));
+			user.setCredit(rs.getInt("credit"));
+			user.setAdmin(rs.getBoolean("administrateur"));
+		}
+		con.close();
+		rs.close();
+		return user;
+	}
+	
 	public List<User> getAll() throws SQLException {
 		List userList = new ArrayList<User>();
 		Connection con;
@@ -52,12 +106,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User get(int id) throws SQLException {
-		User user = new User();
+		User user = null;
 		Connection con = ConnectionProvider.getConnection();
-		PreparedStatement getUser = con.prepareStatement(GET);
+		PreparedStatement getUser = con.prepareStatement(GET_BY_ID);
 		getUser.setInt(1, id);
 		ResultSet rs = getUser.executeQuery();
 		while (rs.next()) {
+			user = new User();
 			user.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			user.setPseudo(rs.getString("pseudo"));
 			user.setNom(rs.getString("nom"));
@@ -82,7 +137,7 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement saveUser = con.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS);
 		saveUser.setString(1, t.getPseudo());
 		saveUser.setString(2, t.getNom());
-		saveUser.setString(3, t.getPrenom());
+		saveUser.setString(3, t.getPrenom());	
 		saveUser.setString(4, t.getEmail());
 		saveUser.setString(5, t.getTelephone());
 		saveUser.setString(6, t.getRue());
