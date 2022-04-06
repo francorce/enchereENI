@@ -99,26 +99,25 @@
 			    <div class="form-outline">
 			      <label class="form-label" for="form9Example4">Confirmation :</label>
 			      <input type="password" name="passwordV" id="passwordV" class="form-control"  onkeyup='check();'  placeholder="Confirmation Mot de passe"/>
-			      
 			    </div>
-			    
 			  </div>
-			   
 			</div>
 			<span id='message'></span>
 			<br>
-			<input type="submit" />
 
+			<input type="submit" />
 				<input type = "submit" value = "Annuler"/>
+
+			<input type="submit" name = "action" value="Envoyer" />
+
+				<input type = "submit" name = "action" value = "Annuler"/>
+
 			</div>
-	    	
 		  	<ul>
 		        <c:forEach var="utilisateur" items="${ utilisateurs }">
 		            <li><c:out value="${ utilisateur.prenom }" /> <c:out value="${ utilisateur.nom }" /></li>
 		        </c:forEach>
-		    </ul>  
-		    
-		    
+		    </ul>     
   		</form>
 </body>
 </html>
