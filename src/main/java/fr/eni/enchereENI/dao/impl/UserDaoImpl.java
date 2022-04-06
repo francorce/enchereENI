@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dal.ConnectionProvider;
@@ -30,7 +29,7 @@ public class UserDaoImpl implements UserDao {
 		getUser.setString(1, email);
 		getUser.setString(2, password);
 		ResultSet rs = getUser.executeQuery();
-		while (rs.next()) {
+		if (rs.next()) {
 			user = new User();
 			user.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			user.setPseudo(rs.getString("pseudo"));
@@ -58,7 +57,7 @@ public class UserDaoImpl implements UserDao {
 		getUser.setString(2, password);
 
 		ResultSet rs = getUser.executeQuery();
-		while (rs.next()) {
+		if (rs.next()) {
 			user = new User();
 			user.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			user.setPseudo(rs.getString("pseudo"));
@@ -114,7 +113,7 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement getUser = con.prepareStatement(GET_BY_ID);
 		getUser.setInt(1, id);
 		ResultSet rs = getUser.executeQuery();
-		while (rs.next()) {
+		if (rs.next()) {
 			user = new User();
 			user.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			user.setPseudo(rs.getString("pseudo"));

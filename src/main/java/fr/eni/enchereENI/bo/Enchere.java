@@ -1,6 +1,7 @@
 package fr.eni.enchereENI.bo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,18 +10,18 @@ public class Enchere {
 	private int noEnchere;
 	private Date dateEnchere;
 	private float montantEnchere;
-	private List<Integer> noArticle;
-	private int noUtilisateur;
+	private List<Article> articles = new ArrayList<Article>();
+	private User encherisseur;
 	
 	
 	
-	public Enchere(int noEnchere, Date dateEnchere, float montantEnchere, List<Integer> noArticle, int noUtilisateur) {
+	public Enchere(int noEnchere, Date dateEnchere, float montantEnchere, List<Article> noArticle, User encherisseur) {
 		super();
 		this.noEnchere = noEnchere;
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
-		this.noArticle = noArticle;
-		this.noUtilisateur = noUtilisateur;
+		this.articles = noArticle;
+		this.encherisseur = encherisseur;
 	}
 	
 	public Enchere() {
@@ -45,21 +46,21 @@ public class Enchere {
 	public void setMontantEnchere(float montantEnchere) {
 		this.montantEnchere = montantEnchere;
 	}
-	public List<Integer> getNoArticle() {
-		return noArticle;
+	public List<Article> getNoArticle() {
+		return articles;
 	}
-	public void setNoArticle(List<Integer> noArticle) {
-		this.noArticle = noArticle;
+	public void setNoArticle(List<Article> noArticle) {
+		this.articles = noArticle;
 	}
-	public int getNoUtilisateur() {
-		return noUtilisateur;
+	public User getNoUtilisateur() {
+		return encherisseur;
 	}
-	public void setNoUtilisateur(int noUtilisateur) {
-		this.noUtilisateur = noUtilisateur;
+	public void setNoUtilisateur(User encherisseur) {
+		this.encherisseur = encherisseur;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(dateEnchere, montantEnchere, noArticle, noEnchere, noUtilisateur);
+		return Objects.hash(dateEnchere, montantEnchere, articles, noEnchere, encherisseur);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -72,13 +73,13 @@ public class Enchere {
 		Enchere other = (Enchere) obj;
 		return Objects.equals(dateEnchere, other.dateEnchere)
 				&& Float.floatToIntBits(montantEnchere) == Float.floatToIntBits(other.montantEnchere)
-				&& Objects.equals(noArticle, other.noArticle) && noEnchere == other.noEnchere
-				&& noUtilisateur == other.noUtilisateur;
+				&& Objects.equals(articles, other.articles) && noEnchere == other.noEnchere
+				&& encherisseur == other.encherisseur;
 	}
 	@Override
 	public String toString() {
 		return "Enchere [noEnchere=" + noEnchere + ", dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere
-				+ ", noArticle=" + noArticle + ", noUtilisateur=" + noUtilisateur + "]";
+				+ ", noArticle=" + articles + ", noUtilisateur=" + encherisseur + "]";
 	}
 	
 	
