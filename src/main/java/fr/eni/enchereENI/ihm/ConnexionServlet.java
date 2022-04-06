@@ -76,7 +76,7 @@ public class ConnexionServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
-		this.getServletContext().getRequestDispatcher("/WEB-INF/Accueil.jsp").forward(request, response);
+		  response.sendRedirect(request.getContextPath() + "/Accueil");
 		
 //		
 //		 MessageDigest md;
