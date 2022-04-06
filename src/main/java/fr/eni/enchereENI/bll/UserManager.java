@@ -7,7 +7,7 @@ import javax.mail.internet.InternetAddress;
 
 import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dao.UserDao;
-import fr.eni.enchereENI.dao.UserDaoFactory;
+import fr.eni.enchereENI.dao.DaoFactory;
 
 public class UserManager {
 
@@ -24,7 +24,7 @@ public class UserManager {
 
 	public static User connectUser(String pseudoOuEmail, String password) {
 		User user = null;
-		UserDao userDao = UserDaoFactory.getDao();
+		UserDao userDao = DaoFactory.getUserDao();
 		Boolean useEmail = isValidEmailAddress(pseudoOuEmail);
 		try {
 			user = useEmail ? userDao.getByEmail(pseudoOuEmail, password)
