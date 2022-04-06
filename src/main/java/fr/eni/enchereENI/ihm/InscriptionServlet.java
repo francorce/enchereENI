@@ -1,6 +1,8 @@
 package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchereENI.*;
 import fr.eni.enchereENI.bo.User;
+import fr.eni.enchereENI.dao.*;
+import fr.eni.enchereENI.dao.impl.*;
+
 
 /**
  * Servlet implementation class Inscription
@@ -17,6 +22,7 @@ import fr.eni.enchereENI.bo.User;
 @WebServlet("/Inscription")
 public class InscriptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserDao userDao;
        	
     /**
      * @see HttpServlet#HttpServlet()
@@ -26,12 +32,15 @@ public class InscriptionServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    public void init() throws ServletException {
+       
+    }
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		User tableUtilisateurs = new User();
-        //request.setAttribute("utilisateurs", tableUtilisateurs.recupererUser());
+      //  request.setAttribute("utilisateurs", User.get());
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Inscription.jsp").forward(request, response);
 	}
 
@@ -50,12 +59,21 @@ public class InscriptionServlet extends HttpServlet {
 	        utilisateur.setCp(request.getParameter("cp"));
 	        utilisateur.setVille(request.getParameter("ville"));
 	        utilisateur.setPassword(request.getParameter("password"));
-	        //utilisateur.setCredit(request.getParameter("credit"));
-	        //utilisateur.setisAdmin(request.getParameter("isAdmin"));
-	        
+	        //TODO Credit dans couche bll
+	        utilisateur.setCredit(100);
+	        utilisateur.setAdmin(false);
+	     	        
+	        UserDao userDao = UserDaoFactory.getDao();
+	        try {
+				userDao.save(utilisateur);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	        //TODO 
 //	        User tableUser = new User();
-//	        tableUser.ajouterUtilisateur(utilisateur);
+//	        tableUser.save(utilisateur);
 //	        
 //	        request.setAttribute("utilisateurs", tableUser.recupererUtilisateurs());
 	        

@@ -18,7 +18,7 @@
 		    document.getElementById('message').innerHTML = 'Les mots de passe ne correspondent pas';
 		  }
 		}</script>
-    <form method="post" action="bonjour">
+    <form method="post" action="/enchereENI/Inscription">
 	
 	    	<div class="container">
 	    	
