@@ -2,7 +2,6 @@ package fr.eni.enchereENI.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 import fr.eni.enchereENI.bo.User;
 
@@ -24,5 +23,8 @@ public interface UserDao extends Dao<User>{
 	@Override
 	public void delete(User t) throws SQLException;
 	
+	public User getByEmail(String email)throws SQLException;
 	
+	public User getByPseudo(String pseudo)throws SQLException;
+
 }
