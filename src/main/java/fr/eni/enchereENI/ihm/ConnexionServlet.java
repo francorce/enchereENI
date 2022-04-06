@@ -62,7 +62,7 @@ public class ConnexionServlet extends HttpServlet {
 		Boolean useEmail = isValidEmailAddress(pseudoOuEmail);
 		User user = null;
 		try {
-			user = useEmail ? userDao.getByEmail(pseudoOuEmail) : userDao.getByPseudo(pseudoOuEmail);
+			user = useEmail ? userDao.getByEmail(pseudoOuEmail, password) : userDao.getByPseudo(pseudoOuEmail, password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,6 +73,11 @@ public class ConnexionServlet extends HttpServlet {
 			doGet(request, response);
 			return;
 		}
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
+		this.getServletContext().getRequestDispatcher("/WEB-INF/Accueil.jsp").forward(request, response);
+		
 //		
 //		 MessageDigest md;
 //			try {
@@ -87,11 +92,7 @@ public class ConnexionServlet extends HttpServlet {
 //			}
 
 		//TODO
-		if (user.getPassword().equals(password)) {
-			HttpSession session = request.getSession();
-			session.setAttribute("isAuth", user);
-			this.getServletContext().getRequestDispatcher("/WEB-INF/Accueil.jsp").forward(request, response);
-		} 
+	
 
 		
 		   
