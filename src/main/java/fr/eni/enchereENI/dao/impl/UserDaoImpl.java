@@ -24,12 +24,13 @@ public class UserDaoImpl implements UserDao {
 	private static String GET_BY_EMAIL = "SELECT * from utilisateurs where email = ?";
 
 	public User getByEmail(String email) throws SQLException {
-		User user = new User();
+		User user = null;
 		Connection con = ConnectionProvider.getConnection();
 		PreparedStatement getUser = con.prepareStatement(GET_BY_EMAIL);
 		getUser.setString(1, email);
 		ResultSet rs = getUser.executeQuery();
 		while (rs.next()) {
+			user = new User();
 			user.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			user.setPseudo(rs.getString("pseudo"));
 			user.setNom(rs.getString("nom"));
@@ -49,12 +50,13 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	public User getByPseudo(String pseudo) throws SQLException {
-		User user = new User();
+		User user = null;
 		Connection con = ConnectionProvider.getConnection();
 		PreparedStatement getUser = con.prepareStatement(GET_BY_PSEUDO);
 		getUser.setString(1, pseudo);
 		ResultSet rs = getUser.executeQuery();
 		while (rs.next()) {
+			user = new User();
 			user.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			user.setPseudo(rs.getString("pseudo"));
 			user.setNom(rs.getString("nom"));
@@ -104,12 +106,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User get(int id) throws SQLException {
-		User user = new User();
+		User user = null;
 		Connection con = ConnectionProvider.getConnection();
 		PreparedStatement getUser = con.prepareStatement(GET_BY_ID);
 		getUser.setInt(1, id);
 		ResultSet rs = getUser.executeQuery();
 		while (rs.next()) {
+			user = new User();
 			user.setNo_utilisateur(rs.getInt("no_utilisateur"));
 			user.setPseudo(rs.getString("pseudo"));
 			user.setNom(rs.getString("nom"));

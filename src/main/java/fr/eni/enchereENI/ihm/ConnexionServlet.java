@@ -20,13 +20,13 @@ import fr.eni.enchereENI.dao.UserDaoFactory;
  * Servlet implementation class Connexion
  */
 @WebServlet("/Connexion")
-public class Connexion extends HttpServlet {
+public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Connexion() {
+    public ConnexionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
