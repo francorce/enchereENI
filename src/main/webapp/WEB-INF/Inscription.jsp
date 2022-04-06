@@ -66,7 +66,7 @@
 			    <!-- Email input -->
 			    <div class="form-outline">
 			      <label class="form-label" for="form9Example4">CP :</label>
-			      <input type="range" name="cp" id="cp" class="form-control" placeholder="Code postal" />
+			      <input type="number" name="cp" id="cp" class="form-control" placeholder="Code postal" />
 			    </div>
 			  </div>
 			</div>
@@ -108,8 +108,9 @@
 			<span id='message'></span>
 			<br>
 			<input type="submit" />
+
+				<input type = "submit" value = "Annuler"/>
 			</div>
-	    	
 	    	
 		  	<ul>
 		        <c:forEach var="utilisateur" items="${ utilisateurs }">
