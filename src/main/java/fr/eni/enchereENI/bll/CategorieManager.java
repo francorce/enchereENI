@@ -21,4 +21,17 @@ public class CategorieManager {
 		
 		return listeCategorie;
 	}
+	
+	public Categorie getByLibelle(String libelle){
+		Categorie categorie = null;
+		CategorieDao categorieDao = DaoFactory.getCategorieDao();
+		try {
+			categorie = categorieDao.getByLibelle(libelle);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return categorie;
+	}
 }

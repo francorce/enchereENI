@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,8 @@ import fr.eni.enchereENI.dao.DaoFactory;
 public class ArticleDaoImpl implements ArticleDao {
 	private static String GET_BY_ID = "SELECT * from articles_vendus where no_article = ?";
 	private static String GET_ALL = "SELECT * from articles_vendus";
+	private static String SAVE = "INSERT into articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+
 	
 	public List<Article> getAll() throws SQLException {
 		List<Article> articleList = new ArrayList<Article>();
@@ -82,8 +85,18 @@ public class ArticleDaoImpl implements ArticleDao {
 
 	@Override
 	public void save(Article a) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		Connection con = ConnectionProvider.getConnection();
+		PreparedStatement saveArticle = con.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS);
+		saveArticle.setString(1, a.getNomArticle());
+		saveArticle.setString(2, a.getDescription());
+		saveArticle.setDate(3, a.getDebutEnchere());	
+		saveArticle.setDate(4, a.getFinEnchere());
+		saveArticle.setInt(5, a.getPrixInitial());
+		saveArticle.setInt(6, a.getPrixVente());
+		saveArticle.setInt(7, a.getVendeur().getNo_utilisateur());
+		saveArticle.setInt(8, a.getCategorie().getNoCategorie());
+		int id = saveArticle.executeUpdate();
+		a.setNoArticle(id);
 	}
 
 	@Override
