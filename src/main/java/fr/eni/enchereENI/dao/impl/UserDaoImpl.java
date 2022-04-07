@@ -168,7 +168,8 @@ public class UserDaoImpl implements UserDao {
 		updateUser.setInt(10, t.getCredit());
 		updateUser.setBoolean(11, t.isAdmin());
 		updateUser.setInt(12, t.getNo_utilisateur());
-		Boolean requesteIsOk = updateUser.execute();
+		updateUser.executeUpdate();
+		
 	}
 
 	@Override

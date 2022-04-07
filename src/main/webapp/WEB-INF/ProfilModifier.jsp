@@ -21,7 +21,7 @@
 		    document.getElementById('message').innerHTML = 'Les mots de passe ne correspondent pas';
 		  }
 		}</script>
-    <form method="post" action="/enchereENI/Profil">
+    <form method="post" action="/enchereENI/ProfilModifier">
 	
 	    	<div class="container">
 	    	<div class="jumbotron">

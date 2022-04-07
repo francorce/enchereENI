@@ -8,7 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import fr.eni.enchereENI.*;
 import fr.eni.enchereENI.bo.User;
@@ -65,11 +65,14 @@ public class InscriptionServlet extends HttpServlet {
 	        //TODO Credit dans couche bll
 	        utilisateur.setCredit(100);
 	        utilisateur.setAdmin(false);
-	     	        
+	     	        System.out.println(utilisateur);
 	        UserDao userDao = DaoFactory.getUserDao();
 	        try {
 				userDao.save(utilisateur);
-				
+				response.sendRedirect(request.getContextPath() + "/AccueilConnecter");
+				HttpSession session = request.getSession();
+				session.setAttribute("user", utilisateur);
+				return;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -81,6 +84,7 @@ public class InscriptionServlet extends HttpServlet {
 //	        request.setAttribute("utilisateurs", tableUser.recupererUtilisateurs());
 	        
 	        this.getServletContext().getRequestDispatcher("/WEB-INF/Inscription.jsp").forward(request, response);
+
 	}
 
 }
