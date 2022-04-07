@@ -36,7 +36,7 @@
 				</c:forEach>
 
 			</select> <label for="buttonPhoto">Photo de l'article</label>
-			<button type="button" id="buttonPhoto">Uploader</button>
+			<input type = "file" name = "file" size = "50" /><br>
 
 			<label for="prixDepart">Mise à prix</label> <input id="prixDepart"
 				name="prixDepart" type="number" /> <label for="debutEnchere">Début

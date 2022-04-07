@@ -4,28 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Mon profil</title>
+<title>Profil</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 </head>
 <body>
-
-			<nav class="navbar navbar-light bg-light">
-				<a class="navbar-brand" href="#"> ENI-Enchères</a>
-				<div class="btn-group" role="group" aria-label="ez">
-					<form action="/enchereENI/ProfilModifier">
-						<button class="btn btn-primary" type="submit">Modifier</button>
-					</form> &nbsp
-					<form action="/enchereENI/AccueilConnecter">
-						<button class="btn btn-info"  type="submit">Accueil</button>
-					</form>
-				</div>
-			</nav>
-
-
-    	<div class="container"><h1 style="float: none;">Mon profil :</h1>      
+<div class="header clearfix">
+	<h3 class="text-muted">ENI - Enchère</h3>
+    </div>
+    	<div class="container"><h1 style="float: none;">Profil :</h1>      
       		<div class="jumbotron">
         		<ul class="list-group" style="">
 	              <li class="list-group-item" style="text-align: left; border-width: 0px;">Pseudo :<input type="text" value="${user.pseudo}" class="form-control" readonly></li>
@@ -37,9 +26,6 @@
 	              <li class="list-group-item" style="text-align: left; border-width: 0px;">Code postal :<input type="text" value="${user.cp}" class="form-control"readonly></li>
 	              <li class="list-group-item" style="text-align: left; border-width: 0px;">Ville :<input type="text" value="${user.ville}" class="form-control"readonly></li>
 	          	</ul>
-	          	<form action="/enchereENI/ProfilModifier">
-     				<br><button type="submit" class="btn btn-primary" style="float: right;">Modifier</button></div>
-     			</form>
      		</div>
      		
     	</div> <!-- /container -->
