@@ -53,7 +53,6 @@ public class InscriptionServlet extends HttpServlet {
 				return;
 			}
 		 	User utilisateur = new User();
-		 	//utilisateur.setNo_utilisateur(request.getParameter("no_utilisateur"));
 		 	utilisateur.setPseudo(request.getParameter("pseudo"));
 	        utilisateur.setNom(request.getParameter("nom"));
 	        utilisateur.setPrenom(request.getParameter("prenom"));

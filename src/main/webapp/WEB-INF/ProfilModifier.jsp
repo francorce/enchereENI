@@ -21,23 +21,24 @@
 		    document.getElementById('message').innerHTML = 'Les mots de passe ne correspondent pas';
 		  }
 		}</script>
-    <form method="post" action="/enchereENI/Inscription">
+    <form method="post" action="/enchereENI/Profil">
 	
 	    	<div class="container">
-	    	
+	    	<div class="jumbotron">
 	    	<div class="row g-5">
 			  <div class="col">
 			    <!-- Name input -->
 			    <div class="form-outline">
-			      <label class="form-label" for="pseudo">Pseudo :</label>
-			      <input type="text" name="pseudo" id="pseudo" class="form-control"  placeholder="Pseudo"/>
+			      <label class="form-label" for="pseudo" >Pseudo :</label>
+			      
+			      <input type="text" name="pseudo" value="${user.pseudo}" id="pseudo" class="form-control"  placeholder="Pseudo"/>
 			    </div>
 			  </div>
 			  <div class="col">
 			    <!-- Email input -->
 			    <div class="form-outline">
 			      <label class="form-label" for="prenom">Prénom :</label>
-			      <input type="text" name="prenom" id="prenom" class="form-control"  placeholder="Prenom"/>
+			      <input type="text" name="prenom" value="${user.prenom}" id="prenom" class="form-control"  placeholder="Prenom"/>
 			    </div>
 			  </div>
 			</div>
@@ -46,14 +47,14 @@
 			    <!-- Name input -->
 			    <div class="form-outline">
 			      <label class="form-label" for="form9Example3">Nom :</label>
-			      <input type="text" name="nom" id="nom" class="form-control"  placeholder="Nom" />
+			      <input type="text" name="nom" value="${user.nom}" id="nom" class="form-control"  placeholder="Nom" />
 			    </div>
 			  </div>
 			  <div class="col">
 			    <!-- Email input -->
 			    <div class="form-outline">
 			      <label class="form-label" for="form9Example4">Email :</label>
-			      <input type="email" name="email" id="email" class="form-control"  placeholder="Adresse mail @"/>    
+			      <input type="email" name="email" value="${user.email}" id="email" class="form-control"  placeholder="Adresse mail @"/>    
 			    </div>
 			  </div>
 			</div>
@@ -62,14 +63,14 @@
 			    <!-- Name input -->
 			    <div class="form-outline">
 			        <label class="form-label" for="form9Example3">Telephone :</label>
-				    <input type="number" name="telephone" id="telepehone" class="form-control" placeholder="Telephone" />
+				    <input type="number" value="${user.telephone}" name="telephone" id="telepehone" class="form-control" placeholder="Telephone" />
 			      </div>
 			  </div>
 			  <div class="col">
 			    <!-- Email input -->
 			    <div class="form-outline">
 			      <label class="form-label" for="form9Example4">CP :</label>
-			      <input type="number" name="cp" id="cp" class="form-control" placeholder="Code postal" />
+			      <input type="number" value="${user.cp}" name="cp" id="cp" class="form-control" placeholder="Code postal" />
 			    </div>
 			  </div>
 			</div>
@@ -78,14 +79,14 @@
 			    <!-- Name input -->
 			    <div class="form-outline">
 			    <label class="form-label" for="form9Example3">Ville :</label>
-			      <input type="text" name="ville" id="ville" class="form-control" placeholder="Ville"/>
+			      <input type="text" value="${user.ville}" name="ville" id="ville" class="form-control" placeholder="Ville"/>
 			    </div>
 			  </div>
 			  <div class="col">
 			    <!-- Email input -->
 			    <div class="form-outline">
 			    <label class="form-label" for="form9Example4">Rue :</label>
-			      <input type="text" name="rue" id="rue" class="form-control"  placeholder="Rue"/>
+			      <input type="text" value="${user.rue}" name="rue" id="rue" class="form-control"  placeholder="Rue"/>
 			    </div>
 			  </div>
 			</div>
@@ -94,7 +95,7 @@
 			    <!-- Name input -->
 			    <div class="form-outline">
 			     <label class="form-label" for="form9Example3">Mot de passe :</label>
-			      <input type="password" name="password" id="password" class="form-control"  onkeyup='check();' placeholder="Mot de passe" />
+			      <input type="password" value="${user.password}" name="password" id="password" class="form-control"  onkeyup='check();' placeholder="Mot de passe" />
 			    </div>
 			  </div>
 			  <div class="col">
@@ -107,12 +108,13 @@
 			</div>
 				<br>
 			  <label class="form-label" for="form9Example4">Credit :</label>
-			  <input type="text" readonly name="credit">
+			  <input type="text" value="${user.credit}" readonly name="credit"/>
 				<br>
 			<span id='message'></span>
 			<br>
 			<input type="submit" name = "action" value="Modifier" />
 				<input type = "submit" name = "action" value = "Supprimer mon compte"/>
+			</div>
 			</div>
 		  	<ul>
 		    </ul>     

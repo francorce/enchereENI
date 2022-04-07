@@ -41,7 +41,7 @@
 					style="background-color: rgb(233, 236, 239); border-width: 0px;">
 					<br> <br> <label class="checkbox" style=""> <input
 						type="checkbox">Se souvenir de moi&nbsp; <br> <a
-						href="www.google.com">Mot de passe oublié</a>
+						href="/enchereENI/">Mot de passe oublié</a>
 				</label>
 				</li>
 				<li class="list-group-item"
