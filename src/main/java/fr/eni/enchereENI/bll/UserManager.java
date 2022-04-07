@@ -11,6 +11,12 @@ import fr.eni.enchereENI.dao.DaoFactory;
 
 public class UserManager {
 
+	private static UserDao userDao;
+	
+	static  {
+		userDao = DaoFactory.getUserDao();
+	}
+	
 	public static boolean isValidEmailAddress(String email) {
 		boolean result = true;
 		try {
@@ -24,7 +30,7 @@ public class UserManager {
 
 	public static User connectUser(String pseudoOuEmail, String password) {
 		User user = null;
-		UserDao userDao = DaoFactory.getUserDao();
+		
 		Boolean useEmail = isValidEmailAddress(pseudoOuEmail);
 		try {
 			user = useEmail ? userDao.getByEmail(pseudoOuEmail, password)
@@ -35,5 +41,20 @@ public class UserManager {
 		}
 		return user;
 	}
+	
+	public static User getUser(int noUtilisateur) {
+		//TODO : à faire
+		User user=null;
+		try {
+			user = userDao.get(noUtilisateur);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			//TODO
+		}
+		return user;
+	}
+
+		
 
 }

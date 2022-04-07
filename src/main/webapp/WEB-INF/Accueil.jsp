@@ -33,7 +33,7 @@
 	         <c:forEach items="${listArticles}" var="listArticles"> 
 		        <div class="col-sm-4">
 			        <div class="card">
-			        <img class="card-img-top" src="" alt="Card image cap" width="128" height="128" style="float: left;">
+			        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg" alt="Card image cap"  style="float: left;">
 						<div class="card-body">
 							<h4 class="card-title">${listArticles.nomArticle}</h4>
 							<p class="card-text">Prix : ${listArticles.prixInitial}</p>

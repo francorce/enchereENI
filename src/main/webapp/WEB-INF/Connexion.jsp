@@ -47,15 +47,16 @@
 					</label>
 				</li>
 				
-				<li class="list-group-item"
+				
+			</ul>
+			</form>
+			<li class="list-group-item"
 					style="background-color: rgb(233, 236, 239); border-width: 0px;">
 					<form action="/enchereENI/Inscription">
 						<input type="submit" class="btn btn-primary"
 							value="Créer un compte"  />
 					</form>
 				</li>
-			</ul>
-			</form>
 			<c:if test="${hasErrors != null}">
 				<div class="alert alert-danger">${hasErrors}</div>
 			</c:if>

@@ -77,7 +77,7 @@
 							<h4 class="card-title">${listArticles.nomArticle}</h4>
 							<p class="card-text">Prix : ${listArticles.prixInitial}</p>
 							<p class="card-text">Fin de l'enchère : ${listArticles.finEnchere}</p>
-							Vendeur : <a class="card-text" href="/enchereENI/ProfilVendeur">${listArticles.vendeur.pseudo}</a>					  			
+							Vendeur : <a class="card-text" href="${'/enchereENI/Profil?no_utilisateur='}${listArticles.vendeur.no_utilisateur}">${listArticles.vendeur.pseudo}</a>					  			
 						</div>
 					</div>
 				</div>
