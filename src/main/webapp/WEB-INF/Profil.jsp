@@ -12,9 +12,18 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<div class="header clearfix">
-		<h3 class="text-muted">ENI - Enchère</h3>
-	</div>
+<nav class="navbar navbar-light bg-light">
+				<a class="navbar-brand" href="#"> ENI-Enchères</a>
+				<div class="btn-group" role="group" aria-label="ez">
+					<form action="/enchereENI/ProfilModifier">
+						<button class="btn btn-primary" type="submit">Modifier</button>
+					</form> &nbsp
+					<form action="/enchereENI/AccueilConnecter">
+						<button class="btn btn-info"  type="submit">Accueil</button>
+					</form>
+				</div>
+			</nav>
+	
 	<div class="container">
 		<h1 style="float: none;">Mon profil :</h1>
 		<div class="jumbotron">
@@ -55,7 +64,6 @@
 
 
 	</div>
-
 
 </body>
 </html>

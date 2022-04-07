@@ -28,19 +28,23 @@
 			<textarea type="text" id="description" name="description"></textarea>
 
 			<label for="categorie">Categorie</label> <select type="text"
-				id="description" name="description">
+				id="categorie" name="categorie">
+				<option></option>
+
 				<c:forEach items="${listeCategorie}" var="categorie">
 					<option>${categorie.libelle}</option>
 				</c:forEach>
+
 			</select> <label for="buttonPhoto">Photo de l'article</label>
-			<button type="button" id="buttonPhoto">Uploader</button>
+			<input type = "file" name = "file" size = "50" /><br>
 
 			<label for="prixDepart">Mise à prix</label> <input id="prixDepart"
 				name="prixDepart" type="number" /> <label for="debutEnchere">Début
 				de l'enchère</label> <input id="debutEnchere" name="debutEnchere"
 				type="date" /> <label for="finEnchere">Fin de l'enchère</label> <input
 				id="finEnchere" name="finEnchere" type="date" />
-			<fieldset class="d-flex flex-column">
+
+			<fieldset class="d-flex flex-column mt-3">
 				<legend>Retrait</legend>
 
 				<label for="rue">Rue</label> <input id="rue" name="rue" type="text" />
@@ -52,7 +56,8 @@
 			<div class="d-flex justify-content-around mt-5">
 				<button class="btn btn-secondary" type="submit">Enregistrer</button>
 				<button class="btn btn-secondary" type="button">Annuler</button>
-				<button class="btn btn-secondary" type="submit">Annuler la vente</button>
+				<button class="btn btn-secondary" type="submit">Annuler la
+					vente</button>
 			</div>
 		</form>
 	</div>

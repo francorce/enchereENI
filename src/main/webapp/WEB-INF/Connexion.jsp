@@ -15,9 +15,16 @@
 
 <body>
 
-	<div class="header clearfix">
-		<h3 class="text-muted">ENI - Enchère</h3>
-	</div>
+			<nav class="navbar navbar-light bg-light">
+				<a class="navbar-brand" href="#"> ENI-Enchères</a>
+				<div class="btn-group" role="group" aria-label="ez">
+					<form action="/enchereENI/">
+						<button class="btn btn-info"  type="submit">Accueil</button>
+					</form>
+				</div>
+			</nav>
+
+
 	<div class="container">
 		<div class="jumbotron">
 			<form action="Connexion" method="post">

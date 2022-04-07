@@ -10,14 +10,14 @@ public class Article {
 	private String description;
 	private Date debutEnchere;
 	private Date finEnchere;
-	private float prixInitial;
-	private float prixVente;
+	private int prixInitial;
+	private int prixVente;
 	private User vendeur;
 	private Categorie categorie;
 	
 	
 	public Article(int noArticle, String nomArticle, String description, Date debutEnchere, Date finEnchere,
-			float prixInitial, float prixVente, User vendeur, Categorie categorie) {
+			int prixInitial, int prixVente, User vendeur, Categorie categorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -66,16 +66,16 @@ public class Article {
 	public void setFinEnchere(Date finEnchere) {
 		this.finEnchere = finEnchere;
 	}
-	public float getPrixInitial() {
+	public int getPrixInitial() {
 		return prixInitial;
 	}
-	public void setPrixInitial(float prixInitial) {
+	public void setPrixInitial(int prixInitial) {
 		this.prixInitial = prixInitial;
 	}
-	public float getPrixVente() {
+	public int getPrixVente() {
 		return prixVente;
 	}
-	public void setPrixVente(float prixVente) {
+	public void setPrixVente(int prixVente) {
 		this.prixVente = prixVente;
 	}
 	public User getVendeur() {
@@ -90,11 +90,13 @@ public class Article {
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(categorie, debutEnchere, description, finEnchere, noArticle, nomArticle, prixInitial,
 				prixVente, vendeur);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -107,10 +109,10 @@ public class Article {
 		return Objects.equals(categorie, other.categorie) && Objects.equals(debutEnchere, other.debutEnchere)
 				&& Objects.equals(description, other.description) && Objects.equals(finEnchere, other.finEnchere)
 				&& noArticle == other.noArticle && Objects.equals(nomArticle, other.nomArticle)
-				&& Float.floatToIntBits(prixInitial) == Float.floatToIntBits(other.prixInitial)
-				&& Float.floatToIntBits(prixVente) == Float.floatToIntBits(other.prixVente)
+				&& prixInitial == other.prixInitial && prixVente == other.prixVente
 				&& Objects.equals(vendeur, other.vendeur);
 	}
+
 	@Override
 	public String toString() {
 		return "Article [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
@@ -118,6 +120,7 @@ public class Article {
 				+ ", prixVente=" + prixVente + ", vendeur=" + vendeur + ", categorie=" + categorie + "]";
 	}
 
+	
 	
 	
 	

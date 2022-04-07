@@ -1,6 +1,7 @@
 package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -8,10 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.enchereENI.bll.ArticleManager;
 import fr.eni.enchereENI.bll.CategorieManager;
+import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
+import fr.eni.enchereENI.bo.User;
 
 /**
  * Servlet implementation class VendreArticleServlet
@@ -46,7 +50,19 @@ public class VendreArticleServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		ArticleManager articleManager = new ArticleManager();
+		
+		String nomArticle = request.getParameter("nomArticle");
+		String description = request.getParameter("description");
+		String categorie = request.getParameter("categorie");
+		String prixDepart = request.getParameter("prixDepart");
+		String debutEnchere = request.getParameter("debutEnchere");	
+		String finEnchere = request.getParameter("finEnchere");
+		HttpSession session = request.getSession();
+		User vendeur = (User) session.getAttribute("user");
+		Boolean hasErrors = articleManager.addArticle(nomArticle, description, categorie, prixDepart, debutEnchere, finEnchere, vendeur);
+		
+		
 		doGet(request, response);
 	}
 

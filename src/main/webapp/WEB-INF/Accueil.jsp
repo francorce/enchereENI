@@ -7,16 +7,17 @@
 <title>Enchère ENI</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-	<body>
-	<div class="header clearfix">
-        
-        	<form action="/enchereENI/Connexion">
-        	<button class="btn btn-primary" style="float: right;">S'incrire / Se connecter</button>
+<body>
+
+
+		<nav class="navbar navbar-light bg-light">
+				<a class="navbar-brand" href="#"> ENI-Enchères</a>
+			<form action="/enchereENI/Connexion">
+        		<button class="btn btn-primary" style="float: right;">S'incrire / Se connecter</button>
         	</form>
-        	
-    
-        <h3 class="text-muted">ENI - Enchère&nbsp;</h3>
-      </div>
+        
+		</nav>
+	
       <div class="container">
 		<div class="jumbotron">
         <h1 class="display-3">Listes des enchères</h1>
