@@ -24,7 +24,7 @@
     <form method="post" action="/enchereENI/Inscription">
 	
 	    	<div class="container">
-	    	
+	    	<div class="jumbotron">
 	    	<div class="row g-5">
 			  <div class="col">
 			    <!-- Name input -->
@@ -110,11 +110,13 @@
 			<input type="submit" name = "action" value="Envoyer" />
 				<input type = "submit" name = "action" value = "Annuler"/>
 			</div>
+			</div>
 		  	<ul>
 		        <c:forEach var="utilisateur" items="${ utilisateurs }">
 		            <li><c:out value="${ utilisateur.prenom }" /> <c:out value="${ utilisateur.nom }" /></li>
 		        </c:forEach>
 		    </ul>     
   		</form>
+  		
 </body>
 </html>

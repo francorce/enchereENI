@@ -24,7 +24,7 @@
     <form method="post" action="/enchereENI/Inscription">
 	
 	    	<div class="container">
-	    	
+	    	<div class="jumbotron">
 	    	<div class="row g-5">
 			  <div class="col">
 			    <!-- Name input -->
@@ -113,6 +113,7 @@
 			<br>
 			<input type="submit" name = "action" value="Modifier" />
 				<input type = "submit" name = "action" value = "Supprimer mon compte"/>
+			</div>
 			</div>
 		  	<ul>
 		    </ul>     
