@@ -21,7 +21,7 @@
       <div class="container">
 		<div class="jumbotron">
         <h1 class="display-3">Listes des enchères</h1>
-        <button class="btn btn-primary" style="float: right;">Rechercher</button>
+        <button class="btn btn-primary" style="float: right;">Rechercher</button><br>
         <label style="float: left;">filtres :&nbsp;</label>
           <input type="text" class="form-control">
         <div class="form-group" style="">
