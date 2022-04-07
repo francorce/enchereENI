@@ -10,24 +10,42 @@ public class Enchere {
 	private int noEnchere;
 	private Date dateEnchere;
 	private float montantEnchere;
-	private List<Article> articles = new ArrayList<Article>();
+	private Article articles;
 	private User encherisseur;
-	
-	
-	
-	public Enchere(int noEnchere, Date dateEnchere, float montantEnchere, List<Article> noArticle, User encherisseur) {
+	public Enchere(int noEnchere, Date dateEnchere, float montantEnchere, Article articles, User encherisseur) {
 		super();
 		this.noEnchere = noEnchere;
 		this.dateEnchere = dateEnchere;
 		this.montantEnchere = montantEnchere;
-		this.articles = noArticle;
+		this.articles = articles;
 		this.encherisseur = encherisseur;
 	}
-	
 	public Enchere() {
 		super();
 	}
-
+	@Override
+	public String toString() {
+		return "Enchere [noEnchere=" + noEnchere + ", dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere
+				+ ", articles=" + articles + ", encherisseur=" + encherisseur + "]";
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(articles, dateEnchere, encherisseur, montantEnchere, noEnchere);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Enchere other = (Enchere) obj;
+		return Objects.equals(articles, other.articles) && Objects.equals(dateEnchere, other.dateEnchere)
+				&& Objects.equals(encherisseur, other.encherisseur)
+				&& Float.floatToIntBits(montantEnchere) == Float.floatToIntBits(other.montantEnchere)
+				&& noEnchere == other.noEnchere;
+	}
 	public int getNoEnchere() {
 		return noEnchere;
 	}
@@ -46,42 +64,22 @@ public class Enchere {
 	public void setMontantEnchere(float montantEnchere) {
 		this.montantEnchere = montantEnchere;
 	}
-	public List<Article> getNoArticle() {
+	public Article getArticles() {
 		return articles;
 	}
-	public void setNoArticle(List<Article> noArticle) {
-		this.articles = noArticle;
+	public void setArticles(Article articles) {
+		this.articles = articles;
 	}
-	public User getNoUtilisateur() {
+	public User getEncherisseur() {
 		return encherisseur;
 	}
-	public void setNoUtilisateur(User encherisseur) {
+	public void setEncherisseur(User encherisseur) {
 		this.encherisseur = encherisseur;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(dateEnchere, montantEnchere, articles, noEnchere, encherisseur);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Enchere other = (Enchere) obj;
-		return Objects.equals(dateEnchere, other.dateEnchere)
-				&& Float.floatToIntBits(montantEnchere) == Float.floatToIntBits(other.montantEnchere)
-				&& Objects.equals(articles, other.articles) && noEnchere == other.noEnchere
-				&& encherisseur == other.encherisseur;
-	}
-	@Override
-	public String toString() {
-		return "Enchere [noEnchere=" + noEnchere + ", dateEnchere=" + dateEnchere + ", montantEnchere=" + montantEnchere
-				+ ", noArticle=" + articles + ", noUtilisateur=" + encherisseur + "]";
-	}
 	
 	
+	
+	
+
 
 }
