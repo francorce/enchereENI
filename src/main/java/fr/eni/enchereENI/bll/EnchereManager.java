@@ -10,7 +10,6 @@ import fr.eni.enchereENI.dao.EnchereDao;
 import fr.eni.enchereENI.dao.impl.EnchereDaoImpl;
 
 public class EnchereManager {
-
 	public List<Enchere> getAll(){
 		List <Enchere> listeEnchere = new ArrayList();
 		EnchereDao enchereDao = DaoFactory.getEnchereDao();
@@ -20,7 +19,6 @@ public class EnchereManager {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return listeEnchere;
 	}
 }

@@ -22,4 +22,5 @@ public class DaoFactory {
 	public static EnchereDao getEnchereDao() {
 		return new EnchereDaoImpl();
 	}
+	
 }

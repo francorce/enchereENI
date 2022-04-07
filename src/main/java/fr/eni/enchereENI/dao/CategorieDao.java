@@ -8,5 +8,6 @@ public interface CategorieDao extends Dao<Categorie>{
 	public Categorie getById(int id) throws SQLException;
 	
 	public Categorie getByLibelle(String libelle) throws SQLException;
+	
 
 }
