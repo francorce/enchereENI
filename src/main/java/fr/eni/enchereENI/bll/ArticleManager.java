@@ -101,7 +101,7 @@ public class ArticleManager {
 		long miliseconds = System.currentTimeMillis();
 		Date dateDuJour = new Date(miliseconds);
 
-		if (dateDuJour.after(debutEnchere)) {
+		if (dateDuJour.after(debutEnchere) || dateDuJour.equals(debutEnchere) ) {
 			dateValid = false;
 		}
 		if (finEnchere == debutEnchere) {
