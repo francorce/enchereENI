@@ -15,9 +15,16 @@
 
 <body>
 
-	<div class="header clearfix">
-		<h3 class="text-muted">ENI - Enchère</h3>
-	</div>
+			<nav class="navbar navbar-light bg-light">
+				<a class="navbar-brand" href="#"> ENI-Enchères</a>
+				<div class="btn-group" role="group" aria-label="ez">
+					<form action="/enchereENI/">
+						<button class="btn btn-info"  type="submit">Accueil</button>
+					</form>
+				</div>
+			</nav>
+
+
 	<div class="container">
 		<div class="jumbotron">
 			<form action="Connexion" method="post">
@@ -47,15 +54,16 @@
 					</label>
 				</li>
 				
-				<li class="list-group-item"
+				
+			</ul>
+			</form>
+			<li class="list-group-item"
 					style="background-color: rgb(233, 236, 239); border-width: 0px;">
 					<form action="/enchereENI/Inscription">
 						<input type="submit" class="btn btn-primary"
 							value="Créer un compte"  />
 					</form>
 				</li>
-			</ul>
-			</form>
 			<c:if test="${hasErrors != null}">
 				<div class="alert alert-danger">${hasErrors}</div>
 			</c:if>

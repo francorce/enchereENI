@@ -12,26 +12,31 @@
 
 </head>
 <body>
-	<div class="header clearfix">
-	
-		<form action="VendreArticle" method="get">
-			<button class="btn btn-primary" style="float: right;" type="submit">Vendre un article</button>
-		</form>
-		
-		<form action="Deconnexion" method="get">
-			<button class="btn btn-danger" style="float: right;" type="submit">Déconnexion</button>
-		</form>
+			<nav class="navbar navbar-light bg-light">
+				<a class="navbar-brand" href="#"> ENI-Enchères</a>
+				<div class="btn-group" role="group" aria-label="ez">
+					<form action="VendreArticle" method="get">
+						<button class="btn btn-primary"  type="submit">Vendre un article</button>
+					</form> &nbsp
+					
+					<form action="Deconnexion" method="get">
+						<button class="btn btn-danger"  type="submit">Déconnexion</button>
+					</form> &nbsp
+			
+					<form action="/enchereENI/Profil">
+						<button class="btn btn-info"  type="submit">Mon profil</button>
+					</form>
+				</div>
+			</nav>
 
-		<form action="/enchereENI/Profil">
-			<button class="btn btn-info" style="float: right;" type="submit">Mon
-				profil</button>
-		</form>
-		<h3 class="text-muted">ENI - Enchère&nbsp;</h3>
-	</div>
+
+
+	
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="display-3">Listes des enchères</h1>
 			<button class="btn btn-primary" style="float: right;">Rechercher</button>
+			<br>
 
 			<label style="float: left;">filtres :&nbsp;</label> <input
 				type="text" class="form-control">
@@ -72,7 +77,7 @@
 	         <c:forEach items="${listArticles}" var="listArticles"> 
 		        <div class="col-sm-4">
 			        <div class="card">
-			        <img class="card-img-top" src="" alt="Card image cap" width="128" height="128" style="float: left;">
+			        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg" alt="Card image cap" style="float: left;">
 						<div class="card-body">
 							<h4 class="card-title">${listArticles.nomArticle}</h4>
 							<p class="card-text">Prix : ${listArticles.prixInitial}</p>
