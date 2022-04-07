@@ -107,8 +107,8 @@
 			  </div>
 			</div>
 				<br>
-			  <label class="form-label" for="form9Example4">Credit :</label>
-			  <input type="text" value="${user.credit}" readonly name="credit"/>
+			  <label class="form-label" for="form9Example4">Credit : ${user.credit}</label>
+			  
 				<br>
 			<span id='message'></span>
 			<br>
