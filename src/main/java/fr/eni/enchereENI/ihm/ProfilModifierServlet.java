@@ -40,7 +40,10 @@ public class ProfilModifierServlet extends HttpServlet {
 		User utilisateur = new User();
 		
 		utilisateur = (User) session.getAttribute("user");
-		System.out.println(utilisateur);
+		
+		
+		//DEBUG
+		//System.out.println(utilisateur);
 		
 		request.setAttribute("user", utilisateur);
 		
@@ -54,9 +57,37 @@ public class ProfilModifierServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//doGet(request, response);
+		User utilisateur = new User();
 		
-
-
+		HttpSession session = request.getSession();
+		User userSession = (User) session.getAttribute("user");
+		utilisateur.setNo_utilisateur(userSession.getNo_utilisateur());
+		utilisateur.setPseudo(request.getParameter("pseudo"));
+        utilisateur.setNom(request.getParameter("nom"));
+        utilisateur.setPrenom(request.getParameter("prenom"));
+        utilisateur.setEmail(request.getParameter("email"));
+        utilisateur.setTelephone(request.getParameter("telephone"));
+        utilisateur.setRue(request.getParameter("rue"));
+        utilisateur.setCp(request.getParameter("cp"));
+        utilisateur.setVille(request.getParameter("ville"));
+        utilisateur.setPassword(request.getParameter("password"));
+        //TODO Credit dans couche bll
+        utilisateur.setCredit(100);
+        utilisateur.setAdmin(false);
+		
+        //DEBUG
+        //System.out.println(utilisateur);
+		
+		 UserDao userDao = DaoFactory.getUserDao();
+	        try {
+				userDao.update(utilisateur);
+				session.setAttribute("user", utilisateur);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	                
         
         this.getServletContext().getRequestDispatcher("/WEB-INF/Profil.jsp").forward(request, response);
 	}

@@ -65,7 +65,7 @@ public class InscriptionServlet extends HttpServlet {
 	        //TODO Credit dans couche bll
 	        utilisateur.setCredit(100);
 	        utilisateur.setAdmin(false);
-	     	        
+	     	        System.out.println(utilisateur);
 	        UserDao userDao = DaoFactory.getUserDao();
 	        try {
 				userDao.save(utilisateur);
