@@ -27,7 +27,7 @@
 	              <li class="list-group-item" style="text-align: left; border-width: 0px;">Ville :<input type="text" value="${user.ville}" class="form-control"readonly></li>
 	          	</ul>
 	          	<form action="/enchereENI/ProfilModifier">
-     				<button type="submit" class="btn btn-primary" style="float: right;">Modifier</button></div>
+     				<br><button type="submit" class="btn btn-primary" style="float: right;">Modifier</button></div>
      			</form>
      		</div>
      		
