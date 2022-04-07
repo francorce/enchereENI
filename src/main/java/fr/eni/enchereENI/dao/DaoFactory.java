@@ -2,6 +2,7 @@ package fr.eni.enchereENI.dao;
 
 import fr.eni.enchereENI.dao.impl.ArticleDaoImpl;
 import fr.eni.enchereENI.dao.impl.CategorieDaoImpl;
+import fr.eni.enchereENI.dao.impl.EnchereDaoImpl;
 import fr.eni.enchereENI.dao.impl.UserDaoImpl;
 
 public class DaoFactory {
@@ -16,6 +17,9 @@ public class DaoFactory {
 	
 	public static CategorieDao getCategorieDao() {
 		return new CategorieDaoImpl();
-
+	}
+	
+	public static EnchereDao getEnchereDao() {
+		return new EnchereDaoImpl();
 	}
 }

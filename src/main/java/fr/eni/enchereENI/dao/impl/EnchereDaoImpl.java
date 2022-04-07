@@ -44,7 +44,7 @@ public class EnchereDaoImpl implements EnchereDao {
 			enchere.setEncherisseur(acheteur);
 			
 			Article article = new Article();
-			article = DaoFactory.getArticleDao().get(rs.getInt("no_categorie"));
+			article = DaoFactory.getArticleDao().get(rs.getInt("no_article"));
 			enchere.setArticles(article);
 			enchereList.add(enchere);
 		}
