@@ -11,7 +11,7 @@ import fr.eni.enchereENI.dal.ConnectionProvider;
 import fr.eni.enchereENI.dao.RetraitDao;
 
 public class RetraitDaoImpl implements RetraitDao {
-	private static String SAVE = "INSERT into retraits (no_article, rue, code_postal, ville) VALUES(?, ?, ?, ?)";
+	private static String SAVE = "INSERT into retraits ( rue, code_postal, ville) VALUES(?, ?, ?, ?)";
 
 	@Override
 	public Retrait get(int id) throws SQLException {
@@ -30,11 +30,9 @@ public class RetraitDaoImpl implements RetraitDao {
 	public int save(Retrait retrait) throws SQLException {
 		Connection con = ConnectionProvider.getConnection();
 		PreparedStatement saveRetrait = con.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS);
-		
-		saveRetrait.setInt(1, retrait.getArticle().getNoArticle());
-		saveRetrait.setString(2, retrait.getRue());
-		saveRetrait.setString(3, retrait.getCp());	
-		saveRetrait.setString(4, retrait.getVille());
+		saveRetrait.setString(1, retrait.getRue());
+		saveRetrait.setString(2, retrait.getCp());	
+		saveRetrait.setString(3, retrait.getVille());
 		saveRetrait.executeUpdate();	
 		int affectedRows = saveRetrait.executeUpdate();
 		return affectedRows;
