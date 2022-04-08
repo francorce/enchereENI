@@ -36,8 +36,8 @@ public class RetraitDaoImpl implements RetraitDao {
 		saveRetrait.setString(3, retrait.getCp());	
 		saveRetrait.setString(4, retrait.getVille());
 		saveRetrait.executeUpdate();	
-		int id = saveRetrait.executeUpdate();
-		return id;
+		int affectedRows = saveRetrait.executeUpdate();
+		return affectedRows;
 	}
 
 	@Override
