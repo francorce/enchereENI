@@ -101,14 +101,16 @@ public class ArticleManager {
 		 while (it.hasNext()) {
 			Map.Entry pair = (Map.Entry) it.next();
 			if (pair.getValue() == (Boolean) true) {
-				hasErrorsRetrait = RetraitManager.validateRetrait(rue, cp, ville);
-				hasErrors.putAll(hasErrorsRetrait);
 				hasError = true;
-				return hasErrors;
 			} 
 		}
 		 
-		 if(!hasError){
+		 if(hasError){
+				hasErrorsRetrait = RetraitManager.validateRetrait(rue, cp, ville);
+				hasErrors.putAll(hasErrorsRetrait);
+				return hasErrors;
+				
+			} else {
 				articleAAjouter.setVendeur(vendeur);
 				ArticleDao articleDao = DaoFactory.getArticleDao();
 				try {
