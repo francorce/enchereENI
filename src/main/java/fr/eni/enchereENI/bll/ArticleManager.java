@@ -94,7 +94,10 @@ public class ArticleManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		} else {
+			hasErrors.put("finEnchereString", true);
 		}
+		
 		hasErrorsRetrait = RetraitManager.validateRetrait(rue, cp, ville);
 		hasErrors.putAll(hasErrorsRetrait);
 		Iterator it = hasErrors.entrySet().iterator();

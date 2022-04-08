@@ -83,8 +83,11 @@
 				id="debutEnchere" name="debutEnchere" type="date" value="${debutEnchere}" /> <label
 				for="finEnchere">Fin de l'enchère</label> <input id="finEnchere"
 				name="finEnchere" type="date"  value="${finEnchere}"/>
-
-
+			<c:forEach items="${hasErrors}" var="entry">
+					<c:if test="${entry.key == 'finEnchereString' && entry.value==true}">
+						<div class="alert alert-danger">Les dates ne sont pas valide</div>
+					</c:if>
+				</c:forEach>
 
 
 
