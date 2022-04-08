@@ -10,6 +10,8 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
+<script src="<%=request.getContextPath() %>/js/myjs.js" defer ></script>
+
 </head>
 <body>
 			<nav class="navbar navbar-light bg-light">
@@ -39,18 +41,166 @@
 			<br>
 
 				<label style="float: left;">filtres :&nbsp;</label> <input type="text" class="form-control">
-				
-				
-				
-				<label for="categorie">Categorie</label> <select class="form-control" type="text"
-				id="categorie" name="categorie">
-				<option></option>
+	<!--			
+<script>
+		
+		function yesnoCheck(that) {
+    if (that.value == "Livre") {
+		
+			document.getElementById("Livre").style.display = "block";
+			document.getElementById("Viande").style.display = "none";
+			document.getElementById("Mode").style.display = "none";
+			document.getElementById("Electromenager").style.display = "none";
+			document.getElementById("Informatique").style.display = "none";
+			document.getElementById("Maison").style.display = "none";
+			document.getElementById("Automoto").style.display = "none";
+			document.getElementById("Animalerie").style.display = "none";
+			document.getElementById("Epicerie").style.display = "none";
+			document.getElementById("Jouets").style.display = "none";
+		
+    } else if (that.value == "Viande")  {
+    
+			document.getElementById("Livre").style.display = "none";
+			document.getElementById("Viande").style.display = "block";
+			document.getElementById("Mode").style.display = "none";
+			document.getElementById("Electromenager").style.display = "none";
+			document.getElementById("Informatique").style.display = "none";
+			document.getElementById("Maison").style.display = "none";
+			document.getElementById("Automoto").style.display = "none";
+			document.getElementById("Animalerie").style.display = "none";
+			document.getElementById("Epicerie").style.display = "none";
+			document.getElementById("Jouets").style.display = "none";
+			
+    } else if (that.value == "Mode")  {
+	
+			document.getElementById("Livre").style.display = "none";
+			document.getElementById("Viande").style.display = "none";
+			document.getElementById("Mode").style.display = "block";
+			document.getElementById("Electromenager").style.display = "none";
+			document.getElementById("Informatique").style.display = "none";
+			document.getElementById("Maison").style.display = "none";
+			document.getElementById("Automoto").style.display = "none";
+			document.getElementById("Animalerie").style.display = "none";
+			document.getElementById("Epicerie").style.display = "none";
+			document.getElementById("Jouets").style.display = "none";
+			
+    
+    } else if (that.value == "Electromenager")  {
+	
+	document.getElementById("Livre").style.display = "none";
+			document.getElementById("Viande").style.display = "none";
+			document.getElementById("Mode").style.display = "none";
+			document.getElementById("Electromenager").style.display = "block";
+			document.getElementById("Informatique").style.display = "none";
+			document.getElementById("Maison").style.display = "none";
+			document.getElementById("Automoto").style.display = "none";
+			document.getElementById("Animalerie").style.display = "none";
+			document.getElementById("Epicerie").style.display = "none";
+			document.getElementById("Jouets").style.display = "none";
+			
+    } else if (that.value == "Informatique")  {
+	
+			document.getElementById("Livre").style.display = "none";
+			document.getElementById("Viande").style.display = "none";
+			document.getElementById("Mode").style.display = "none";
+			document.getElementById("Electromenager").style.display = "none";
+			document.getElementById("Informatique").style.display = "block";
+			document.getElementById("Maison").style.display = "none";
+			document.getElementById("Automoto").style.display = "none";
+			document.getElementById("Animalerie").style.display = "none";
+			document.getElementById("Epicerie").style.display = "none";
+			document.getElementById("Jouets").style.display = "none";
+			
+    }else if (that.value == "Maison")  {
+	
+			document.getElementById("Livre").style.display = "none";
+			document.getElementById("Viande").style.display = "none";
+			document.getElementById("Mode").style.display = "none";
+			document.getElementById("Electromenager").style.display = "none";
+			document.getElementById("Informatique").style.display = "none";
+			document.getElementById("Maison").style.display = "block";
+			document.getElementById("Automoto").style.display = "none";
+			document.getElementById("Animalerie").style.display = "none";
+			document.getElementById("Epicerie").style.display = "none";
+			document.getElementById("Jouets").style.display = "none";
+			
+    } else if (that.value == "Automoto")  {
+	
+			document.getElementById("Livre").style.display = "none";
+			document.getElementById("Viande").style.display = "none";
+			document.getElementById("Mode").style.display = "none";
+			document.getElementById("Electromenager").style.display = "none";
+			document.getElementById("Informatique").style.display = "none";
+			document.getElementById("Maison").style.display = "none";
+			document.getElementById("Automoto").style.display = "block";
+			document.getElementById("Animalerie").style.display = "none";
+			document.getElementById("Epicerie").style.display = "none";
+			document.getElementById("Jouets").style.display = "none";
+			
+    }else if (that.value == "Animalerie")  {
+	
+			document.getElementById("Livre").style.display = "none";
+			document.getElementById("Viande").style.display = "none";
+			document.getElementById("Mode").style.display = "none";
+			document.getElementById("Electromenager").style.display = "none";
+			document.getElementById("Informatique").style.display = "none";
+			document.getElementById("Maison").style.display = "none";
+			document.getElementById("Automoto").style.display = "none";
+			document.getElementById("Animalerie").style.display = "block";
+			document.getElementById("Epicerie").style.display = "none";
+			document.getElementById("Jouets").style.display = "none";
+			
+    } else if (that.value == "Epicerie")  {
+	
+			document.getElementById("Livre").style.display = "none";
+			document.getElementById("Viande").style.display = "none";
+			document.getElementById("Mode").style.display = "none";
+			document.getElementById("Electromenager").style.display = "none";
+			document.getElementById("Informatique").style.display = "none";
+			document.getElementById("Maison").style.display = "none";
+			document.getElementById("Automoto").style.display = "none";
+			document.getElementById("Animalerie").style.display = "none";
+			document.getElementById("Epicerie").style.display = "block";
+			document.getElementById("Jouets").style.display = "none";
+			
+    }else if (that.value == "Jouets")  {
+	
+			document.getElementById("Livre").style.display = "none";
+			document.getElementById("Viande").style.display = "none";
+			document.getElementById("Mode").style.display = "none";
+			document.getElementById("Electromenager").style.display = "none";
+			document.getElementById("Informatique").style.display = "none";
+			document.getElementById("Maison").style.display = "none";
+			document.getElementById("Automoto").style.display = "none";
+			document.getElementById("Animalerie").style.display = "none";
+			document.getElementById("Epicerie").style.display = "none";
+			document.getElementById("Jouets").style.display = "block";
+			
+    } else{ 
+    	document.getElementById("Livre").style.display = "block";
+    	document.getElementById("Livre").style.display = "block";
+		document.getElementById("Viande").style.display = "block";
+		document.getElementById("Mode").style.display = "block";
+		document.getElementById("Electromenager").style.display = "block";
+		document.getElementById("Informatique").style.display = "block";
+		document.getElementById("Maison").style.display = "block";
+		document.getElementById("Automoto").style.display = "block";
+		document.getElementById("Animalerie").style.display = "block";
+		document.getElementById("Epicerie").style.display = "block";
+		document.getElementById("Jouets").style.display = "block";
+	}
+	
+}</script>
+				-->
+				<label for="categorie">Categorie</label>
+				 <select class="form-control" type="text" id="categorie" name="categorie"  xxxonchange="yesnoCheck(this);">
+				<option>Afficher tout</option>
+
 
 				<c:forEach items="${listeCategorie}" var="categorie">
-					<option>${categorie.libelle}</option>
+					<option value="${categorie.libelle}">${categorie.libelle}</option>
 				</c:forEach>
-
-			</select>
+				 </select>
 			
 	
 			<div class="row"> 
@@ -72,12 +222,15 @@
 				</div>
 			</div>
 
-			<div class="row" >
+
+
+
+			<div class="row" id="listeArticles">
 	         <c:forEach items="${listArticles}" var="listArticles"> 
-		        <div class="col-sm-4">
-			        <div class="card">
+		        <div class="col-sm-4" data-category="${listArticles.categorie.libelle}" >
+			        <div class="card" id ="${listArticles.categorie.libelle}"  >
 			        <img class="card-img-top" src="https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg" alt="Card image cap" style="float: left;">
-						<div class="card-body">
+						<div class="card-body" >
 							<h4 class="card-title">${listArticles.nomArticle}</h4>
 							<p class="card-text">Prix : ${listArticles.prixInitial}</p>
 							<p class="card-text">Catégorie : ${listArticles.categorie.libelle}</p>
