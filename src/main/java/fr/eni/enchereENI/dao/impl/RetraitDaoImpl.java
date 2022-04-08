@@ -11,7 +11,7 @@ import fr.eni.enchereENI.dal.ConnectionProvider;
 import fr.eni.enchereENI.dao.RetraitDao;
 
 public class RetraitDaoImpl implements RetraitDao {
-	private static String SAVE = "INSERT into retraits ( rue, code_postal, ville) VALUES(?, ?, ?, ?)";
+	private static String SAVE = "INSERT into retraits ( rue, code_postal, ville) VALUES(?, ?, ?)";
 
 	@Override
 	public Retrait get(int id) throws SQLException {
