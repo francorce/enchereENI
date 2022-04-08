@@ -48,8 +48,6 @@ public class Accueil extends HttpServlet {
 		
 		ArticleManager articleManager = new ArticleManager();
 		List<Article> listArticles = new ArrayList<Article>();
-
-		String categorie = request.getParameter("categorie");
 		
 		listArticles = articleManager.getAll();
 		request.getSession().setAttribute("listArticles", listArticles); // add to session
