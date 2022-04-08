@@ -24,11 +24,16 @@
         <button class="btn btn-primary" style="float: right;">Rechercher</button><br>
         <label style="float: left;">filtres :&nbsp;</label>
           <input type="text" class="form-control">
-        <div class="form-group" style="">
-        <label style="float: left;">Catégories :&nbsp;</label>
-          <select class="form-control">
-            </select>
-        </div>
+       <label for="categorie">Categorie</label> <select class="form-control" type="text"
+				id="categorie" name="categorie">
+				<option></option>
+
+				<c:forEach items="${listeCategorie}" var="categorie">
+					<option>${categorie.libelle}</option>
+				</c:forEach>
+
+			</select>
+			
         
 	        <div class="row" >
 	         <c:forEach items="${listArticles}" var="listArticles"> 

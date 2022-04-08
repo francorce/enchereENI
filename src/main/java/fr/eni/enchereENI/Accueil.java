@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchereENI.bll.ArticleManager;
+import fr.eni.enchereENI.bll.CategorieManager;
 import fr.eni.enchereENI.bll.EnchereManager;
 import fr.eni.enchereENI.bo.Article;
+import fr.eni.enchereENI.bo.Categorie;
 import fr.eni.enchereENI.bo.Enchere;
 import fr.eni.enchereENI.dao.impl.ArticleDaoImpl;
 import fr.eni.enchereENI.dao.impl.EnchereDaoImpl;
@@ -39,9 +41,14 @@ public class Accueil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		CategorieManager categorieManager = new CategorieManager();
+		List<Categorie> listeCategorie = categorieManager.getAll();
+		request.setAttribute("listeCategorie", listeCategorie);
+		
 		ArticleManager articleManager = new ArticleManager();
 		List<Article> listArticles = new ArrayList<Article>();
-
+		
 		listArticles = articleManager.getAll();
 		request.getSession().setAttribute("listArticles", listArticles); // add to session
 
