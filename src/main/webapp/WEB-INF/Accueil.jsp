@@ -43,6 +43,7 @@
 						<div class="card-body">
 							<h4 class="card-title">${listArticles.nomArticle}</h4>
 							<p class="card-text">Prix : ${listArticles.prixInitial}</p>
+							<p class="card-text">Catégorie : ${listArticles.categorie.libelle}</p>
 							<p class="card-text">Fin de l'enchère : ${listArticles.finEnchere}</p>
 							Vendeur : <a class="card-text" href="/enchereENI/ProfilVendeur">${listArticles.vendeur.pseudo}</a>					  			
 						</div>

@@ -76,10 +76,11 @@
 	         <c:forEach items="${listArticles}" var="listArticles"> 
 		        <div class="col-sm-4">
 			        <div class="card">
-			        <img class="card-img-top" src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg" alt="Card image cap" style="float: left;">
+			        <img class="card-img-top" src="https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg" alt="Card image cap" style="float: left;">
 						<div class="card-body">
 							<h4 class="card-title">${listArticles.nomArticle}</h4>
 							<p class="card-text">Prix : ${listArticles.prixInitial}</p>
+							<p class="card-text">Catégorie : ${listArticles.categorie.libelle}</p>
 							<p class="card-text">Fin de l'enchère : ${listArticles.finEnchere}</p>
 							Vendeur : <a class="card-text" href="${'/enchereENI/Profil?no_utilisateur='}${listArticles.vendeur.no_utilisateur}">${listArticles.vendeur.pseudo}</a>					  			
 						</div>
