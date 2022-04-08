@@ -18,7 +18,7 @@ public class RetraitManager {
 		if (rue == null || rue.isEmpty()) {
 			hasErrors.put("rue", true);
 		}
-		if (cp == null || cp.isEmpty()) {
+		if (cp == null || cp.isEmpty() || !ArticleManager.isInteger(cp)) {
 			hasErrors.put("cp", true);
 		}
 		if (ville == null || ville.isEmpty()) {

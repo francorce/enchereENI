@@ -1,27 +1,19 @@
 package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import fr.eni.enchereENI.bll.ArticleManager;
 import fr.eni.enchereENI.bll.CategorieManager;
-import fr.eni.enchereENI.bll.RetraitManager;
-import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
 import fr.eni.enchereENI.bo.User;
-import fr.eni.enchereENI.dao.ArticleDao;
-import fr.eni.enchereENI.dao.DaoFactory;
 
 /**
  * Servlet implementation class VendreArticleServlet
@@ -61,6 +53,13 @@ public class VendreArticleServlet extends HttpServlet {
 		
 		request.setAttribute("nomArticle", nomArticle);
 		request.setAttribute("description", description);
+		request.setAttribute("categorieLibelle", categorie);
+		request.setAttribute("prixDepart", prixDepart);
+		request.setAttribute("debutEnchere", debutEnchere);
+		request.setAttribute("finEnchere", finEnchere);
+		request.setAttribute("rue", rue);
+		request.setAttribute("cp", cp);
+		request.setAttribute("ville", ville);
 
 		
         this.getServletContext().getRequestDispatcher("/WEB-INF/VendreArticle.jsp").forward(request, response);
