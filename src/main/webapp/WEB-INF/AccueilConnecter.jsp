@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+x&<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -30,8 +30,6 @@
 			</nav>
 
 
-
-	
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="display-3">Listes des enchères</h1>
@@ -44,31 +42,23 @@
 				<label style="float: left;">Catégories :&nbsp;</label> <select
 					class="form-control">
 				</select>
-
-
-
 			</div>
+			
 			<div class="row">
 				<div class="col">
 					<input type="radio" name="radio" values="Achats">Achats
 					<ul>
-						<li><input name="check" type="checkbox"> enchère
-							ouvertes</li>
+						<li><input name="check" type="checkbox"> enchère ouvertes</li>
 						<li><input name="check" type="checkbox"> mes enchères</li>
-						<li><input name="check" type="checkbox">mes enchères
-							remportées</li>
+						<li><input name="check" type="checkbox">mes enchères remportées</li>
 					</ul>
 				</div>
 				<div class="col">
-					<input type="radio" name="radio" values="Mes_ventes"> Mes
-					ventes
+					<input type="radio" name="radio" values="Mes_ventes"> Mes ventes
 					<ul>
-						<li><input name="check" type="checkbox"> mes ventes
-							en cours</li>
-						<li><input name="check" type="checkbox"> ventes non
-							débutées</li>
-						<li><input name="check" type="checkbox">ventes
-							termiées</li>
+						<li><input name="check" type="checkbox"> mes ventes en cours</li>
+						<li><input name="check" type="checkbox"> ventes non débutées</li>
+						<li><input name="check" type="checkbox">ventes termiées</li>
 					</ul>
 				</div>
 			</div>

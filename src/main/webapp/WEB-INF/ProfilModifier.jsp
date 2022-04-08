@@ -8,9 +8,20 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<div class="header clearfix">
-		<h3 class="text-muted">ENI - Enchère</h3>
-	</div>
+	
+			<nav class="navbar navbar-light bg-light">
+				<a class="navbar-brand" href="#"> ENI-Enchères</a>
+				<div class="btn-group" role="group" aria-label="ez">
+					<form action="/enchereENI/Profil">
+						<button class="btn btn-primary"  type="submit">Profil</button>
+					</form> &nbsp
+					<form action="/enchereENI/AccueilConnecter">
+						<button class="btn btn-info"  type="submit">Accueil</button>
+					</form>
+				</div>
+			</nav>
+
+
 <script>var check = function() {
 	  if (document.getElementById('password').value ==
 		    document.getElementById('passwordV').value) {
@@ -113,7 +124,7 @@
 			<span id='message'></span>
 			<br>
 			<input type="submit" name = "action" value="Modifier" />
-				<input type = "submit" name = "action" value = "Supprimer mon compte"/>
+				<input type = "submit" style="float: right;" name = "action" value = "Supprimer mon compte"/>
 			</div>
 			</div>
 		  	<ul>

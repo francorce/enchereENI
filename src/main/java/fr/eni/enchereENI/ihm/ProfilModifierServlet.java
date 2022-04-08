@@ -80,7 +80,9 @@ public class ProfilModifierServlet extends HttpServlet {
 		
 		 UserDao userDao = DaoFactory.getUserDao();
 	        try {
+	        	
 				userDao.update(utilisateur);
+				//response.sendRedirect(request.getContextPath() + "/Profil");
 				session.setAttribute("user", utilisateur);
 				
 			} catch (SQLException e) {
@@ -88,8 +90,8 @@ public class ProfilModifierServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 	                
-        
-        this.getServletContext().getRequestDispatcher("/WEB-INF/Profil.jsp").forward(request, response);
+	    	response.sendRedirect(request.getContextPath() + "/Profil");
+       //this.getServletContext().getRequestDispatcher("/WEB-INF/Profil.jsp").forward(request, response);
 	}
 
 }

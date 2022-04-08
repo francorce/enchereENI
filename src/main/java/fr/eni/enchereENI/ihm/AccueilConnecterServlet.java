@@ -32,6 +32,7 @@ public class AccueilConnecterServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		ArticleManager articleManager = new ArticleManager();
 		List<Article> listArticles = new ArrayList<Article>();
 
