@@ -2,7 +2,10 @@ package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,9 +16,12 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.enchereENI.bll.ArticleManager;
 import fr.eni.enchereENI.bll.CategorieManager;
+import fr.eni.enchereENI.bll.RetraitManager;
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
 import fr.eni.enchereENI.bo.User;
+import fr.eni.enchereENI.dao.ArticleDao;
+import fr.eni.enchereENI.dao.DaoFactory;
 
 /**
  * Servlet implementation class VendreArticleServlet
@@ -41,6 +47,22 @@ public class VendreArticleServlet extends HttpServlet {
 		CategorieManager categorieManager = new CategorieManager();
 		List<Categorie> listeCategorie = categorieManager.getAll();
 		request.setAttribute("listeCategorie", listeCategorie);
+		
+		String nomArticle = request.getParameter("nomArticle");
+		String description = request.getParameter("description");
+		String categorie = request.getParameter("categorie");
+		String prixDepart = request.getParameter("prixDepart");
+		String debutEnchere = request.getParameter("debutEnchere");	
+		String finEnchere = request.getParameter("finEnchere");
+		
+		String rue = request.getParameter("rue");
+		String cp = request.getParameter("cp");
+		String ville = request.getParameter("ville");
+		
+		request.setAttribute("nomArticle", nomArticle);
+		request.setAttribute("description", description);
+
+		
         this.getServletContext().getRequestDispatcher("/WEB-INF/VendreArticle.jsp").forward(request, response);
 	}
 
@@ -66,14 +88,19 @@ public class VendreArticleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User vendeur = (User) session.getAttribute("user");
 		
-		Boolean hasErrors = articleManager.addArticle(nomArticle, description, categorie, prixDepart, debutEnchere, finEnchere, vendeur, rue, cp, ville);
-		if(!hasErrors) {
-			response.sendRedirect(request.getContextPath() + "/AccueilConnecter");
-			return;
-		}
 		
+		Map<String, Boolean> hasErrors = articleManager.addArticle(nomArticle, description, categorie, prixDepart, debutEnchere, finEnchere, vendeur, rue, cp, ville);
 		
-		doGet(request, response);
+		 Iterator it = hasErrors.entrySet().iterator();
+		  while (it.hasNext()) {
+		        Map.Entry pair = (Map.Entry)it.next();
+		        if(pair.getValue() == (Boolean)true) {
+		    		request.setAttribute("hasErrors", hasErrors);
+		    		doGet(request, response);
+		        	return;
+		        } 
+		    }
+		response.sendRedirect(request.getContextPath() + "/AccueilConnecter");
 	}
 
 }
