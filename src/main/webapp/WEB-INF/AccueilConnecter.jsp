@@ -5,10 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Enchère ENI</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"	crossorigin="anonymous">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+
+
 
 </head>
 <body>
@@ -49,29 +50,50 @@
 
 			</div>
 			<div class="row">
+			<script>
+					function achats(){
+						document.getElementById("myCheck1").disabled = false;
+						document.getElementById("myCheck2").disabled = false;
+						document.getElementById("myCheck3").disabled = false;
+						document.getElementById("myCheck4").disabled = true;
+						document.getElementById("myCheck5").disabled = true;
+						document.getElementById("myCheck6").disabled = true;
+
+					}
+					function ventes(){
+						document.getElementById("myCheck1").disabled = true;
+						document.getElementById("myCheck2").disabled = true;
+						document.getElementById("myCheck3").disabled = true;
+						document.getElementById("myCheck4").disabled = false;
+						document.getElementById("myCheck5").disabled = false;
+						document.getElementById("myCheck6").disabled = false;
+
+					}
+				</script>
 				<div class="col">
-					<input type="radio" name="radio" values="Achats">Achats
+					<input type="radio" name="radio" values="Achats" onclick="achats()" id="achats" > Achats
 					<ul>
-						<li><input name="check" type="checkbox"> enchère
+						<li><input name="check" type="checkbox" id="myCheck1"> enchère
 							ouvertes</li>
-						<li><input name="check" type="checkbox"> mes enchères</li>
-						<li><input name="check" type="checkbox">mes enchères
+						<li><input name="check" type="checkbox" id="myCheck2"> mes enchères</li>
+						<li><input name="check" type="checkbox" id="myCheck3"> mes enchères
 							remportées</li>
 					</ul>
 				</div>
 				<div class="col">
-					<input type="radio" name="radio" values="Mes_ventes"> Mes
+					<input type="radio" name="radio" values="Mes_ventes" onclick="ventes()" id="ventes"> Mes
 					ventes
 					<ul>
-						<li><input name="check" type="checkbox"> mes ventes
+						<li><input name="check" type="checkbox" id="myCheck4"> mes ventes
 							en cours</li>
-						<li><input name="check" type="checkbox"> ventes non
+						<li><input name="check" type="checkbox" id="myCheck5"> ventes non
 							débutées</li>
-						<li><input name="check" type="checkbox">ventes
+						<li><input name="check" type="checkbox" id="myCheck6"> ventes
 							termiées</li>
 					</ul>
 				</div>
 			</div>
+
 
 			<div class="row" >
 	         <c:forEach items="${listArticles}" var="listArticles"> 
