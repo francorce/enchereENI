@@ -134,7 +134,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void save(User t) throws SQLException {
+	public int save(User t) throws SQLException {
 		Connection con = ConnectionProvider.getConnection();
 		PreparedStatement saveUser = con.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS);
 		saveUser.setString(1, t.getPseudo());
@@ -150,6 +150,7 @@ public class UserDaoImpl implements UserDao {
 		saveUser.setBoolean(11, t.isAdmin());
 		int id = saveUser.executeUpdate();
 		t.setNo_utilisateur(id);
+		return id;
 	}
 
 	@Override

@@ -43,9 +43,9 @@ public class CategorieDaoImpl implements CategorieDao {
 	}
 
 	@Override
-	public void save(Categorie t) throws SQLException {
+	public int save(Categorie t) throws SQLException {
 		// TODO Auto-generated method stub
-
+		return 0;
 	}
 
 	@Override

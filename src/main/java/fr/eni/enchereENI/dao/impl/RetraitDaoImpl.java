@@ -27,7 +27,7 @@ public class RetraitDaoImpl implements RetraitDao {
 	}
 
 	@Override
-	public void save(Retrait retrait) throws SQLException {
+	public int save(Retrait retrait) throws SQLException {
 		Connection con = ConnectionProvider.getConnection();
 		PreparedStatement saveRetrait = con.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS);
 		
@@ -35,7 +35,9 @@ public class RetraitDaoImpl implements RetraitDao {
 		saveRetrait.setString(2, retrait.getRue());
 		saveRetrait.setString(3, retrait.getCp());	
 		saveRetrait.setString(4, retrait.getVille());
-		saveRetrait.executeUpdate();		
+		saveRetrait.executeUpdate();	
+		int id = saveRetrait.executeUpdate();
+		return id;
 	}
 
 	@Override

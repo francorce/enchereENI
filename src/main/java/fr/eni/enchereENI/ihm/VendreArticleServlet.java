@@ -58,10 +58,15 @@ public class VendreArticleServlet extends HttpServlet {
 		String prixDepart = request.getParameter("prixDepart");
 		String debutEnchere = request.getParameter("debutEnchere");	
 		String finEnchere = request.getParameter("finEnchere");
+		
+		String rue = request.getParameter("rue");
+		String cp = request.getParameter("cp");
+		String ville = request.getParameter("ville");
+
 		HttpSession session = request.getSession();
 		User vendeur = (User) session.getAttribute("user");
-		Boolean hasErrors = articleManager.addArticle(nomArticle, description, categorie, prixDepart, debutEnchere, finEnchere, vendeur);
 		
+		Boolean hasErrors = articleManager.addArticle(nomArticle, description, categorie, prixDepart, debutEnchere, finEnchere, vendeur, rue, cp, ville);
 		
 		doGet(request, response);
 	}

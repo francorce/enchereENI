@@ -4,13 +4,11 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import javax.servlet.http.HttpSession;
 
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
@@ -19,9 +17,21 @@ import fr.eni.enchereENI.dao.ArticleDao;
 import fr.eni.enchereENI.dao.DaoFactory;
 
 public class ArticleManager {
+	
+	public Article getById(int id) {
+		Article article = null;
+		ArticleDao articleDao = DaoFactory.getArticleDao();
+		try {
+			article = articleDao.get(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return article;
+	}
 
 	public List<Article> getAll() {
-		List<Article> listeArticles = new ArrayList();
+		List<Article> listeArticles = new ArrayList<Article>();
 		ArticleDao articleDao = DaoFactory.getArticleDao();
 		try {
 			listeArticles = articleDao.getAll();
@@ -33,7 +43,7 @@ public class ArticleManager {
 	}
 
 	public boolean addArticle(String nom, String description, String categorieLibelle, String prixDepart,
-			String debutEnchereString, String finEnchereString, User vendeur) {
+			String debutEnchereString, String finEnchereString, User vendeur, String rue, String cp, String ville) {
 		Article articleAAjouter = new Article();
 		Boolean hasErrors = false;
 
@@ -83,11 +93,16 @@ public class ArticleManager {
 			}		
 		}
 		
+	
+		
 		if(!hasErrors) {
 			articleAAjouter.setVendeur(vendeur);
 			ArticleDao articleDao = DaoFactory.getArticleDao();
 			try {
-				articleDao.save(articleAAjouter);
+				int id = articleDao.save(articleAAjouter);
+				if(id!=0) {
+					RetraitManager.addRetrait(id, rue, cp, ville);
+				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -110,7 +125,6 @@ public class ArticleManager {
 		if (debutEnchere.after(finEnchere)) {
 			dateValid = false;
 		}
-
 		return dateValid;
 	}
 
