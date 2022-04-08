@@ -1,4 +1,4 @@
-x&<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -30,21 +30,30 @@ x&<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="
 			</nav>
 
 
+
+	
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="display-3">Listes des enchères</h1>
 			<button class="btn btn-primary" style="float: right;">Rechercher</button>
 			<br>
 
-			<label style="float: left;">filtres :&nbsp;</label> <input
-				type="text" class="form-control">
-			<div class="form-group" style="">
-				<label style="float: left;">Catégories :&nbsp;</label> <select
-					class="form-control">
-				</select>
-			</div>
+				<label style="float: left;">filtres :&nbsp;</label> <input type="text" class="form-control">
+				
+				
+				
+				<label for="categorie">Categorie</label> <select class="form-control" type="text"
+				id="categorie" name="categorie">
+				<option></option>
+
+				<c:forEach items="${listeCategorie}" var="categorie">
+					<option>${categorie.libelle}</option>
+				</c:forEach>
+
+			</select>
 			
-			<div class="row">
+	
+			<div class="row"> 
 				<div class="col">
 					<input type="radio" name="radio" values="Achats">Achats
 					<ul>

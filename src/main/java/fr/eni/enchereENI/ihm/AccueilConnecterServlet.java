@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchereENI.bll.ArticleManager;
+import fr.eni.enchereENI.bll.CategorieManager;
 import fr.eni.enchereENI.bo.Article;
+import fr.eni.enchereENI.bo.Categorie;
 
 /**
  * Servlet implementation class AccueilConnecterServlet
@@ -33,9 +35,15 @@ public class AccueilConnecterServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		CategorieManager categorieManager = new CategorieManager();
+		List<Categorie> listeCategorie = categorieManager.getAll();
+		request.setAttribute("listeCategorie", listeCategorie);
+		
 		ArticleManager articleManager = new ArticleManager();
 		List<Article> listArticles = new ArrayList<Article>();
 
+		String categorie = request.getParameter("categorie");
+		
 		listArticles = articleManager.getAll();
 		request.getSession().setAttribute("listArticles", listArticles); // add to session
 		this.getServletContext().getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp").forward(request, response);
