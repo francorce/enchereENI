@@ -24,11 +24,16 @@
         <button class="btn btn-primary" style="float: right;">Rechercher</button><br>
         <label style="float: left;">filtres :&nbsp;</label>
           <input type="text" class="form-control">
-        <div class="form-group" style="">
-        <label style="float: left;">Catégories :&nbsp;</label>
-          <select class="form-control">
-            </select>
-        </div>
+       <label for="categorie">Categorie</label> <select class="form-control" type="text"
+				id="categorie" name="categorie">
+				<option></option>
+
+				<c:forEach items="${listeCategorie}" var="categorie">
+					<option>${categorie.libelle}</option>
+				</c:forEach>
+
+			</select>
+			
         
 	        <div class="row" >
 	         <c:forEach items="${listArticles}" var="listArticles"> 
@@ -38,6 +43,7 @@
 						<div class="card-body">
 							<h4 class="card-title">${listArticles.nomArticle}</h4>
 							<p class="card-text">Prix : ${listArticles.prixInitial}</p>
+							<p class="card-text">Catégorie : ${listArticles.categorie.libelle}</p>
 							<p class="card-text">Fin de l'enchère : ${listArticles.finEnchere}</p>
 							Vendeur : <a class="card-text" href="/enchereENI/ProfilVendeur">${listArticles.vendeur.pseudo}</a>					  			
 						</div>

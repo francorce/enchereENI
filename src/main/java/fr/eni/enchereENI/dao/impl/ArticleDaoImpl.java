@@ -84,9 +84,10 @@ public class ArticleDaoImpl implements ArticleDao {
 	}
 
 	@Override
-	public void save(Article a) throws SQLException {
+	public int save(Article a) throws SQLException {
 		Connection con = ConnectionProvider.getConnection();
 		PreparedStatement saveArticle = con.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS);
+		int id = 0;
 		saveArticle.setString(1, a.getNomArticle());
 		saveArticle.setString(2, a.getDescription());
 		saveArticle.setDate(3, a.getDebutEnchere());	
@@ -95,8 +96,13 @@ public class ArticleDaoImpl implements ArticleDao {
 		saveArticle.setInt(6, a.getPrixVente());
 		saveArticle.setInt(7, a.getVendeur().getNo_utilisateur());
 		saveArticle.setInt(8, a.getCategorie().getNoCategorie());
-		int id = saveArticle.executeUpdate();
+		int affectedRows = saveArticle.executeUpdate();
+		ResultSet keys = saveArticle.getGeneratedKeys();
+		if(keys.next()) {
+			id=keys.getInt(1);
+		}
 		a.setNoArticle(id);
+		return id;
 	}
 
 	@Override

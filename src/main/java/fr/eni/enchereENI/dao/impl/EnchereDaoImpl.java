@@ -54,9 +54,9 @@ public class EnchereDaoImpl implements EnchereDao {
 	}
 
 	@Override
-	public void save(Enchere t) throws SQLException {
+	public int save(Enchere t) throws SQLException {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	@Override

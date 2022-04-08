@@ -13,7 +13,7 @@ public interface ArticleDao extends Dao<Article>{
 	public List<Article> getAll() throws SQLException;
 
 	@Override
-	public void save(Article a) throws SQLException;
+	public int save(Article a) throws SQLException;
 
 	@Override
 	public void update(Article a) throws SQLException;

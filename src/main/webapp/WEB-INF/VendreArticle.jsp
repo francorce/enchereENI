@@ -24,34 +24,98 @@
 		</div>
 		<form action="VendreArticle" method="post" class="d-flex flex-column">
 			<label for="nomArticle">Article</label> <input type="text"
-				id="nomArticle" name="nomArticle" /> <label for="description">Description</label>
-			<textarea type="text" id="description" name="description"></textarea>
+				id="nomArticle" name="nomArticle" value="${nomArticle}" />
+			<c:forEach items="${hasErrors}" var="entry">
+				<c:if test="${entry.key == 'nom' && entry.value==true}">
+					<div class="alert alert-danger">Le nom n'est pas valide</div>
+				</c:if>
+			</c:forEach>
+
+			<label for="description">Description</label>
+			<textarea type="text" id="description" name="description">${description}</textarea>
+			<c:forEach items="${hasErrors}" var="entry">
+				<c:if test="${entry.key == 'description' && entry.value==true}">
+					<div class="alert alert-danger">La description n'est pas
+						valide</div>
+				</c:if>
+			</c:forEach>
+
 
 			<label for="categorie">Categorie</label> <select type="text"
 				id="categorie" name="categorie">
 				<option></option>
 
 				<c:forEach items="${listeCategorie}" var="categorie">
-					<option>${categorie.libelle}</option>
+					<c:choose>
+						<c:when test="${categorie.libelle == categorieLibelle}">
+							<option selected="selected">${categorie.libelle}</option>
+						</c:when>
+						<c:otherwise>
+							<option>${categorie.libelle}</option>
+						</c:otherwise>
+					</c:choose>
 				</c:forEach>
 
-			</select> <label for="buttonPhoto">Photo de l'article</label>
-			<input type = "file" name = "file" size = "50" /><br>
 
-			<label for="prixDepart">Mise à prix</label> <input id="prixDepart"
-				name="prixDepart" type="number" /> <label for="debutEnchere">Début
-				de l'enchère</label> <input id="debutEnchere" name="debutEnchere"
-				type="date" /> <label for="finEnchere">Fin de l'enchère</label> <input
-				id="finEnchere" name="finEnchere" type="date" />
+
+			</select>
+			<c:forEach items="${hasErrors}" var="entry">
+				<c:if test="${entry.key == 'categorieLibelle' && entry.value==true}">
+					<div class="alert alert-danger">La catégorie n'est pas valide</div>
+				</c:if>
+			</c:forEach>
+
+			<label for="buttonPhoto">Photo de l'article</label> <input
+				type="file" name="file" size="50" /><br>
+				 <label
+				for="prixDepart">Mise à prix</label> 
+				<input id="prixDepart"
+				name="prixDepart" type="number" value="${prixDepart }"/>
+
+			<c:forEach items="${hasErrors}" var="entry">
+				<c:if test="${entry.key == 'prixDepart' && entry.value==true}">
+					<div class="alert alert-danger">Le prix de départ n'est pas
+						valide</div>
+				</c:if>
+			</c:forEach>
+
+			<label for="debutEnchere">Début de l'enchère</label> <input
+				id="debutEnchere" name="debutEnchere" type="date" value="${debutEnchere}" /> <label
+				for="finEnchere">Fin de l'enchère</label> <input id="finEnchere"
+				name="finEnchere" type="date"  value="${finEnchere}"/>
+			<c:forEach items="${hasErrors}" var="entry">
+					<c:if test="${entry.key == 'finEnchereString' && entry.value==true}">
+						<div class="alert alert-danger">Les dates ne sont pas valide</div>
+					</c:if>
+				</c:forEach>
+
+
 
 			<fieldset class="d-flex flex-column mt-3">
 				<legend>Retrait</legend>
 
-				<label for="rue">Rue</label> <input id="rue" name="rue" type="text" />
-
+				<label for="rue">Rue</label> <input id="rue" name="rue" type="text" value="${rue}"/>
+				<c:forEach items="${hasErrors}" var="entry">
+					<c:if test="${entry.key == 'rue' && entry.value==true}">
+						<div class="alert alert-danger">La rue n'est pas valide</div>
+					</c:if>
+				</c:forEach>
 				<label for="cp">Code postal</label> <input id="cp" name="cp"
-					type="text" /> <label for="ville">Ville</label> <input id="ville"
-					name="ville" type="text" />
+					type="text"  value="${cp}"/>
+				<c:forEach items="${hasErrors}" var="entry">
+					<c:if test="${entry.key == 'cp' && entry.value==true}">
+						<div class="alert alert-danger">Le code postal n'est pas
+							valide</div>
+					</c:if>
+				</c:forEach>
+
+				<label for="ville">Ville</label> <input id="ville" name="ville"
+					type="text"  value="${ville}"/>
+				<c:forEach items="${hasErrors}" var="entry">
+					<c:if test="${entry.key == 'ville' && entry.value==true}">
+						<div class="alert alert-danger">La ville n'est pas valide</div>
+					</c:if>
+				</c:forEach>
 			</fieldset>
 			<div class="d-flex justify-content-around mt-5">
 				<button class="btn btn-secondary" type="submit">Enregistrer</button>
@@ -60,6 +124,7 @@
 					vente</button>
 			</div>
 		</form>
+
 	</div>
 </body>
 </html>

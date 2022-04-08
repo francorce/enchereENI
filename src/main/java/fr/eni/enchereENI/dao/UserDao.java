@@ -15,7 +15,7 @@ public interface UserDao extends Dao<User>{
 	
 
 	@Override
-	public void save(User t) throws SQLException;
+	public int save(User t) throws SQLException;
 
 	@Override
 	public void update(User t) throws SQLException;
