@@ -35,24 +35,29 @@ public class RetraitManager {
 		Article article = articleManager.getById(id);
 		Map<String, Boolean> hasErrors = validateRetrait(rue, cp, ville);
 
+		boolean hasError = false;
 		Iterator it = hasErrors.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry pair = (Map.Entry) it.next();
 			if (pair.getValue() == (Boolean) true) {
-				return hasErrors;
-			} else {
-				retraitAAjouter.setArticle(article);
-				retraitAAjouter.setCp(cp);
-				retraitAAjouter.setRue(rue);
-				retraitAAjouter.setVille(ville);
-				try {
-					retraitDao.save(retraitAAjouter);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				hasError = true;
 			}
 		}
+		if (hasError) {
+			return hasErrors;
+		} else {
+			retraitAAjouter.setArticle(article);
+			retraitAAjouter.setCp(cp);
+			retraitAAjouter.setRue(rue);
+			retraitAAjouter.setVille(ville);
+			try {
+				retraitDao.save(retraitAAjouter);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		return hasErrors;
 	}
 }
