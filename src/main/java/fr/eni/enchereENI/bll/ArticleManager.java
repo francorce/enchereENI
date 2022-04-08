@@ -97,14 +97,18 @@ public class ArticleManager {
 		}
 
 		Iterator it = hasErrors.entrySet().iterator();
-		while (it.hasNext()) {
+		boolean hasError=false;
+		 while (it.hasNext()) {
 			Map.Entry pair = (Map.Entry) it.next();
 			if (pair.getValue() == (Boolean) true) {
 				hasErrorsRetrait = RetraitManager.validateRetrait(rue, cp, ville);
 				hasErrors.putAll(hasErrorsRetrait);
+				hasError = true;
 				return hasErrors;
-			} else {
-
+			} 
+		}
+		 
+		 if(!hasError){
 				articleAAjouter.setVendeur(vendeur);
 				ArticleDao articleDao = DaoFactory.getArticleDao();
 				try {
@@ -117,8 +121,6 @@ public class ArticleManager {
 					e.printStackTrace();
 				}
 			}
-
-		}
 
 		hasErrors.putAll(hasErrorsRetrait);
 
