@@ -46,6 +46,7 @@ public class ArticleManager {
 			String debutEnchereString, String finEnchereString, User vendeur, String rue, String cp, String ville) {
 		Article articleAAjouter = new Article();
 		Boolean hasErrors = false;
+		
 
 		if (nom != null && !nom.isEmpty()) {
 			articleAAjouter.setNomArticle(nom);

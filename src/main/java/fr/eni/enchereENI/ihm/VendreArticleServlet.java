@@ -67,6 +67,11 @@ public class VendreArticleServlet extends HttpServlet {
 		User vendeur = (User) session.getAttribute("user");
 		
 		Boolean hasErrors = articleManager.addArticle(nomArticle, description, categorie, prixDepart, debutEnchere, finEnchere, vendeur, rue, cp, ville);
+		if(!hasErrors) {
+			response.sendRedirect(request.getContextPath() + "/AccueilConnecter");
+			return;
+		}
+		
 		
 		doGet(request, response);
 	}
