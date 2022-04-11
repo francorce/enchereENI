@@ -149,6 +149,9 @@
 			</form>
 		</div>
 	</div>
-
+	<c:if test="${isDeleted == false && fromDelete == true}">
+		<div class="alert alert-danger">Cet utilisateur à des enchères
+			en cours...!</div>
+	</c:if>
 </body>
 </html>

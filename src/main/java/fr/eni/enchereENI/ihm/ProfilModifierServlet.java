@@ -34,7 +34,7 @@ public class ProfilModifierServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		HttpSession session = request.getSession();
 		User utilisateur = new User();
 		
@@ -46,8 +46,9 @@ public class ProfilModifierServlet extends HttpServlet {
 		
 		request.setAttribute("user", utilisateur);
 		
-
 		this.getServletContext().getRequestDispatcher("/WEB-INF/ProfilModifier.jsp").forward(request, response);
+		request.getSession().removeAttribute("fromDelete");
+
 	}
 
 	/**

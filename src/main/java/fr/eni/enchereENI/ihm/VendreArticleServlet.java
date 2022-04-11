@@ -86,7 +86,7 @@ public class VendreArticleServlet extends HttpServlet {
 
 		HttpSession session = request.getSession();
 		User vendeur = (User) session.getAttribute("user");
-		
+		System.out.println(vendeur);
 		
 		Map<String, Boolean> hasErrors = articleManager.addArticle(nomArticle, description, categorie, prixDepart, debutEnchere, finEnchere, vendeur, rue, cp, ville);
 		
