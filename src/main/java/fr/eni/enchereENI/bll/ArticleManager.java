@@ -169,5 +169,17 @@ public class ArticleManager {
 		}
 		return true;
 	}
+	
+	public List<Article> getArticleByUserId(int userId){
+		ArticleDao articleDao = DaoFactory.getArticleDao();
+		List<Article> listeArticle = new ArrayList<Article>();
+		try {
+			listeArticle = articleDao.getByVendorId(userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listeArticle;
+	}
 
 }

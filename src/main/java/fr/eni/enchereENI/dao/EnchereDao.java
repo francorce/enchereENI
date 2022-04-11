@@ -8,5 +8,6 @@ import fr.eni.enchereENI.bo.Enchere;
 public interface EnchereDao extends Dao<Enchere> {
 	
 	public List<Enchere> getByUserId(int id) throws SQLException;
+	public List<Enchere> getByArticleId(int articleId) throws SQLException;
 	
 }

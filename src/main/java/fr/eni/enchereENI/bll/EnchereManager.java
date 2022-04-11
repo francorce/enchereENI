@@ -34,5 +34,17 @@ public class EnchereManager {
 		return listeEnchere;
 	}
 	
+	public List<Enchere> getByArticleId(int userId){
+		List <Enchere> listeEnchere = new ArrayList();
+		EnchereDao enchereDao = DaoFactory.getEnchereDao();
+		try {
+			listeEnchere = enchereDao.getByArticleId(userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listeEnchere;
+	} 
+	
 	
 }

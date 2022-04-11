@@ -39,12 +39,13 @@ public class supprimerUser extends HttpServlet {
 		boolean isDeleted = userManager.supprimerUser((User) session.getAttribute("user"));
 
 		if (isDeleted) {
+			session.removeAttribute("user");
 			response.sendRedirect(request.getContextPath() + "/Accueil");
 			return;
 		} else {
 			request.setAttribute("isDeleted", isDeleted);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/Profil.jsp").forward(request, response);
-		}
+		} 
 
 	}
 
