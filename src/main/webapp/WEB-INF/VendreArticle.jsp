@@ -80,10 +80,12 @@
 				</c:if>
 			</c:forEach>
 
+
 			<label for="debutEnchere">Début de l'enchère</label> <input style = "width: 200px;" class="form-control"
-				id="debutEnchere" name="debutEnchere" type="date" value="${debutEnchere}" > <label
+				id="debutEnchere" name="debutEnchere" type="datetime-local" value="${debutEnchere}" > <label
 				for="finEnchere">Fin de l'enchère</label> <input style = "width: 200px;" class="form-control" id="finEnchere"
-				name="finEnchere" type="date"  value="${finEnchere}"/>
+				name="finEnchere" type="datetime-local"  value="${finEnchere}"/>
+
 			<c:forEach items="${hasErrors}" var="entry">
 					<c:if test="${entry.key == 'finEnchereString' && entry.value==true}">
 						<div class="alert alert-danger">Les dates ne sont pas valide</div>

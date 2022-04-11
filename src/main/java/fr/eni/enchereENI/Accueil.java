@@ -23,7 +23,7 @@ import fr.eni.enchereENI.dao.impl.EnchereDaoImpl;
 /**
  * Servlet implementation class Accueil
  */
-@WebServlet("/")
+@WebServlet({"/Accueil",""})
 public class Accueil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
         

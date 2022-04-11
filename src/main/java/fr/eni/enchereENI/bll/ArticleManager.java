@@ -4,7 +4,8 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -80,96 +81,93 @@ public class ArticleManager {
 
 		if (finEnchereString != null && !finEnchereString.isEmpty() && debutEnchereString != null
 				&& !debutEnchereString.isEmpty()) {
-			try {
-				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.FRANCE);
-				Date debutEnchere = new java.sql.Date(formatter.parse(debutEnchereString).getTime());
-				Date finEnchere = new java.sql.Date(formatter.parse(finEnchereString).getTime());
-				if (validateDate(debutEnchere, finEnchere)) {
-					articleAAjouter.setDebutEnchere(debutEnchere);
-					articleAAjouter.setFinEnchere(finEnchere);
-				} else {
-					hasErrors.put("finEnchereString", true);
-				}
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.FRANCE);
+			LocalDateTime debutEnchere = LocalDateTime.parse(debutEnchereString, formatter);
+			LocalDateTime finEnchere = LocalDateTime.parse(finEnchereString, formatter);
+
+			if (validateDate(debutEnchere, finEnchere)) {
+				articleAAjouter.setDebutEnchere(debutEnchere);
+				articleAAjouter.setFinEnchere(finEnchere);
+			} else {
+				hasErrors.put("finEnchereString", true);
 			}
+
 		} else {
 			hasErrors.put("finEnchereString", true);
 		}
-		
+
 		hasErrorsRetrait = RetraitManager.validateRetrait(rue, cp, ville);
 		hasErrors.putAll(hasErrorsRetrait);
 		Iterator it = hasErrors.entrySet().iterator();
-		boolean hasError=false;
-		 while (it.hasNext()) {
+		boolean hasError = false;
+		while (it.hasNext()) {
 			Map.Entry pair = (Map.Entry) it.next();
 			if (pair.getValue() == (Boolean) true) {
 				hasError = true;
-			} 
-		}
-		 
-		 if(hasError){
-				
-				return hasErrors;
-			} else {
-				articleAAjouter.setVendeur(vendeur);
-				ArticleDao articleDao = DaoFactory.getArticleDao();
-				try {
-					int id = articleDao.save(articleAAjouter);
-					if (id != 0) {
-						hasErrorsRetrait = RetraitManager.addRetrait(id, rue, cp, ville);
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 			}
+		}
+
+		if (hasError) {
+
+			return hasErrors;
+		} else {
+			articleAAjouter.setVendeur(vendeur);
+			ArticleDao articleDao = DaoFactory.getArticleDao();
+			try {
+				int id = articleDao.save(articleAAjouter);
+				if (id != 0) {
+					hasErrorsRetrait = RetraitManager.addRetrait(id, rue, cp, ville);
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 		hasErrors.putAll(hasErrorsRetrait);
 
 		return hasErrors;
 	}
 
-	public boolean validateDate(Date debutEnchere, Date finEnchere) {
+	public boolean validateDate(LocalDateTime debutEnchere, LocalDateTime finEnchere) {
 		boolean dateValid = true;
 		long miliseconds = System.currentTimeMillis();
-		Date dateDuJour = new Date(miliseconds);
+		LocalDateTime dateDuJour = LocalDateTime.now();
 
-		if (dateDuJour.after(debutEnchere) || dateDuJour.equals(debutEnchere)) {
+		if (dateDuJour.isAfter(debutEnchere) || dateDuJour.isEqual(debutEnchere)) {
 			dateValid = false;
 		}
 		if (finEnchere == debutEnchere) {
 			dateValid = false;
 		}
-		if (debutEnchere.after(finEnchere)) {
+		if (debutEnchere.isAfter(finEnchere)) {
 			dateValid = false;
 		}
 		return dateValid;
 	}
-	
+
 	public static boolean isInteger(String str) {
-	    if (str == null) {
-	        return false;
-	    }
-	    int length = str.length();
-	    if (length == 0) {
-	        return false;
-	    }
-	    int i = 0;
-	    if (str.charAt(0) == '-') {
-	        if (length == 1) {
-	            return false;
-	        }
-	        i = 1;
-	    }
-	    for (; i < length; i++) {
-	        char c = str.charAt(i);
-	        if (c < '0' || c > '9') {
-	            return false;
-	        }
-	    }
-	    return true;
+		if (str == null) {
+			return false;
+		}
+		int length = str.length();
+		if (length == 0) {
+			return false;
+		}
+		int i = 0;
+		if (str.charAt(0) == '-') {
+			if (length == 1) {
+				return false;
+			}
+			i = 1;
+		}
+		for (; i < length; i++) {
+			char c = str.charAt(i);
+			if (c < '0' || c > '9') {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

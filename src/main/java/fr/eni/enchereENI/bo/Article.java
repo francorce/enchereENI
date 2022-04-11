@@ -1,6 +1,7 @@
 package fr.eni.enchereENI.bo;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Article {
@@ -8,15 +9,15 @@ public class Article {
 	private int noArticle;
 	private String nomArticle;
 	private String description;
-	private Date debutEnchere;
-	private Date finEnchere;
+	private LocalDateTime debutEnchere;
+	private LocalDateTime finEnchere;
 	private int prixInitial;
 	private int prixVente;
 	private User vendeur;
 	private Categorie categorie;
 	
 	
-	public Article(int noArticle, String nomArticle, String description, Date debutEnchere, Date finEnchere,
+	public Article(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
 			int prixInitial, int prixVente, User vendeur, Categorie categorie) {
 		super();
 		this.noArticle = noArticle;
@@ -54,16 +55,16 @@ public class Article {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Date getDebutEnchere() {
+	public LocalDateTime getDebutEnchere() {
 		return debutEnchere;
 	}
-	public void setDebutEnchere(Date debutEnchere) {
+	public void setDebutEnchere(LocalDateTime debutEnchere) {
 		this.debutEnchere = debutEnchere;
 	}
-	public Date getFinEnchere() {
+	public LocalDateTime getFinEnchere() {
 		return finEnchere;
 	}
-	public void setFinEnchere(Date finEnchere) {
+	public void setFinEnchere(LocalDateTime finEnchere) {
 		this.finEnchere = finEnchere;
 	}
 	public int getPrixInitial() {
