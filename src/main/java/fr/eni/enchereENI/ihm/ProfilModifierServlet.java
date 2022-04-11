@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eni.enchereENI.bll.UserManager;
 import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dao.DaoFactory;
 import fr.eni.enchereENI.dao.UserDao;

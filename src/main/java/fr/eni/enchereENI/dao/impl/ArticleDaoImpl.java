@@ -33,8 +33,8 @@ public class ArticleDaoImpl implements ArticleDao {
 			article.setNoArticle(rs.getInt("no_article"));
 			article.setNomArticle(rs.getString("nom_article"));
 			article.setDescription(rs.getString("description"));
-			article.setDebutEnchere(rs.getDate("date_debut_encheres"));
-			article.setFinEnchere(rs.getDate("date_fin_encheres"));
+			article.setDebutEnchere(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
+			article.setFinEnchere(rs.getTimestamp("date_fin_encheres").toLocalDateTime());
 			article.setPrixInitial(rs.getInt("prix_initial"));
 			article.setPrixVente(rs.getInt("prix_vente"));
 			
@@ -65,8 +65,8 @@ public class ArticleDaoImpl implements ArticleDao {
 			article.setNoArticle(rs.getInt("no_article"));
 			article.setNomArticle(rs.getString("nom_article"));
 			article.setDescription(rs.getString("description"));
-			article.setDebutEnchere(rs.getDate("date_debut_encheres"));
-			article.setFinEnchere(rs.getDate("date_fin_encheres"));
+			article.setDebutEnchere(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
+			article.setFinEnchere(rs.getTimestamp("date_fin_encheres").toLocalDateTime());
 			article.setPrixInitial(rs.getInt("prix_initial"));
 			article.setPrixVente(rs.getInt("prix_vente"));
 			
@@ -90,8 +90,8 @@ public class ArticleDaoImpl implements ArticleDao {
 		int id = 0;
 		saveArticle.setString(1, a.getNomArticle());
 		saveArticle.setString(2, a.getDescription());
-		saveArticle.setDate(3, a.getDebutEnchere());	
-		saveArticle.setDate(4, a.getFinEnchere());
+		saveArticle.setTimestamp(3, java.sql.Timestamp.valueOf(a.getDebutEnchere()));	
+		saveArticle.setTimestamp(4,  java.sql.Timestamp.valueOf(a.getFinEnchere()));
 		saveArticle.setInt(5, a.getPrixInitial());
 		saveArticle.setInt(6, a.getPrixVente());
 		saveArticle.setInt(7, a.getVendeur().getNo_utilisateur());

@@ -11,7 +11,7 @@
 	crossorigin="anonymous">
 
 <script src="<%=request.getContextPath() %>/js/myjs.js" defer ></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
 </head>
 <body>
 			<nav class="navbar navbar-light bg-light">
@@ -40,158 +40,9 @@
 			<button class="btn btn-primary" style="float: right;">Rechercher</button>
 			<br>
 
-				<label style="float: left;">filtres :&nbsp;</label> <input type="text" class="form-control">
-	<!--			
-<script>
-		
-		function yesnoCheck(that) {
-    if (that.value == "Livre") {
-		
-			document.getElementById("Livre").style.display = "block";
-			document.getElementById("Viande").style.display = "none";
-			document.getElementById("Mode").style.display = "none";
-			document.getElementById("Electromenager").style.display = "none";
-			document.getElementById("Informatique").style.display = "none";
-			document.getElementById("Maison").style.display = "none";
-			document.getElementById("Automoto").style.display = "none";
-			document.getElementById("Animalerie").style.display = "none";
-			document.getElementById("Epicerie").style.display = "none";
-			document.getElementById("Jouets").style.display = "none";
-		
-    } else if (that.value == "Viande")  {
-    
-			document.getElementById("Livre").style.display = "none";
-			document.getElementById("Viande").style.display = "block";
-			document.getElementById("Mode").style.display = "none";
-			document.getElementById("Electromenager").style.display = "none";
-			document.getElementById("Informatique").style.display = "none";
-			document.getElementById("Maison").style.display = "none";
-			document.getElementById("Automoto").style.display = "none";
-			document.getElementById("Animalerie").style.display = "none";
-			document.getElementById("Epicerie").style.display = "none";
-			document.getElementById("Jouets").style.display = "none";
-			
-    } else if (that.value == "Mode")  {
+				<label style="float: left;">filtres :&nbsp;</label> 
+				<input type="text" class="form-control">
 	
-			document.getElementById("Livre").style.display = "none";
-			document.getElementById("Viande").style.display = "none";
-			document.getElementById("Mode").style.display = "block";
-			document.getElementById("Electromenager").style.display = "none";
-			document.getElementById("Informatique").style.display = "none";
-			document.getElementById("Maison").style.display = "none";
-			document.getElementById("Automoto").style.display = "none";
-			document.getElementById("Animalerie").style.display = "none";
-			document.getElementById("Epicerie").style.display = "none";
-			document.getElementById("Jouets").style.display = "none";
-			
-    
-    } else if (that.value == "Electromenager")  {
-	
-	document.getElementById("Livre").style.display = "none";
-			document.getElementById("Viande").style.display = "none";
-			document.getElementById("Mode").style.display = "none";
-			document.getElementById("Electromenager").style.display = "block";
-			document.getElementById("Informatique").style.display = "none";
-			document.getElementById("Maison").style.display = "none";
-			document.getElementById("Automoto").style.display = "none";
-			document.getElementById("Animalerie").style.display = "none";
-			document.getElementById("Epicerie").style.display = "none";
-			document.getElementById("Jouets").style.display = "none";
-			
-    } else if (that.value == "Informatique")  {
-	
-			document.getElementById("Livre").style.display = "none";
-			document.getElementById("Viande").style.display = "none";
-			document.getElementById("Mode").style.display = "none";
-			document.getElementById("Electromenager").style.display = "none";
-			document.getElementById("Informatique").style.display = "block";
-			document.getElementById("Maison").style.display = "none";
-			document.getElementById("Automoto").style.display = "none";
-			document.getElementById("Animalerie").style.display = "none";
-			document.getElementById("Epicerie").style.display = "none";
-			document.getElementById("Jouets").style.display = "none";
-			
-    }else if (that.value == "Maison")  {
-	
-			document.getElementById("Livre").style.display = "none";
-			document.getElementById("Viande").style.display = "none";
-			document.getElementById("Mode").style.display = "none";
-			document.getElementById("Electromenager").style.display = "none";
-			document.getElementById("Informatique").style.display = "none";
-			document.getElementById("Maison").style.display = "block";
-			document.getElementById("Automoto").style.display = "none";
-			document.getElementById("Animalerie").style.display = "none";
-			document.getElementById("Epicerie").style.display = "none";
-			document.getElementById("Jouets").style.display = "none";
-			
-    } else if (that.value == "Automoto")  {
-	
-			document.getElementById("Livre").style.display = "none";
-			document.getElementById("Viande").style.display = "none";
-			document.getElementById("Mode").style.display = "none";
-			document.getElementById("Electromenager").style.display = "none";
-			document.getElementById("Informatique").style.display = "none";
-			document.getElementById("Maison").style.display = "none";
-			document.getElementById("Automoto").style.display = "block";
-			document.getElementById("Animalerie").style.display = "none";
-			document.getElementById("Epicerie").style.display = "none";
-			document.getElementById("Jouets").style.display = "none";
-			
-    }else if (that.value == "Animalerie")  {
-	
-			document.getElementById("Livre").style.display = "none";
-			document.getElementById("Viande").style.display = "none";
-			document.getElementById("Mode").style.display = "none";
-			document.getElementById("Electromenager").style.display = "none";
-			document.getElementById("Informatique").style.display = "none";
-			document.getElementById("Maison").style.display = "none";
-			document.getElementById("Automoto").style.display = "none";
-			document.getElementById("Animalerie").style.display = "block";
-			document.getElementById("Epicerie").style.display = "none";
-			document.getElementById("Jouets").style.display = "none";
-			
-    } else if (that.value == "Epicerie")  {
-	
-			document.getElementById("Livre").style.display = "none";
-			document.getElementById("Viande").style.display = "none";
-			document.getElementById("Mode").style.display = "none";
-			document.getElementById("Electromenager").style.display = "none";
-			document.getElementById("Informatique").style.display = "none";
-			document.getElementById("Maison").style.display = "none";
-			document.getElementById("Automoto").style.display = "none";
-			document.getElementById("Animalerie").style.display = "none";
-			document.getElementById("Epicerie").style.display = "block";
-			document.getElementById("Jouets").style.display = "none";
-			
-    }else if (that.value == "Jouets")  {
-	
-			document.getElementById("Livre").style.display = "none";
-			document.getElementById("Viande").style.display = "none";
-			document.getElementById("Mode").style.display = "none";
-			document.getElementById("Electromenager").style.display = "none";
-			document.getElementById("Informatique").style.display = "none";
-			document.getElementById("Maison").style.display = "none";
-			document.getElementById("Automoto").style.display = "none";
-			document.getElementById("Animalerie").style.display = "none";
-			document.getElementById("Epicerie").style.display = "none";
-			document.getElementById("Jouets").style.display = "block";
-			
-    } else{ 
-    	document.getElementById("Livre").style.display = "block";
-    	document.getElementById("Livre").style.display = "block";
-		document.getElementById("Viande").style.display = "block";
-		document.getElementById("Mode").style.display = "block";
-		document.getElementById("Electromenager").style.display = "block";
-		document.getElementById("Informatique").style.display = "block";
-		document.getElementById("Maison").style.display = "block";
-		document.getElementById("Automoto").style.display = "block";
-		document.getElementById("Animalerie").style.display = "block";
-		document.getElementById("Epicerie").style.display = "block";
-		document.getElementById("Jouets").style.display = "block";
-	}
-	
-}</script>
-				-->
 				<label for="categorie">Categorie</label>
 				 <select class="form-control" type="text" id="categorie" name="categorie"  xxxonchange="yesnoCheck(this);">
 				<option>Afficher tout</option>
@@ -204,20 +55,41 @@
 			
 	
 			<div class="row"> 
+			<script>
+					function achats() {
+						document.getElementById("myCheck1").disabled = false;
+						document.getElementById("myCheck2").disabled = false;
+						document.getElementById("myCheck3").disabled = false;
+						document.getElementById("myCheck4").disabled = true;
+						document.getElementById("myCheck5").disabled = true;
+						document.getElementById("myCheck6").disabled = true;
+
+					}
+					function ventes() {
+						document.getElementById("myCheck1").disabled = true;
+						document.getElementById("myCheck2").disabled = true;
+						document.getElementById("myCheck3").disabled = true;
+						document.getElementById("myCheck4").disabled = false;
+						document.getElementById("myCheck5").disabled = false;
+						document.getElementById("myCheck6").disabled = false;
+
+					}
+				</script>
+			
 				<div class="col">
 					<input type="radio" name="radio" values="Achats">Achats
 					<ul>
-						<li><input name="check" type="checkbox"> enchère ouvertes</li>
-						<li><input name="check" type="checkbox"> mes enchères</li>
-						<li><input name="check" type="checkbox">mes enchères remportées</li>
+						<li><input name="check" type="checkbox" id="myCheck1"> enchère ouvertes</li>
+						<li><input name="check" type="checkbox" id="myCheck2"> mes enchères</li>
+						<li><input name="check" type="checkbox" id="myCheck3">mes enchères remportées</li>
 					</ul>
 				</div>
 				<div class="col">
 					<input type="radio" name="radio" values="Mes_ventes"> Mes ventes
 					<ul>
-						<li><input name="check" type="checkbox"> mes ventes en cours</li>
-						<li><input name="check" type="checkbox"> ventes non débutées</li>
-						<li><input name="check" type="checkbox">ventes termiées</li>
+						<li><input name="check" type="checkbox" id="myCheck4"> mes ventes en cours</li>
+						<li><input name="check" type="checkbox" id="myCheck5"> ventes non débutées</li>
+						<li><input name="check" type="checkbox" id="myCheck6">ventes termiées</li>
 					</ul>
 				</div>
 			</div>
