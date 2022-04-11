@@ -1,11 +1,13 @@
 package fr.eni.enchereENI.bll;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
+import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Enchere;
 import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dao.UserDao;
@@ -15,7 +17,6 @@ public class UserManager {
 
 	private static UserDao userDao = DaoFactory.getUserDao();;
 
-	
 	public static boolean isValidEmailAddress(String email) {
 		boolean result = true;
 		try {
@@ -29,7 +30,7 @@ public class UserManager {
 
 	public static User connectUser(String pseudoOuEmail, String password) {
 		User user = null;
-		
+
 		Boolean useEmail = isValidEmailAddress(pseudoOuEmail);
 		try {
 			user = useEmail ? userDao.getByEmail(pseudoOuEmail, password)
@@ -40,31 +41,53 @@ public class UserManager {
 		}
 		return user;
 	}
-	
+
 	public static User getUser(int noUtilisateur) {
-		//TODO : à faire
-		User user=null;
+		// TODO : à faire
+		User user = null;
 		try {
 			user = userDao.get(noUtilisateur);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			//TODO
+			// TODO
 		}
 		return user;
 	}
 
-	
 	public boolean supprimerUser(User user) {
 		boolean hasEnchere = false;
+		boolean hasArticle = false;
 		boolean isDeleted = false;
 		EnchereManager enchereManager = new EnchereManager();
+		ArticleManager articleManager = new ArticleManager();
 		List<Enchere> enchereUser = enchereManager.getByUserId(user.getNo_utilisateur());
-		if(enchereUser.size()>0) {
-			hasEnchere = true;
+		List<Article> articleUser = articleManager.getArticleByUserId(user.getNo_utilisateur());
+
+		// check si il a des article en cours de vente
+		LocalDateTime todaysDate = LocalDateTime.now();
+
+		if (articleUser.size() > 0) {
+			for (Article article : articleUser) {
+				if (article.getFinEnchere().isAfter(todaysDate) || article.getDebutEnchere().isAfter(todaysDate)) {
+					hasArticle = true;
+				}
+			}
 		}
-		
-		if(!hasEnchere) {
+
+		if (enchereUser.size() > 0) {
+			int offreMax = 0;
+			for (Enchere enchere : enchereUser) {
+				if(enchere.getMontantEnchere()>offreMax) {
+					offreMax= (int) enchere.getMontantEnchere();
+					if(enchere.getEncherisseur().equals(user)) {
+						hasEnchere=true;
+					}
+				}
+			}
+		}
+
+		if (hasEnchere == false & hasArticle == false) {
 			try {
 				userDao.delete(user);
 				isDeleted = true;
@@ -72,9 +95,8 @@ public class UserManager {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} 
+		}
 		return isDeleted;
- 	}
-		
+	}
 
 }
