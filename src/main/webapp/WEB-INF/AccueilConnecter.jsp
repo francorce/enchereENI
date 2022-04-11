@@ -14,8 +14,10 @@
 			<nav class="navbar navbar-light bg-light">
 				<a class="navbar-brand" href="#"> ENI-Enchères</a>
 				<div class="btn-group" role="group" aria-label="ez">
+				
 					<form action="VendreArticle" method="get">
-						<button class="btn btn-primary"  type="submit">Vendre un article</button>
+						Credit
+					: ${user.credit} <button class="btn btn-primary"  type="submit">Vendre un article</button>
 					</form> &nbsp
 					
 					<form action="Deconnexion" method="get">
