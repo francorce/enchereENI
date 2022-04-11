@@ -5,13 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Enchère ENI</title>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <script src="<%=request.getContextPath() %>/js/myjs.js" defer ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.0/jquery.min.js"></script>
+
 </head>
 <body>
 			<nav class="navbar navbar-light bg-light">
@@ -77,19 +74,31 @@
 				</script>
 			
 				<div class="col">
-					<input type="radio" name="radio" values="Achats" onClick="achats()">Achats
+
+					<input type="radio" name="radio" values="Achats" onClick="achats()"> Achats
 					<ul>
-						<li><input name="check" type="checkbox" id="myCheck1"> enchère ouvertes</li>
-						<li><input name="check" type="checkbox" id="myCheck2"> mes enchères</li>
-						<li><input name="check" type="checkbox" id="myCheck3">mes enchères remportées</li>
+
+						<li class="list-group-item" style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input name="check" type="checkbox" id="myCheck1">
+							enchère ouvertes</li>
+						<li class="list-group-item" style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input name="check" type="checkbox" id="myCheck2">
+							mes enchères</li>
+						<li class="list-group-item" style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input name="check" type="checkbox" id="myCheck3">
+							mes enchères remportées</li>
+
 					</ul>
 				</div>
 				<div class="col">
 					<input type="radio" name="radio" values="Mes_ventes" onClick="ventes()"> Mes ventes
 					<ul>
-						<li><input name="check" type="checkbox" id="myCheck4"> mes ventes en cours</li>
-						<li><input name="check" type="checkbox" id="myCheck5"> ventes non débutées</li>
-						<li><input name="check" type="checkbox" id="myCheck6">ventes termiées</li>
+
+
+						<li class="list-group-item" style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input name="check" type="checkbox" id="myCheck4">
+							mes ventes en cours</li>
+						<li class="list-group-item" style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input name="check" type="checkbox" id="myCheck5">
+							ventes non débutées</li>
+						<li class="list-group-item" style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input name="check" type="checkbox" id="myCheck6">
+							ventes termiées</li>
+
 					</ul>
 				</div>
 			</div>
