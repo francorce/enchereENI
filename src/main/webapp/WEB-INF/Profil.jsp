@@ -66,9 +66,7 @@
 					<button type="submit" class="btn btn-primary" style="float: right;">Modifier</button>
 				</form>
 			</c:if>
-			<c:if test="${isDeleted == false}">
-				<div class="alert alert-danger">Cet utilisateur à des enchères en cours...!</div>
-			</c:if>
+
 		</div>
 
 

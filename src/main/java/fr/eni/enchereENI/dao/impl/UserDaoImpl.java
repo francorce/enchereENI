@@ -148,9 +148,11 @@ public class UserDaoImpl implements UserDao {
 		saveUser.setString(9, t.getPassword());
 		saveUser.setInt(10, t.getCredit());
 		saveUser.setBoolean(11, t.isAdmin());
-		int id = saveUser.executeUpdate();
-		t.setNo_utilisateur(id);
-		return id;
+		int affectedRows = saveUser.executeUpdate();
+		ResultSet generatedKeysResultSet = saveUser.getGeneratedKeys();
+		generatedKeysResultSet.next();
+		t.setNo_utilisateur(generatedKeysResultSet.getInt(1));
+		return affectedRows;
 	}
 
 	@Override

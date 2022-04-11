@@ -35,7 +35,6 @@ public class supprimerUser extends HttpServlet {
 		// TODO Auto-generated method stub
 		UserManager userManager = new UserManager();
 		HttpSession session = request.getSession();
-
 		boolean isDeleted = userManager.supprimerUser((User) session.getAttribute("user"));
 
 		if (isDeleted) {
@@ -43,8 +42,10 @@ public class supprimerUser extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/Accueil");
 			return;
 		} else {
-			request.setAttribute("isDeleted", isDeleted);
-			this.getServletContext().getRequestDispatcher("/WEB-INF/Profil.jsp").forward(request, response);
+			request.getSession().setAttribute("isDeleted", isDeleted);
+			request.getSession().setAttribute("fromDelete", true);
+			response.sendRedirect(request.getContextPath() + "/ProfilModifier");
+			return;
 		} 
 
 	}
