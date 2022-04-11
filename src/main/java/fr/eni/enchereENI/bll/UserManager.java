@@ -72,6 +72,7 @@ public class UserManager {
 				if (article.getFinEnchere().isAfter(todaysDate) || article.getDebutEnchere().isAfter(todaysDate)) {
 					hasArticle = true;
 				}
+				
 			}
 		}
 
