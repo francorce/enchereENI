@@ -142,8 +142,9 @@
 
 				<ul>
 				</ul>
+				<input type="submit" name="action" value="Modifier" />
 			</form>
-			<input type="submit" name="action" value="Modifier" />
+			
 
 			<form action="supprimerUser" method="get">
 				<button type="submit" style="float: right;" >Supprimer

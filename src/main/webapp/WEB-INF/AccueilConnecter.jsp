@@ -77,7 +77,7 @@
 				</script>
 			
 				<div class="col">
-					<input type="radio" name="radio" values="Achats">Achats
+					<input type="radio" name="radio" values="Achats" onClick="achats()">Achats
 					<ul>
 						<li><input name="check" type="checkbox" id="myCheck1"> enchère ouvertes</li>
 						<li><input name="check" type="checkbox" id="myCheck2"> mes enchères</li>
@@ -85,7 +85,7 @@
 					</ul>
 				</div>
 				<div class="col">
-					<input type="radio" name="radio" values="Mes_ventes"> Mes ventes
+					<input type="radio" name="radio" values="Mes_ventes" onClick="ventes()"> Mes ventes
 					<ul>
 						<li><input name="check" type="checkbox" id="myCheck4"> mes ventes en cours</li>
 						<li><input name="check" type="checkbox" id="myCheck5"> ventes non débutées</li>
