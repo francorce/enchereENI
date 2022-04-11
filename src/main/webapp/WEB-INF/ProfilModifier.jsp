@@ -137,14 +137,14 @@
 				</div>
 				<br> <label class="form-label" for="form9Example4">Credit
 					: ${user.credit}</label> <br> <span id='message'></span> <br>
-<input type="submit" name="action" value="Modifier" />
+<input type="submit" name="action" class="btn btn-primary" value="Modifier" />
 
 			</form>
 			
 
 			<form action="supprimerUser" method="get">
 			
-				<button type="submit" style="float: right;" >Supprimer
+				<button type="submit" class="btn btn-primary" style="float: right;" >Supprimer
 					mon compte</button>
 			</form>
 		</div>

@@ -115,8 +115,8 @@
 			</div>
 			<span id='message'></span>
 			<br>
-			<input type="submit" name = "action" value="Envoyer" />
-				<input type = "submit" name = "action" value = "Annuler"/>
+			<input type="submit" class="btn btn-primary" name = "action" value="Envoyer" />
+				<input type = "submit" class="btn btn-primary" name = "action" value = "Annuler"/>
 			</div>
 			</div>
 		  	<ul>
