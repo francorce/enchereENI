@@ -19,12 +19,13 @@
 		<a class="navbar-brand" href="#"> ENI-Enchères</a>
 	</nav>
 	<div class="container">
+	<div class="jumbotron">
 		<div class="d-flex justify-content-center">
 			<h2>Vendre un article</h2>
 		</div>
 		<form action="VendreArticle" method="post" class="d-flex flex-column">
-			<label for="nomArticle">Article</label> <input type="text"
-				id="nomArticle" name="nomArticle" value="${nomArticle}" />
+			<label for="nomArticle">Article</label> <input class="form-control" type="text"
+				id="nomArticle" name="nomArticle" class="form-control" value="${nomArticle}" />
 			<c:forEach items="${hasErrors}" var="entry">
 				<c:if test="${entry.key == 'nom' && entry.value==true}">
 					<div class="alert alert-danger">Le nom n'est pas valide</div>
@@ -32,7 +33,7 @@
 			</c:forEach>
 
 			<label for="description">Description</label>
-			<textarea type="text" id="description" name="description">${description}</textarea>
+			<textarea class="form-control" type="text" id="description" name="description">${description}</textarea>
 			<c:forEach items="${hasErrors}" var="entry">
 				<c:if test="${entry.key == 'description' && entry.value==true}">
 					<div class="alert alert-danger">La description n'est pas
@@ -42,7 +43,7 @@
 
 
 			<label for="categorie">Categorie</label> <select type="text"
-				id="categorie" name="categorie">
+				id="categorie" class="form-control" name="categorie">
 				<option></option>
 
 				<c:forEach items="${listeCategorie}" var="categorie">
@@ -65,11 +66,11 @@
 				</c:if>
 			</c:forEach>
 
-			<label for="buttonPhoto">Photo de l'article</label> <input
+			<label for="buttonPhoto">Photo de l'article</label> <input 
 				type="file" name="file" size="50" /><br>
 				 <label
 				for="prixDepart">Mise à prix</label> 
-				<input id="prixDepart"
+				<input class="form-control" class="form-control" id="prixDepart"
 				name="prixDepart" type="number" value="${prixDepart }"/>
 
 			<c:forEach items="${hasErrors}" var="entry">
@@ -79,9 +80,9 @@
 				</c:if>
 			</c:forEach>
 
-			<label for="debutEnchere">Début de l'enchère</label> <input
-				id="debutEnchere" name="debutEnchere" type="date" value="${debutEnchere}" /> <label
-				for="finEnchere">Fin de l'enchère</label> <input id="finEnchere"
+			<label for="debutEnchere">Début de l'enchère</label> <input style = "width: 200px;" class="form-control"
+				id="debutEnchere" name="debutEnchere" type="date" value="${debutEnchere}" > <label
+				for="finEnchere">Fin de l'enchère</label> <input style = "width: 200px;" class="form-control" id="finEnchere"
 				name="finEnchere" type="date"  value="${finEnchere}"/>
 			<c:forEach items="${hasErrors}" var="entry">
 					<c:if test="${entry.key == 'finEnchereString' && entry.value==true}">
@@ -94,13 +95,13 @@
 			<fieldset class="d-flex flex-column mt-3">
 				<legend>Retrait</legend>
 
-				<label for="rue">Rue</label> <input id="rue" name="rue" type="text" value="${rue}"/>
+				<label for="rue">Rue</label> <input class="form-control" id="rue" name="rue" type="text" value="${rue}"/>
 				<c:forEach items="${hasErrors}" var="entry">
 					<c:if test="${entry.key == 'rue' && entry.value==true}">
 						<div class="alert alert-danger">La rue n'est pas valide</div>
 					</c:if>
 				</c:forEach>
-				<label for="cp">Code postal</label> <input id="cp" name="cp"
+				<label for="cp">Code postal</label> <input class="form-control" id="cp" name="cp"
 					type="text"  value="${cp}"/>
 				<c:forEach items="${hasErrors}" var="entry">
 					<c:if test="${entry.key == 'cp' && entry.value==true}">
@@ -109,7 +110,7 @@
 					</c:if>
 				</c:forEach>
 
-				<label for="ville">Ville</label> <input id="ville" name="ville"
+				<label for="ville">Ville</label> <input class="form-control" id="ville" name="ville"
 					type="text"  value="${ville}"/>
 				<c:forEach items="${hasErrors}" var="entry">
 					<c:if test="${entry.key == 'ville' && entry.value==true}">
@@ -118,13 +119,15 @@
 				</c:forEach>
 			</fieldset>
 			<div class="d-flex justify-content-around mt-5">
-				<button class="btn btn-secondary" type="submit">Enregistrer</button>
-				<button class="btn btn-secondary" type="button">Annuler</button>
-				<button class="btn btn-secondary" type="submit">Annuler la
-					vente</button>
+			
+				<button class="btn btn-primary" type="submit">Enregistrer</button>
+				<button class="btn btn-primary" type="submit" >Annuler</button>
+				<button class="btn btn-primary" type="submit">Annuler la vente</button>
+			
+				
 			</div>
-		</form>
-
+		</form>	
+	</div>
 	</div>
 </body>
 </html>

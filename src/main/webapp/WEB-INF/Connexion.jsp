@@ -41,14 +41,22 @@
 				</div>
 
 				<button type="submit" class="btn btn-primary">Connexion</button>
+				
 
 			
 
+			
+			</form>
+			<br>
+			<form action="/enchereENI/Inscription">
+				<input type="submit" class="btn btn-primary" value="Créer un compte"  />
+			</form>
+			
 			<ul class="list-group" style="">
 			
 				<li class="list-group-item"
 					style="background-color: rgb(233, 236, 239); border-width: 0px;">
-					<label class="checkbox" style=""> <input type="checkbox">Se souvenir de moi&nbsp; 
+					<label class="checkbox" style=""> <input type="checkbox">&nbsp;Se souvenir de moi 
 					<br> 
 					<a href="/enchereENI/">Mot de passe oublié</a>
 					</label>
@@ -56,14 +64,9 @@
 				
 				
 			</ul>
-			</form>
-			<li class="list-group-item"
-					style="background-color: rgb(233, 236, 239); border-width: 0px;">
-					<form action="/enchereENI/Inscription">
-						<input type="submit" class="btn btn-primary"
-							value="Créer un compte"  />
-					</form>
-				</li>
+				
+					
+			
 			<c:if test="${hasErrors != null}">
 				<div class="alert alert-danger">${hasErrors}</div>
 			</c:if>

@@ -123,8 +123,8 @@
 				<br>
 			<span id='message'></span>
 			<br>
-			<input type="submit" name = "action" value="Modifier" />
-				<input type = "submit" style="float: right;" name = "action" value = "Supprimer mon compte"/>
+			<input type="submit"  class="btn btn-primary" name = "action" value="Modifier" />
+				<input type = "submit" class="btn btn-primary" style="float: right;" name = "action" value = "Supprimer mon compte"/>
 			</div>
 			</div>
 		  	<ul>
