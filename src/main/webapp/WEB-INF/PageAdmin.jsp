@@ -129,7 +129,6 @@
 										<th scope="col">Utilisateur lié</th>
 										<th scope="col">Catégorie lié</th>
 
-
 									</tr>
 								</thead>
 								<tbody>
@@ -167,7 +166,7 @@
 										<th scope="col">Date enchères</th>
 										<th scope="col">Montant enchères</th>
 										<th scope="col">Numéro articles</th>
-										<th scope="col">Utilisateur lié</th>
+										<th scope="col">Enchérisseur</th>
 
 									</tr>
 								</thead>
@@ -178,8 +177,8 @@
 											<td>${ enchere.noEnchere }</td>
 											<td>${ enchere.dateEnchere }</td>
 											<td>${ enchere.montantEnchere }</td>
-											<td>${ enchere.articles }</td>
-											<td>${ enchere.encherisseur }</td>
+											<td>${ enchere.articles.noArticle }</td>
+											<td>${ enchere.encherisseur.pseudo }</td>
 
 										</tr>
 									</c:forEach>
@@ -206,10 +205,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach var="retrait" items="${ retrait }">
+									<c:forEach var="retrait" items="${ listeRetrait }">
 										<tr>
 
-											<td>${ retrait.article }</td>
+											<td>${ retrait.article.noArticle }</td>
 											<td>${ retrait.rue }</td>
 											<td>${ retrait.cp }</td>
 											<td>${ retrait.ville }</td>

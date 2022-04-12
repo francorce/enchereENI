@@ -5,9 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.enchereENI.bo.Article;
+import fr.eni.enchereENI.bo.Enchere;
 import fr.eni.enchereENI.bo.Retrait;
 import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dal.ConnectionProvider;
@@ -17,6 +19,9 @@ import fr.eni.enchereENI.dao.RetraitDao;
 public class RetraitDaoImpl implements RetraitDao {
 	private static String SAVE = "INSERT into retraits ( no_article,rue, code_postal, ville) VALUES(?, ?, ?, ?)";
 	private static String GET_BY_ARTICLEID = "SELECT * from retraits WHERE no_article = ?";
+	private static String GET_ALL = "SELECT * from retraits";
+	
+	
 	
 	@Override
 	public Retrait get(int id) throws SQLException {
@@ -27,8 +32,27 @@ public class RetraitDaoImpl implements RetraitDao {
 
 	@Override
 	public List<Retrait> getAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Retrait> retraitList = new ArrayList<Retrait>();
+		Connection con;
+		ResultSet rs;
+		con = ConnectionProvider.getConnection();
+		PreparedStatement getAllRetrait = con.prepareStatement(GET_ALL);
+		rs = getAllRetrait.executeQuery();
+		while (rs.next()) {
+			Retrait retrait= new Retrait();
+			retrait.setRue(rs.getString("rue"));
+			retrait.setCp(rs.getString("code_postal"));
+			retrait.setVille(rs.getString("ville"));
+			
+
+			Article article = new Article();
+			article = DaoFactory.getArticleDao().get(rs.getInt("no_article"));
+			retrait.setArticle(article);
+			retraitList.add(retrait);
+		}
+		con.close();
+		rs.close();
+		return retraitList;
 	}
 
 	@Override
@@ -50,6 +74,9 @@ public class RetraitDaoImpl implements RetraitDao {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	
 
 	@Override
 	public void delete(Retrait t) throws SQLException {

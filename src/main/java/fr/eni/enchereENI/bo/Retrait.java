@@ -31,6 +31,7 @@ public class Retrait {
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(article, cp, rue, ville);

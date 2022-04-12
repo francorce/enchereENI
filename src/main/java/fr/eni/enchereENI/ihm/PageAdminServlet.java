@@ -50,7 +50,7 @@ public class PageAdminServlet extends HttpServlet {
 		List listeCategorie = new ArrayList<Categorie>();
 		List listeArticles = new ArrayList<Article>();
 		List enchereList = new ArrayList<Enchere>();
-		List saveRetrait = new ArrayList<Retrait>();
+		List listeRetrait = new ArrayList<Retrait>();
 		
 	
 
@@ -65,7 +65,7 @@ public class PageAdminServlet extends HttpServlet {
 			listeCategorie = categorieDao.getAll();
 			listeArticles = articleDao.getAll();
 			enchereList = enchereDao.getAll();
-			saveRetrait = retraitDao.getAll();
+			listeRetrait = retraitDao.getAll();
 		
 		} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -77,8 +77,8 @@ public class PageAdminServlet extends HttpServlet {
 		request.setAttribute("utilisateurs", utilisateurs);
 		request.setAttribute("categories", listeCategorie);
 		request.setAttribute("articles", listeArticles);
-		request.setAttribute("enchere", enchereList);
-		request.setAttribute("retrait", saveRetrait);
+		request.setAttribute("enchereList", enchereList);
+		request.setAttribute("listeRetrait", listeRetrait);
 
 
 
