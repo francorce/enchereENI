@@ -14,8 +14,10 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.enchereENI.bll.ArticleManager;
 import fr.eni.enchereENI.bll.EnchereManager;
+import fr.eni.enchereENI.bll.RetraitManager;
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Enchere;
+import fr.eni.enchereENI.bo.Retrait;
 import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dao.DaoFactory;
 import fr.eni.enchereENI.dao.EnchereDao;
@@ -40,6 +42,8 @@ public class encherirServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		
 		String numArticleString = request.getParameter("no_article");
 		int numArticle = 0;
 		if(numArticleString != null) {
@@ -48,8 +52,12 @@ public class encherirServlet extends HttpServlet {
 			
 		ArticleManager articleManager = new ArticleManager();
 		EnchereManager enchereManager = new EnchereManager();
+		RetraitManager retraitManager = new RetraitManager();
 		
 		Article article = articleManager.getById(numArticle);
+		Retrait retrait = retraitManager.getByArticleId(numArticle);
+		System.out.println(retrait);
+		
 		request.setAttribute("article", article);
 		int enchereLaPlusHaute = article.getPrixInitial();
 		List<Enchere> encheres = enchereManager.getByArticleId(article.getNoArticle());
@@ -58,8 +66,18 @@ public class encherirServlet extends HttpServlet {
 			if(enchere.getMontantEnchere()>enchereLaPlusHaute) {
 				enchereLaPlusHaute = (int) enchere.getMontantEnchere();
 			}
-		}
+		}	
 		request.setAttribute("prix", enchereLaPlusHaute);
+		
+		
+		String retraitRue = retrait.getRue();
+		String retraitCp = retrait.getCp();
+		String retraitVille = retrait.getVille();
+		
+		request.setAttribute("rue", retraitRue);
+		request.setAttribute("cp", retraitCp);
+		request.setAttribute("ville", retraitVille);
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/encherir.jsp").forward(request, response);
 	}
 
