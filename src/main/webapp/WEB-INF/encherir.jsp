@@ -11,7 +11,7 @@
 	<form action="encherir" method="post">
 		<input type="number" value="${prix}" id="montantEnchere"
 			name="montantEnchere" /> <input type="hidden"
-			value="${article.noArticle}" id="noArticle" name="noArticle" />
+			value="${article.noArticle}" id="no_article" name="no_article" />
 		<button type="submit">Enchérir</button>
 	</form>
 

@@ -20,6 +20,16 @@ import fr.eni.enchereENI.dao.ArticleDao;
 import fr.eni.enchereENI.dao.DaoFactory;
 
 public class ArticleManager {
+	
+	public void updateArticle (Article a) {
+		ArticleDao articleDao = DaoFactory.getArticleDao();
+		try {
+			articleDao.update(a);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public Article getById(int id) {
 		Article article = null;

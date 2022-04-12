@@ -12,8 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchereENI.bll.ArticleManager;
 import fr.eni.enchereENI.bll.CategorieManager;
+import fr.eni.enchereENI.bll.EnchereManager;
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
+import fr.eni.enchereENI.bo.Enchere;
 
 /**
  * Servlet implementation class AccueilConnecterServlet
@@ -41,6 +43,9 @@ public class AccueilConnecterServlet extends HttpServlet {
 		
 		ArticleManager articleManager = new ArticleManager();
 		List<Article> listArticles = new ArrayList<Article>();
+		
+		EnchereManager enchereManager = new EnchereManager();
+		List<Enchere> listEnchere = new ArrayList<>();
 		
 		listArticles = articleManager.getAll();
 		request.getSession().setAttribute("listArticles", listArticles); // add to session

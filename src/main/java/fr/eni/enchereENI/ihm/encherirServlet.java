@@ -68,40 +68,19 @@ public class encherirServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String montantEnchereString = request.getParameter("montantEnchere");
-		int montantEnchere = 0;
-		if(montantEnchereString != null) {
-			montantEnchere = Integer.parseInt(montantEnchereString);
-		}
-		ArticleManager articleManager = new ArticleManager();
-		
-		String numArticleString = request.getParameter("noArticle");
-		int numArticle = 0;
-		if(numArticleString != null) {
-			numArticle = Integer.parseInt(numArticleString);
-		}
-		
-		Article article = articleManager.getById(numArticle);
-
-		Enchere enchere = new Enchere();
-		LocalDateTime now = LocalDateTime.now();  
+		String numArticleString = request.getParameter("no_article");
 		HttpSession session = request.getSession();
-
-		enchere.setArticles(article);
-		enchere.setDateEnchere(now);
-		enchere.setEncherisseur((User)session.getAttribute("user"));
-		enchere.setMontantEnchere(montantEnchere);
+		User user = (User)session.getAttribute("user");
+		EnchereManager enchereManager = new EnchereManager();
+		boolean isOK = enchereManager.encherir(montantEnchereString, numArticleString, user);
 		
-		
-		EnchereDao enchereDao = DaoFactory.getEnchereDao();
-		try {
-			enchereDao.save(enchere);
+		if(isOK) {
 			request.getSession().setAttribute("succes", true);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			response.sendRedirect(request.getContextPath() + "/AccueilConnecter");
+		} else {
+			request.setAttribute("no_article", numArticleString);
+			doGet(request, response);
 		}
-		response.sendRedirect(request.getContextPath() + "/AccueilConnecter");
-
 	}
 
 }

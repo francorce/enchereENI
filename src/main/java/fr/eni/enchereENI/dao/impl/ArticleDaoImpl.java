@@ -20,6 +20,7 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static String GET_ALL = "SELECT * from articles_vendus";
 	private static String SAVE = "INSERT into articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 	private static String GET_BY_USER_ID = "SELECT * from articles_vendus WHERE no_utilisateur =  ?";
+	private static String UPDATE ="UPDATE articles_vendus SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
 
 	public List<Article> getAll() throws SQLException {
 		List<Article> articleList = new ArrayList<Article>();
@@ -107,8 +108,18 @@ public class ArticleDaoImpl implements ArticleDao {
 
 	@Override
 	public void update(Article a) throws SQLException {
-		// TODO Auto-generated method stub
-
+		Connection con = ConnectionProvider.getConnection();
+		PreparedStatement updateArticle = con.prepareStatement(UPDATE);
+		updateArticle.setString(1, a.getNomArticle());
+		updateArticle.setString(2, a.getDescription());
+		updateArticle.setTimestamp(3, java.sql.Timestamp.valueOf(a.getDebutEnchere()));
+		updateArticle.setTimestamp(4,  java.sql.Timestamp.valueOf(a.getFinEnchere()));
+		updateArticle.setInt(5,  a.getPrixInitial());
+		updateArticle.setInt(6,  a.getPrixVente());
+		updateArticle.setInt(7,  a.getVendeur().getNo_utilisateur());
+		updateArticle.setInt(8,  a.getCategorie().getNoCategorie());
+		updateArticle.setInt(9,  a.getNoArticle());
+		updateArticle.executeUpdate();
 	}
 
 	@Override

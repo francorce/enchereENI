@@ -143,7 +143,7 @@
 									<a class="card-text"
 										href="${'/enchereENI/encherir?no_article='}${listArticles.noArticle}">${listArticles.nomArticle}</a>
 								</h4>
-								<p class="card-text">Prix : ${listArticles.prixInitial}</p>
+								<p class="card-text">Prix : ${listArticles.prixVente}</p>
 								<p class="card-text">Catégorie :
 									${listArticles.categorie.libelle}</p>
 								<p class="card-text">Fin de l'enchère :

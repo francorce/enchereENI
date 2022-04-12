@@ -16,6 +16,16 @@ import fr.eni.enchereENI.dao.DaoFactory;
 public class UserManager {
 
 	private static UserDao userDao = DaoFactory.getUserDao();;
+	
+	
+	public void update (User user) {
+		try {
+			userDao.update(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static boolean isValidEmailAddress(String email) {
 		boolean result = true;
