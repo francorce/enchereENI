@@ -63,6 +63,7 @@ public class RetraitDaoImpl implements RetraitDao {
 		Connection con = ConnectionProvider.getConnection();
 		PreparedStatement getByArticle = con.prepareStatement(GET_BY_ARTICLEID);
 		ResultSet rs;
+		getByArticle.setInt(1, articleId);
 		rs = getByArticle.executeQuery();
 		if(rs.next()) {
 			retrait=new Retrait();
