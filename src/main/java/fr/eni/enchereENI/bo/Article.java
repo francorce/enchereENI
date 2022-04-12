@@ -13,6 +13,7 @@ public class Article {
 	private LocalDateTime debutEnchere;
 	private LocalDateTime finEnchere;
 	private String finEnchereStr;
+	private String debutEnchereStr;
 	private int prixInitial;
 	private int prixVente;
 	private User vendeur;
@@ -27,7 +28,8 @@ public class Article {
 		this.description = description;
 		this.debutEnchere = debutEnchere;
 		this.finEnchere = finEnchere;
-		this.finEnchereStr = finEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ;
+		this.finEnchereStr = finEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		this.debutEnchereStr = debutEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
 		this.vendeur = vendeur;
@@ -45,6 +47,9 @@ public class Article {
 	}
 	public String getFinEnchereStr() {
 		return finEnchereStr;
+	}
+	public String getDebutEnchereStr() {
+		return debutEnchereStr;
 	}
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
@@ -66,6 +71,7 @@ public class Article {
 	}
 	public void setDebutEnchere(LocalDateTime debutEnchere) {
 		this.debutEnchere = debutEnchere;
+		this.debutEnchereStr = debutEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 	public LocalDateTime getFinEnchere() {
 		return finEnchere;
