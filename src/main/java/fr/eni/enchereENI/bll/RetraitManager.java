@@ -12,6 +12,19 @@ import fr.eni.enchereENI.dao.DaoFactory;
 import fr.eni.enchereENI.dao.RetraitDao;
 
 public class RetraitManager {
+	
+	public Retrait getByArticleId(int id) {
+		RetraitDao retraitDao = DaoFactory.getRetraitDao();
+
+		Retrait retrait = new Retrait();
+		try {
+			retrait = retraitDao.geyByArticleId(id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retrait;
+	}
 	public static Map<String, Boolean> validateRetrait(String rue, String cp, String ville) {
 		Map<String, Boolean> hasErrors = new HashMap<String, Boolean>();
 
