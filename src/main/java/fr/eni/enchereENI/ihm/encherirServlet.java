@@ -56,7 +56,6 @@ public class encherirServlet extends HttpServlet {
 		
 		Article article = articleManager.getById(numArticle);
 		Retrait retrait = retraitManager.getByArticleId(numArticle);
-		System.out.println(retrait);
 		
 		request.setAttribute("article", article);
 		int enchereLaPlusHaute = article.getPrixInitial();

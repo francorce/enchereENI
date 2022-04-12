@@ -22,4 +22,9 @@ public interface ArticleDao extends Dao<Article>{
 	public void delete(Article a) throws SQLException;
 	
 	public List<Article> getByVendorId(int vendorId) throws SQLException;
+	
+	public List<Article> selectArticleEnchereFini() throws SQLException;
+	
+	public void updateStateArticle(Article article) throws SQLException;
+
 }
