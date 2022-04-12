@@ -139,7 +139,7 @@
 											<td>${ article.nomArticle }</td>
 											<td>${ article.description }</td>
 											<td>${ article.debutEnchere }</td>
-											<td>${ article.finEnchere }</td>
+											<td>${ article.finEnchereStr }</td>
 											<td>${ article.prixInitial }</td>
 											<td>${ article.prixVente }</td>
 											<td>${ article.vendeur.pseudo }</td>
