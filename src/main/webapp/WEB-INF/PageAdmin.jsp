@@ -138,7 +138,7 @@
 											<td>${ article.noArticle }</td>
 											<td>${ article.nomArticle }</td>
 											<td>${ article.description }</td>
-											<td>${ article.debutEnchere }</td>
+											<td>${ article.debutEnchereStr }</td>
 											<td>${ article.finEnchereStr }</td>
 											<td>${ article.prixInitial }</td>
 											<td>${ article.prixVente }</td>
@@ -175,7 +175,7 @@
 										<tr>
 
 											<td>${ enchere.noEnchere }</td>
-											<td>${ enchere.dateEnchere }</td>
+											<td>${ enchere.dateEnchereStr }</td>
 											<td>${ enchere.montantEnchere }</td>
 											<td>${ enchere.articles.noArticle }</td>
 											<td>${ enchere.encherisseur.pseudo }</td>
