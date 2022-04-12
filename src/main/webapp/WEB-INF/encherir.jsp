@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CRUD</title>
+<title>Enchère</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -44,7 +44,7 @@
 	<b><label class="form-label" for="form9Example4">Catégorie : </b> ${article.categorie.libelle}</label><br>
 	<b><label class="form-label" for="form9Example4">Meilleure offre :</b> ${article.prixVente} </label><br>
 	<b><label class="form-label" for="form9Example4">Mise à prix :</b> ${article.prixInitial} crédits</label><br>
-	<b><label class="form-label" for="form9Example4">Fin de l'enchère :</b> ${article.finEnchere}</label><br>
+	<b><label class="form-label" for="form9Example4">Fin de l'enchère :</b> ${article.finEnchereStr}</label><br>
 	
 	<b><label class="form-label" for="form9Example4">Rue :</b> ${rue}</label><br>
 	<b><label class="form-label" for="form9Example4">Code postal :</b> ${cp}</label><br>

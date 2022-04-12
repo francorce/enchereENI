@@ -2,6 +2,7 @@ package fr.eni.enchereENI.bo;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Article {
@@ -11,6 +12,7 @@ public class Article {
 	private String description;
 	private LocalDateTime debutEnchere;
 	private LocalDateTime finEnchere;
+	private String finEnchereStr;
 	private int prixInitial;
 	private int prixVente;
 	private User vendeur;
@@ -25,6 +27,7 @@ public class Article {
 		this.description = description;
 		this.debutEnchere = debutEnchere;
 		this.finEnchere = finEnchere;
+		this.finEnchereStr = finEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
 		this.vendeur = vendeur;
@@ -39,6 +42,9 @@ public class Article {
 	
 	public int getNoArticle() {
 		return noArticle;
+	}
+	public String getFinEnchereStr() {
+		return finEnchereStr;
 	}
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
@@ -66,6 +72,7 @@ public class Article {
 	}
 	public void setFinEnchere(LocalDateTime finEnchere) {
 		this.finEnchere = finEnchere;
+		this.finEnchereStr = finEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ;
 	}
 	public int getPrixInitial() {
 		return prixInitial;
