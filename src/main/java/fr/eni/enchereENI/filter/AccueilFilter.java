@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  * Servlet Filter implementation class AccueilFilter
  */
  
-@WebFilter({"/AccueilConnecter","/ProfilModifier","/Profil","/VendreArticle","/ProfilVendeur"})
+@WebFilter({"/AccueilConnecter","/ProfilModifier","/Profil","/VendreArticle","/ProfilVendeur","/enchere?no_article=?"})
 public class AccueilFilter extends HttpFilter implements Filter {
 
 	/**
