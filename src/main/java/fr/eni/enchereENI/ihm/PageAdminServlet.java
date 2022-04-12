@@ -13,11 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
+import fr.eni.enchereENI.bo.Enchere;
+import fr.eni.enchereENI.bo.Retrait;
 import fr.eni.enchereENI.dao.ArticleDao;
 import fr.eni.enchereENI.dao.CategorieDao;
 
 import fr.eni.enchereENI.dao.DaoFactory;
-
+import fr.eni.enchereENI.dao.EnchereDao;
+import fr.eni.enchereENI.dao.RetraitDao;
 import fr.eni.enchereENI.dao.UserDao;
 import fr.eni.enchereENI.bo.User;
 
@@ -46,17 +49,23 @@ public class PageAdminServlet extends HttpServlet {
 		List utilisateurs = new ArrayList<User>();
 		List listeCategorie = new ArrayList<Categorie>();
 		List listeArticles = new ArrayList<Article>();
+		List enchereList = new ArrayList<Enchere>();
+		List saveRetrait = new ArrayList<Retrait>();
 		
 	
 
 		UserDao userDao = DaoFactory.getUserDao();
 		CategorieDao categorieDao = DaoFactory.getCategorieDao();
 		ArticleDao articleDao = DaoFactory.getArticleDao();
+		EnchereDao enchereDao = DaoFactory.getEnchereDao();
+		RetraitDao retraitDao = DaoFactory.getRetraitDao();
 		
 		try {
 			utilisateurs = userDao.getAll();
 			listeCategorie = categorieDao.getAll();
 			listeArticles = articleDao.getAll();
+			enchereList = enchereDao.getAll();
+			saveRetrait = retraitDao.getAll();
 		
 		} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -68,6 +77,8 @@ public class PageAdminServlet extends HttpServlet {
 		request.setAttribute("utilisateurs", utilisateurs);
 		request.setAttribute("categories", listeCategorie);
 		request.setAttribute("articles", listeArticles);
+		request.setAttribute("enchere", enchereList);
+		request.setAttribute("retrait", saveRetrait);
 
 
 
