@@ -23,8 +23,9 @@
 	</nav>
 
 
-	<center>
-		<div class="jumbotron" style="width: 1600px">
+
+
+		<div class="jumbotron" >
 			<div class="table-responsive">
 				<table class="table">
 					<thead>
@@ -64,9 +65,8 @@
 
 				</table>
 			</div>
+</div>
+		
 
-		</div>
-
-	</center>
 </body>
 </html>
