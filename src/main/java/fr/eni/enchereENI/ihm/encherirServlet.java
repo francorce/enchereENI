@@ -66,8 +66,18 @@ public class encherirServlet extends HttpServlet {
 			if(enchere.getMontantEnchere()>enchereLaPlusHaute) {
 				enchereLaPlusHaute = (int) enchere.getMontantEnchere();
 			}
-		}
+		}	
 		request.setAttribute("prix", enchereLaPlusHaute);
+		
+		
+		String retraitRue = retrait.getRue();
+		String retraitCp = retrait.getCp();
+		String retraitVille = retrait.getVille();
+		
+		request.setAttribute("rue", retraitRue);
+		request.setAttribute("cp", retraitCp);
+		request.setAttribute("ville", retraitVille);
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/encherir.jsp").forward(request, response);
 	}
 

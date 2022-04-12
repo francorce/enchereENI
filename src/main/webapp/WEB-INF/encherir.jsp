@@ -48,7 +48,7 @@
 	<label class="form-label" for="form9Example4">Code_postal : ${cp}</label><br>
 	<label class="form-label" for="form9Example4">Ville : ${ville}</label><br>
 	
-	<label class="form-label" for="form9Example4">Vendeur : ${article.vendeur.pseudo}</label><br>
+	Vendeur : <a class="card-text" href="${'/enchereENI/Profil?no_utilisateur='}${article.vendeur.no_utilisateur}">${article.vendeur.pseudo}</a>
 	
 	<form action="encherir" method="post">
 		<input type="number" value="${prix}" id="montantEnchere"
