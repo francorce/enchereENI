@@ -4,14 +4,12 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Enchere;
 import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dao.DaoFactory;
 import fr.eni.enchereENI.dao.EnchereDao;
-import fr.eni.enchereENI.dao.impl.EnchereDaoImpl;
 
 public class EnchereManager {
 	public List<Enchere> getAll() {
@@ -52,6 +50,7 @@ public class EnchereManager {
 
 	public boolean encherir(String montantEnchereString, String numArticleString, User user) {
 		boolean isOk = false;
+
 		ArticleManager articleManager = new ArticleManager();
 		UserManager userManager = new UserManager();
 
@@ -70,58 +69,58 @@ public class EnchereManager {
 		EnchereDao enchereDao = DaoFactory.getEnchereDao();
 		int prixVenteInitial = article.getPrixVente();
 
-		// check si le montant est supérieur au prix vente
-		if (article.getPrixVente() < montantEnchere) {
-			// check si la date est ok
-			if (article.getDebutEnchere().isBefore(now) && article.getFinEnchere().isAfter(now)) {
-				// check si l'utilisateur a assez de crédit
-				if (user.getCredit() >= montantEnchere) {
-					// si tout est ok on crée l'enchere
-					enchere = new Enchere();
-					enchere.setArticles(article);
-					enchere.setDateEnchere(now);
-					enchere.setEncherisseur(user);
-					enchere.setMontantEnchere(montantEnchere);
-					// on save l'enchere
-					try {
-						// on update le prix de vente de l'article
-						article.setPrixVente(montantEnchere);
-						articleManager.updateArticle(article);
-						// on debite le user et on l'update
-						user.setCredit(user.getCredit() - montantEnchere);
+		// le vendeur ne peux pas enchérir a son enchère
+		if (!article.getVendeur().equals(user)) {
+			// check si le montant est supérieur au prix vente
+			if (article.getPrixVente() < montantEnchere) {
+				// check si la date est ok
+				if (article.getDebutEnchere().isBefore(now) && article.getFinEnchere().isAfter(now)) {
+					// check si l'utilisateur a assez de crédit
+					if (user.getCredit() >= montantEnchere) {
+						// si tout est ok on crée l'enchere
+						enchere = new Enchere();
+						enchere.setArticles(article);
+						enchere.setDateEnchere(now);
+						enchere.setEncherisseur(user);
+						enchere.setMontantEnchere(montantEnchere);
+						// on save l'enchere
+						try {
+							// on update le prix de vente de l'article
+							article.setPrixVente(montantEnchere);
+							articleManager.updateArticle(article);
+							// on debite le user
+							user.setCredit(user.getCredit() - montantEnchere);
 
-						// on retrouve l'enchere la plus elevé
-						List<Enchere> listEnchere = enchereDao.getByArticleId(numArticle);
-						int montantPlusHauteEnchere = 0;
-						if (listEnchere.size() > 0) {
-							for (Enchere enchereFromDB : listEnchere) {
-								if (enchereFromDB.getMontantEnchere() > montantPlusHauteEnchere) {
-									montantPlusHauteEnchere = (int) enchereFromDB.getMontantEnchere();
+							// on retrouve l'enchere la plus elevé
+							List<Enchere> listEnchere = enchereDao.getByArticleId(numArticle);
+							int montantPlusHauteEnchere = 0;
+							if (listEnchere.size() > 0) {
+								for (Enchere enchereFromDB : listEnchere) {
+									if (enchereFromDB.getMontantEnchere() > montantPlusHauteEnchere) {
+										montantPlusHauteEnchere = (int) enchereFromDB.getMontantEnchere();
+									}
 								}
-							}
-
-							User dernierEncherisseur = null;
-							// on retrouve le user qui correspond a cette enchere et on le recrédite
-							for (Enchere enchereFromDB : listEnchere) {
-								if (enchereFromDB.getMontantEnchere() == montantPlusHauteEnchere) {
-									dernierEncherisseur = enchereFromDB.getEncherisseur();
-
+								User dernierEncherisseur = null;
+								// on retrouve le user qui correspond a cette enchere et on le recrédite
+								for (Enchere enchereFromDB : listEnchere) {
+									if (enchereFromDB.getMontantEnchere() == montantPlusHauteEnchere) {
+										dernierEncherisseur = enchereFromDB.getEncherisseur();
+									}
 								}
+								dernierEncherisseur.setCredit(dernierEncherisseur.getCredit() + prixVenteInitial);
+								userManager.update(dernierEncherisseur);
 							}
-							dernierEncherisseur.setCredit(dernierEncherisseur.getCredit() + prixVenteInitial);
-							userManager.update(dernierEncherisseur);
+							enchereDao.save(enchere);
+							// on update le user
+							userManager.update(user);
+							isOk = true;
+						} catch (SQLException e) {
+							e.printStackTrace();
 						}
-						enchereDao.save(enchere);
-						userManager.update(user);
-						isOk = true;
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
 					}
 				}
 			}
 		}
-
 		return isOk;
 	}
 

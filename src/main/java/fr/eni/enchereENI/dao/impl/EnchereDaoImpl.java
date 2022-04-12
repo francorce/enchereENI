@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +21,43 @@ public class EnchereDaoImpl implements EnchereDao {
 	private static String GET_BY_USER_ID = "SELECT * from encheres WHERE no_utilisateur = ?";
 	private static String GET_BY_ARTICLE_ID = "SELECT * from encheres WHERE no_article = ?";
 	private static String SAVE = "INSERT into encheres (date_enchere, montant_enchere, no_article, no_utilisateur) VALUES(?, ?, ?, ?)";
+	private static String GET_ENCHERE_FINI = "SELECT enchere.no_utilisateur, enchere.no_article from encheres, article_vendus WHERE encheres.no_article = article_vendus.no_article AND articles_vendus.date_fin_encheres > ?";
 
-
+	private static class Gagnant{
+		int noUtilisateur;
+		int noArticle;
+		
+		public Gagnant(int noUtilisateur, int noArticle) {
+			super();
+			this.noUtilisateur = noUtilisateur;
+			this.noArticle = noArticle;
+		}
+		
+	}
 	
-	public List<Enchere> getByUserId(int id) throws SQLException{
+	
+	
+	public List<Gagnant> getEnchereFini() throws SQLException {
+		List<Gagnant> gagnants = new ArrayList<EnchereDaoImpl.Gagnant>();
+		
+		LocalDateTime now = LocalDateTime.now();
+		Connection con;
+		ResultSet rs;
+		con = ConnectionProvider.getConnection();
+		PreparedStatement enchereFini = con.prepareStatement(GET_ENCHERE_FINI);
+		enchereFini.setTimestamp(1, java.sql.Timestamp.valueOf(now));
+		rs = enchereFini.executeQuery();
+		while(rs.next()) {
+			Gagnant gagnant = new Gagnant(rs.getInt(1), rs.getInt(2));
+			gagnants.add(gagnant);
+		}
+		return gagnants;
+	}
+	
+	
+	
+
+	public List<Enchere> getByUserId(int id) throws SQLException {
 		List<Enchere> enchereList = new ArrayList<Enchere>();
 		Connection con;
 		ResultSet rs;
@@ -31,20 +65,18 @@ public class EnchereDaoImpl implements EnchereDao {
 		PreparedStatement getAllEnchereByUserId = con.prepareStatement(GET_BY_USER_ID);
 		getAllEnchereByUserId.setInt(1, id);
 		rs = getAllEnchereByUserId.executeQuery();
-		
+
 		while (rs.next()) {
 			Enchere enchere = new Enchere();
 			enchere.setNoEnchere(rs.getInt("no_enchere"));
-			
-			
-			
+
 			enchere.setDateEnchere(rs.getTimestamp("date_enchere").toLocalDateTime());
 			enchere.setMontantEnchere(rs.getInt("montant_enchere"));
-			
+
 			User acheteur = new User();
 			acheteur = DaoFactory.getUserDao().get(rs.getInt("no_utilisateur"));
 			enchere.setEncherisseur(acheteur);
-			
+
 			Article article = new Article();
 			article = DaoFactory.getArticleDao().get(rs.getInt("no_article"));
 			enchere.setArticles(article);
@@ -54,7 +86,7 @@ public class EnchereDaoImpl implements EnchereDao {
 		rs.close();
 		return enchereList;
 	}
-	
+
 	@Override
 	public Enchere get(int id) throws SQLException {
 		// TODO Auto-generated method stub
@@ -74,11 +106,11 @@ public class EnchereDaoImpl implements EnchereDao {
 			enchere.setNoEnchere(rs.getInt("no_enchere"));
 			enchere.setDateEnchere(rs.getTimestamp("date_enchere").toLocalDateTime());
 			enchere.setMontantEnchere(rs.getInt("montant_enchere"));
-			
+
 			User acheteur = new User();
 			acheteur = DaoFactory.getUserDao().get(rs.getInt("no_utilisateur"));
 			enchere.setEncherisseur(acheteur);
-			
+
 			Article article = new Article();
 			article = DaoFactory.getArticleDao().get(rs.getInt("no_article"));
 			enchere.setArticles(article);
@@ -111,13 +143,13 @@ public class EnchereDaoImpl implements EnchereDao {
 	@Override
 	public void update(Enchere t) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void delete(Enchere t) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -129,17 +161,17 @@ public class EnchereDaoImpl implements EnchereDao {
 		PreparedStatement getAllEnchereByUserId = con.prepareStatement(GET_BY_ARTICLE_ID);
 		getAllEnchereByUserId.setInt(1, articleId);
 		rs = getAllEnchereByUserId.executeQuery();
-		
+
 		while (rs.next()) {
 			Enchere enchere = new Enchere();
 			enchere.setNoEnchere(rs.getInt("no_enchere"));
 			enchere.setDateEnchere(rs.getTimestamp("date_enchere").toLocalDateTime());
 			enchere.setMontantEnchere(rs.getInt("montant_enchere"));
-			
+
 			User acheteur = new User();
 			acheteur = DaoFactory.getUserDao().get(rs.getInt("no_utilisateur"));
 			enchere.setEncherisseur(acheteur);
-			
+
 			Article article = new Article();
 			article = DaoFactory.getArticleDao().get(rs.getInt("no_article"));
 			enchere.setArticles(article);
@@ -149,7 +181,5 @@ public class EnchereDaoImpl implements EnchereDao {
 		rs.close();
 		return enchereList;
 	}
-	
-	
 
 }

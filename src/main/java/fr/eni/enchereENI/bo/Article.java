@@ -17,92 +17,118 @@ public class Article {
 	private int prixVente;
 	private User vendeur;
 	private Categorie categorie;
-	
-	
-	public Article(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere, LocalDateTime finEnchere,
-			int prixInitial, int prixVente, User vendeur, Categorie categorie) {
+	private boolean isSold;
+
+	public Article(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
+			LocalDateTime finEnchere, String finEnchereStr, int prixInitial, int prixVente, User vendeur,
+			Categorie categorie, boolean isSold) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
 		this.debutEnchere = debutEnchere;
 		this.finEnchere = finEnchere;
-		this.finEnchereStr = finEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ;
+		this.finEnchereStr = finEnchereStr;
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
 		this.vendeur = vendeur;
 		this.categorie = categorie;
+		this.isSold = isSold;
 	}
-	
+
 	public Article() {
 		super();
 	}
-	
-	
-	
+
+	public boolean isSold() {
+		return isSold;
+	}
+
+	public void setSold(boolean isSold) {
+		this.isSold = isSold;
+	}
+
 	public int getNoArticle() {
 		return noArticle;
 	}
+
 	public String getFinEnchereStr() {
 		return finEnchereStr;
 	}
+
 	public void setNoArticle(int noArticle) {
 		this.noArticle = noArticle;
 	}
+
 	public String getNomArticle() {
 		return nomArticle;
 	}
+
 	public void setNomArticle(String nomArticle) {
 		this.nomArticle = nomArticle;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public LocalDateTime getDebutEnchere() {
 		return debutEnchere;
 	}
+
 	public void setDebutEnchere(LocalDateTime debutEnchere) {
 		this.debutEnchere = debutEnchere;
 	}
+
 	public LocalDateTime getFinEnchere() {
 		return finEnchere;
 	}
+
 	public void setFinEnchere(LocalDateTime finEnchere) {
 		this.finEnchere = finEnchere;
-		this.finEnchereStr = finEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) ;
+		this.finEnchereStr = finEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
+
 	public int getPrixInitial() {
 		return prixInitial;
 	}
+
 	public void setPrixInitial(int prixInitial) {
 		this.prixInitial = prixInitial;
 	}
+
 	public int getPrixVente() {
 		return prixVente;
 	}
+
 	public void setPrixVente(int prixVente) {
 		this.prixVente = prixVente;
 	}
+
 	public User getVendeur() {
 		return vendeur;
 	}
+
 	public void setVendeur(User vendeur) {
 		this.vendeur = vendeur;
 	}
+
 	public Categorie getCategorie() {
 		return categorie;
 	}
+
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(categorie, debutEnchere, description, finEnchere, noArticle, nomArticle, prixInitial,
-				prixVente, vendeur);
+		return Objects.hash(categorie, debutEnchere, description, finEnchere, isSold, noArticle, nomArticle,
+				prixInitial, prixVente, vendeur);
 	}
 
 	@Override
@@ -116,20 +142,17 @@ public class Article {
 		Article other = (Article) obj;
 		return Objects.equals(categorie, other.categorie) && Objects.equals(debutEnchere, other.debutEnchere)
 				&& Objects.equals(description, other.description) && Objects.equals(finEnchere, other.finEnchere)
-				&& noArticle == other.noArticle && Objects.equals(nomArticle, other.nomArticle)
-				&& prixInitial == other.prixInitial && prixVente == other.prixVente
-				&& Objects.equals(vendeur, other.vendeur);
+				&& isSold == other.isSold && noArticle == other.noArticle
+				&& Objects.equals(nomArticle, other.nomArticle) && prixInitial == other.prixInitial
+				&& prixVente == other.prixVente && Objects.equals(vendeur, other.vendeur);
 	}
 
 	@Override
 	public String toString() {
 		return "Article [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", debutEnchere=" + debutEnchere + ", finEnchere=" + finEnchere + ", prixInitial=" + prixInitial
-				+ ", prixVente=" + prixVente + ", vendeur=" + vendeur + ", categorie=" + categorie + "]";
+				+ ", prixVente=" + prixVente + ", vendeur=" + vendeur + ", categorie=" + categorie + ", isSold="
+				+ isSold + "]";
 	}
 
-	
-	
-	
-	
 }

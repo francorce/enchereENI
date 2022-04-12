@@ -1,9 +1,6 @@
 package fr.eni.enchereENI.bll;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,17 +9,69 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
+import fr.eni.enchereENI.bo.Enchere;
 import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dao.ArticleDao;
 import fr.eni.enchereENI.dao.DaoFactory;
 
 public class ArticleManager {
+	private static ArticleDao articleDao = DaoFactory.getArticleDao();
 	
-	public void updateArticle (Article a) {
+	
+
+	public void remporterEnchere() {
+		EnchereManager enchereManager = new EnchereManager();
+		UserManager userManager = new UserManager();
+
 		ArticleDao articleDao = DaoFactory.getArticleDao();
+		List<Article> listArticleEnchereFini = new ArrayList<Article>();
+		User gagnant = null;
+		try {
+			// on recupere les articles dont les encheres sont fini
+			listArticleEnchereFini = articleDao.selectArticleEnchereFini();
+			for (Article article : listArticleEnchereFini) {
+				// on recupere les encheres pour chaque article
+				List<Enchere> listeEnchere = enchereManager.getByArticleId(article.getNoArticle());
+				int montantMax = 0;
+				// on cherche l'enchere gagnante
+				for (Enchere enchere : listeEnchere) {
+					if (enchere.getMontantEnchere() > montantMax) {
+						montantMax = (int) enchere.getMontantEnchere();
+					}
+				}
+				// on cherche le gagnant
+				for (Enchere enchere : listeEnchere) {
+					if (enchere.getMontantEnchere() == montantMax && !article.isSold()) {
+						gagnant = enchere.getEncherisseur();
+						User vendeur = article.getVendeur();
+						vendeur.setCredit(article.getVendeur().getCredit() + montantMax);
+						userManager.update(vendeur);
+						article.setSold(true);
+						articleDao.updateStateArticle(article);
+						System.out.println(gagnant);
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<Article> selectArticleEnchereFini() {
+		ArticleDao articleDao = DaoFactory.getArticleDao();
+		List<Article> listArticleEnchereFini = new ArrayList<Article>();
+		try {
+			listArticleEnchereFini = articleDao.selectArticleEnchereFini();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listArticleEnchereFini;
+	}
+
+	public void updateArticle(Article a) {
 		try {
 			articleDao.update(a);
 		} catch (SQLException e) {
@@ -33,7 +82,6 @@ public class ArticleManager {
 
 	public Article getById(int id) {
 		Article article = null;
-		ArticleDao articleDao = DaoFactory.getArticleDao();
 		try {
 			article = articleDao.get(id);
 		} catch (SQLException e) {
@@ -45,7 +93,6 @@ public class ArticleManager {
 
 	public List<Article> getAll() {
 		List<Article> listeArticles = new ArrayList<Article>();
-		ArticleDao articleDao = DaoFactory.getArticleDao();
 		try {
 			listeArticles = articleDao.getAll();
 		} catch (SQLException e) {
@@ -118,11 +165,10 @@ public class ArticleManager {
 		}
 
 		if (hasError) {
-
 			return hasErrors;
 		} else {
+			articleAAjouter.setSold(false);
 			articleAAjouter.setVendeur(vendeur);
-			ArticleDao articleDao = DaoFactory.getArticleDao();
 			try {
 				int id = articleDao.save(articleAAjouter);
 				if (id != 0) {
@@ -179,9 +225,8 @@ public class ArticleManager {
 		}
 		return true;
 	}
-	
-	public List<Article> getArticleByUserId(int userId){
-		ArticleDao articleDao = DaoFactory.getArticleDao();
+
+	public List<Article> getArticleByUserId(int userId) {
 		List<Article> listeArticle = new ArrayList<Article>();
 		try {
 			listeArticle = articleDao.getByVendorId(userId);
