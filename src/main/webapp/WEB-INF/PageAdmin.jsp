@@ -24,7 +24,7 @@
 
 
 
-
+		<div class="container" >
 		<div class="jumbotron" >
 			<div class="table-responsive">
 				<table class="table">
@@ -65,7 +65,134 @@
 
 				</table>
 			</div>
-</div>
+		</div>
+			</div>
+
+<div class="container" >
+		<div class="jumbotron" >
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+
+							<th scope="col">Numéro catégorie</th>
+							<th scope="col">Libelle</th>
+						
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="categorie" items="${ categories }">
+							<tr>
+							
+								<td>${ categorie.noCategorie }</td>
+								<td>${ categorie.libelle }</td>
+								
+							</tr>
+						</c:forEach>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+		</div>
+		
+		
+		<div class="container" >
+		<div class="jumbotron" >
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+
+							<th scope="col">Numéro article</th>
+							<th scope="col">Nom article</th>
+							<th scope="col">Description</th>
+							<th scope="col">Date début enchère</th>
+							<th scope="col">Date fin enchère</th>
+							<th scope="col">Prix initial</th>
+							<th scope="col">Prix de vente</th>
+							<th scope="col">Utilisateur lié</th>
+							<th scope="col">Catégorie lié</th>
+							
+							
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="article" items="${ articles }">
+							<tr>
+							
+								<td>${ article.noArticle }</td>
+								<td>${ article.nomArticle }</td>
+								<td>${ article.description }</td>
+								<td>${ article.debutEnchere }</td>
+								<td>${ article.finEnchere }</td>
+								<td>${ article.prixInitial }</td>
+								<td>${ article.prixVente }</td>
+								<td>${ article.vendeur.pseudo }</td>
+								<td>${ article.categorie.libelle }</td>
+							
+							</tr>
+						</c:forEach>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+		</div>
+		
+		
+		<div class="jumbotron" >
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+
+							<th scope="col">R</th>
+							<th scope="col">Libelle</th>
+						
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="categorie" items="${ categories }">
+							<tr>
+							
+								<td>${ categorie.noCategorie }</td>
+								<td>${ categorie.libelle }</td>
+								
+							</tr>
+						</c:forEach>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+		
+		
+		<div class="jumbotron" >
+			<div class="table-responsive">
+				<table class="table">
+					<thead>
+						<tr>
+
+							<th scope="col">Numéro catégorie</th>
+							<th scope="col">Libelle</th>
+						
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="categorie" items="${ categories }">
+							<tr>
+							
+								<td>${ categorie.noCategorie }</td>
+								<td>${ categorie.libelle }</td>
+								
+							</tr>
+						</c:forEach>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
 		
 
 </body>

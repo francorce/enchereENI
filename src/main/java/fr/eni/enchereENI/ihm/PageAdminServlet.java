@@ -11,9 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.enchereENI.bo.User;
+import fr.eni.enchereENI.bo.Article;
+import fr.eni.enchereENI.bo.Categorie;
+import fr.eni.enchereENI.dao.ArticleDao;
+import fr.eni.enchereENI.dao.CategorieDao;
+
 import fr.eni.enchereENI.dao.DaoFactory;
+
 import fr.eni.enchereENI.dao.UserDao;
+import fr.eni.enchereENI.bo.User;
 
 /**
  * Servlet implementation class PageAdminServlet
@@ -38,11 +44,19 @@ public class PageAdminServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		List utilisateurs = new ArrayList<User>();
+		List listeCategorie = new ArrayList<Categorie>();
+		List listeArticles = new ArrayList<Article>();
+		
 	
 
 		UserDao userDao = DaoFactory.getUserDao();
+		CategorieDao categorieDao = DaoFactory.getCategorieDao();
+		ArticleDao articleDao = DaoFactory.getArticleDao();
+		
 		try {
 			utilisateurs = userDao.getAll();
+			listeCategorie = categorieDao.getAll();
+			listeArticles = articleDao.getAll();
 		
 		} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -52,6 +66,8 @@ public class PageAdminServlet extends HttpServlet {
 		//System.out.println(utilisateur);
 
 		request.setAttribute("utilisateurs", utilisateurs);
+		request.setAttribute("categories", listeCategorie);
+		request.setAttribute("articles", listeArticles);
 
 
 
