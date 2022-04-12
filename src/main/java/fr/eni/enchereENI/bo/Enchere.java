@@ -1,6 +1,7 @@
 package fr.eni.enchereENI.bo;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,11 +9,11 @@ import java.util.Objects;
 public class Enchere {
 	
 	private int noEnchere;
-	private Date dateEnchere;
+	private LocalDateTime dateEnchere;
 	private float montantEnchere;
 	private Article articles;
 	private User encherisseur;
-	public Enchere(int noEnchere, Date dateEnchere, float montantEnchere, Article articles, User encherisseur) {
+	public Enchere(int noEnchere, LocalDateTime dateEnchere, float montantEnchere, Article articles, User encherisseur) {
 		super();
 		this.noEnchere = noEnchere;
 		this.dateEnchere = dateEnchere;
@@ -52,10 +53,10 @@ public class Enchere {
 	public void setNoEnchere(int noEnchere) {
 		this.noEnchere = noEnchere;
 	}
-	public Date getDateEnchere() {
+	public LocalDateTime getDateEnchere() {
 		return dateEnchere;
 	}
-	public void setDateEnchere(Date dateEnchere) {
+	public void setDateEnchere(LocalDateTime dateEnchere) {
 		this.dateEnchere = dateEnchere;
 	}
 	public float getMontantEnchere() {

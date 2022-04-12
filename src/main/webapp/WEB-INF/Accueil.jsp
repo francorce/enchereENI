@@ -34,7 +34,7 @@
 					<option value="${categorie.libelle}">${categorie.libelle}</option>
 				</c:forEach>
 				 </select>
-			
+			<br>
         
 	        <div class="row" id="listeArticles">
 	         <c:forEach items="${listArticles}" var="listArticles"> 

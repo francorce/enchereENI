@@ -46,5 +46,9 @@ public class EnchereManager {
 		return listeEnchere;
 	} 
 	
+	public void encherir() {
+		
+	}
+	
 	
 }
