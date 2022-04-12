@@ -22,12 +22,12 @@
 				<button class="btn btn-primary" type="submit">Vendre un
 					article</button>
 			</form>
-			&nbsp
+			&nbsp;
 
 			<form action="Deconnexion" method="get">
 				<button class="btn btn-danger" type="submit">Déconnexion</button>
 			</form>
-			&nbsp
+			&nbsp;
 
 			<form action="/enchereENI/Profil">
 				<button class="btn btn-info" type="submit">Mon profil</button>
@@ -36,27 +36,29 @@
 	</nav>
 
 <div class="container">
-	<h2> Détail vente</h2>
-	${article.nomArticle}<br>
-	<label class="form-label" for="form9Example4">Description : ${article.description}</label> <br>
-	<label class="form-label" for="form9Example4">Catégorie : ${article.categorie.libelle}</label><br>
-	<label class="form-label" for="form9Example4">Meilleure offre : ${article.categorie.libelle}</label><br>
-	<label class="form-label" for="form9Example4">Mise à prix : ${article.prixInitial}</label><br>
-	<label class="form-label" for="form9Example4">Fin de l'enchère : ${article.finEnchere}</label><br>
+<div class="jumbotron">
+
+	<h2> Détail vente</h2><br>
+	<b><h4>${article.nomArticle}</h4></b><br>
+	<b><label class="form-label" for="form9Example4">Description : </label> </b><br> ${article.description}<br><br>
+	<b><label class="form-label" for="form9Example4">Catégorie : </b> ${article.categorie.libelle}</label><br>
+	<b><label class="form-label" for="form9Example4">Meilleure offre :</b> ${article.prixVente} </label><br>
+	<b><label class="form-label" for="form9Example4">Mise à prix :</b> ${article.prixInitial} crédits</label><br>
+	<b><label class="form-label" for="form9Example4">Fin de l'enchère :</b> ${article.finEnchere}</label><br>
 	
-	<label class="form-label" for="form9Example4">Rue : ${rue}</label><br>
-	<label class="form-label" for="form9Example4">Code_postal : ${cp}</label><br>
-	<label class="form-label" for="form9Example4">Ville : ${ville}</label><br>
+	<b><label class="form-label" for="form9Example4">Rue :</b> ${rue}</label><br>
+	<b><label class="form-label" for="form9Example4">Code postal :</b> ${cp}</label><br>
+	<b><label class="form-label" for="form9Example4">Ville : </b> ${ville}</label><br>
 	
-	Vendeur : <a class="card-text" href="${'/enchereENI/Profil?no_utilisateur='}${article.vendeur.no_utilisateur}">${article.vendeur.pseudo}</a>
+	<b>Vendeur : </b><a class="card-text" href="${'/enchereENI/Profil?no_utilisateur='}${article.vendeur.no_utilisateur}">${article.vendeur.pseudo}</a>
 	
 	<form action="encherir" method="post">
-		<input type="number" value="${prix}" id="montantEnchere"
-			name="montantEnchere" /> <input type="hidden"
-			value="${article.noArticle}" id="no_article" name="no_article" />
-		<button type="submit">Enchérir</button>
+		<input type="number" class="form-control" style="width: 150px" value="${prix}" id="montantEnchere" name="montantEnchere" /> 
+		<input type="hidden" value="${article.noArticle}" id="no_article" name="no_article" />
+		<button type="submit" class="btn btn-primary">Enchérir</button>
 	</form>
 	
+	</div>
 	</div>
 	
 	
