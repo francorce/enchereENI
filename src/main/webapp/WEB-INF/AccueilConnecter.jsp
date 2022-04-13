@@ -48,9 +48,9 @@
 				<div class="alert alert-success">Votre enchère a bien été prise
 					en compte</div>
 			</c:if>
-			<button class="btn btn-primary" style="float: right;">Rechercher</button>
-			<br> <label style="float: left;">filtres :&nbsp;</label> <input
-				type="text" class="form-control"> <label for="categorie">Categorie</label>
+			<button class="btn btn-danger" style="float: right;">Bouton inutile</button>
+			<br> <label style="float: left;">filtres :&nbsp;</label> 
+			<input type="text" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="Marquez un mot clé..."> <label for="categorie">Categorie</label>
 			<select class="form-control" type="text" id="categorie"
 				name="categorie" xxxonchange="yesnoCheck(this);">
 				<option>Afficher tout</option>
@@ -83,6 +83,10 @@
 
 					}
 				</script>
+
+
+
+
 
 				<div class="col">
 
@@ -128,34 +132,57 @@
 			</div>
 
 
+<script>
+function myFunction() {
+    var input, div, filter, ul, li, a, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("div");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = '';
+        } else {
+            li[i].style.display = 'none';
+        }
+    }
+}
 
 
-			<div class="row" id="listeArticles">
-				<c:forEach items="${listArticles}" var="listArticles">
-					<div class="col-sm-4"
-						data-category="${listArticles.categorie.libelle}">
-						<div class="card" id="${listArticles.categorie.libelle}">
-							<img class="card-img-top"
-								src="https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg"
-								alt="Card image cap" style="float: left;">
-							<div class="card-body">
-								<h4 class="card-title">
-									<a class="card-text"
-										href="${'/enchereENI/encherir?no_article='}${listArticles.noArticle}">${listArticles.nomArticle}</a>
-								</h4>
-								<p class="card-text">Prix : ${listArticles.prixVente}</p>
-								<p class="card-text">Catégorie :
-									${listArticles.categorie.libelle}</p>
-								<p class="card-text">Fin de l'enchère :
-									${listArticles.finEnchere}</p>
-								Vendeur : <a class="card-text"
-									href="${'/enchereENI/Profil?no_utilisateur='}${listArticles.vendeur.no_utilisateur}">${listArticles.vendeur.pseudo}</a>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
+</script>
 
+		<div class="row" id="listeArticles">
+            <ul style="
+            list-style: none; 
+            display:flex; 
+            flex-wrap: wrap; 
+            border: 0;
+			padding: 0;
+			margin: 0;"id="myUL">
+                <c:forEach items="${listArticles}" var="listArticles">
+                    <div class="col-sm-4" style=""data-category="${listArticles.categorie.libelle}">
+                        
+                        <div class="card"  id="${listArticles.categorie.libelle}" >
+                            <img class="card-img-top" src="https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg" alt="Card image cap" style="float: left;">
+                            <div class="card-body" >
+                                <h4 class="card-title">
+                                    <a class="card-text"
+                                        href="${'/enchereENI/encherir?no_article='}${listArticles.noArticle}">${listArticles.nomArticle}</a>
+                                </h4>
+                                <p class="card-text">Prix : ${listArticles.prixVente}</p>
+                                <p class="card-text">Catégorie :
+                                    ${listArticles.categorie.libelle}</p>
+                                <p class="card-text">Fin de l'enchère :
+                                    ${listArticles.finEnchere}</p>
+                                Vendeur : <a class="card-text"
+                                    href="${'/enchereENI/Profil?no_utilisateur='}${listArticles.vendeur.no_utilisateur}">${listArticles.vendeur.pseudo}</a>
+                            </div>
+                        </div> 
+                    </div>
+                </c:forEach>
+            </ul>
 		</div>
 	</div>
 </body>

@@ -73,7 +73,7 @@
 											<td>${ utilisateur.ville }</td>
 											<td>${ utilisateur.password }</td>
 											<td>${ utilisateur.credit }</td>
-											<td><a onclick="return confirm('Etes-vous sûr ?')" href="AdminSuppUser?id=${utilisateur.no_utilisateur }">Supprimer</a></td>
+											<td><a onclick="return confirm('Etes-vous sûr de supprimer l'utilisateur').${utilisateur.pseudo }" href="AdminSuppUser?id=${utilisateur.no_utilisateur }">Supprimer</a></td>
 											<td><a href="editer?id=${utilisateur.pseudo }">Modifier</a></td>
 										</tr>
 										
