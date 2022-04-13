@@ -27,4 +27,7 @@ public interface UserDao extends Dao<User>{
 	
 	public User getByPseudo(String pseudo, String password)throws SQLException;
 
+	public User getByUUID(String uuid) throws SQLException;
+	
+	public void setUUID(User user) throws SQLException;
 }

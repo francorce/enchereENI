@@ -21,6 +21,8 @@ public class UserDaoImpl implements UserDao {
 	private static String SAVE = "INSERT into utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static String GET_BY_PSEUDO_AND_PASSWORD = "SELECT * from utilisateurs where pseudo = ? and mot_de_passe = ?";
 	private static String GET_BY_EMAIL_AND_PASSWORD = "SELECT * from utilisateurs where email = ? and mot_de_passe = ?";
+	private static String GET_BY_UUID = "SELECT * FROM utilisateurs WHERE UUID=?";
+	private static String SET_UUID = "UPDATE utilisateurs SET UUID = ? WHERE no_utilisateur = ?";
 
 	public User getByEmail(String email, String password) throws SQLException {
 		User user = null;
@@ -48,7 +50,7 @@ public class UserDaoImpl implements UserDao {
 		rs.close();
 		return user;
 	}
-	
+
 	public User getByPseudo(String pseudo, String password) throws SQLException {
 		User user = null;
 		Connection con = ConnectionProvider.getConnection();
@@ -76,7 +78,7 @@ public class UserDaoImpl implements UserDao {
 		rs.close();
 		return user;
 	}
-	
+
 	public List<User> getAll() throws SQLException {
 		List userList = new ArrayList<User>();
 		Connection con;
@@ -139,7 +141,7 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement saveUser = con.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS);
 		saveUser.setString(1, t.getPseudo());
 		saveUser.setString(2, t.getNom());
-		saveUser.setString(3, t.getPrenom());	
+		saveUser.setString(3, t.getPrenom());
 		saveUser.setString(4, t.getEmail());
 		saveUser.setString(5, t.getTelephone());
 		saveUser.setString(6, t.getRue());
@@ -172,7 +174,7 @@ public class UserDaoImpl implements UserDao {
 		updateUser.setBoolean(11, t.isAdmin());
 		updateUser.setInt(12, t.getNo_utilisateur());
 		updateUser.executeUpdate();
-		
+
 	}
 
 	@Override
@@ -182,6 +184,42 @@ public class UserDaoImpl implements UserDao {
 		deleteUser.setInt(1, t.getNo_utilisateur());
 		Boolean requesteIsOk = deleteUser.execute();
 		con.close();
+	}
+
+	@Override
+	public User getByUUID(String uuid) throws SQLException {
+		User user = null;
+		Connection con = ConnectionProvider.getConnection();
+		PreparedStatement getByUUID = con.prepareStatement(GET_BY_UUID);
+		getByUUID.setString(1, uuid);
+		ResultSet rs = getByUUID.executeQuery();
+		if (rs.next()) {
+			user = new User();
+			user.setNo_utilisateur(rs.getInt("no_utilisateur"));
+			user.setPseudo(rs.getString("pseudo"));
+			user.setNom(rs.getString("nom"));
+			user.setPrenom(rs.getString("prenom"));
+			user.setEmail(rs.getString("email"));
+			user.setTelephone(rs.getString("telephone"));
+			user.setRue(rs.getString("rue"));
+			user.setCp(rs.getString("code_postal"));
+			user.setVille(rs.getString("ville"));
+			user.setPassword(rs.getString("mot_de_passe"));
+			user.setCredit(rs.getInt("credit"));
+			user.setAdmin(rs.getBoolean("administrateur"));
+		}
+		con.close();
+		rs.close();
+		return user;
+	}
+
+	@Override
+	public void setUUID(User user) throws SQLException {
+		Connection con = ConnectionProvider.getConnection();
+		PreparedStatement setUUID = con.prepareStatement(SET_UUID);
+		setUUID.setString(1, user.getUUID());
+		setUUID.setInt(2, user.getNo_utilisateur());
+		setUUID.executeUpdate();
 	}
 
 }

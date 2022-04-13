@@ -18,6 +18,27 @@ public class UserManager {
 	private static UserDao userDao = DaoFactory.getUserDao();;
 	
 	
+	public User getByUUID(String UUID) {
+		User user = null;
+		try {
+			user = userDao.getByUUID(UUID);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	public  void setUUID(User user, String uuid) {
+		user.setUUID(uuid);
+		try {
+			userDao.setUUID(user);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void update (User user) {
 		try {
 			userDao.update(user);

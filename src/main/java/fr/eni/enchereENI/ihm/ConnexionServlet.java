@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.UUID;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -59,8 +61,9 @@ public class ConnexionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String pseudoOuEmail = request.getParameter("username");
 		String password = request.getParameter("password");
+		String rememberMe = request.getParameter("rememberMe");
 		User user = UserManager.connectUser(pseudoOuEmail, password);
-		
+		UserManager userManager = new UserManager();
 		if (user == null) {
 			request.setAttribute("hasErrors", true);
 			doGet(request, response);
@@ -68,6 +71,18 @@ public class ConnexionServlet extends HttpServlet {
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);
+
+		
+	
+		if(rememberMe!=null && rememberMe.equals("on"))
+		{
+		    UUID uuid = UUID.randomUUID();
+		    Cookie c = new Cookie("userid", String.valueOf(uuid));
+		    c.setMaxAge(24*60*60);
+		    userManager.setUUID(user, String.valueOf(uuid));
+		    response.addCookie(c);  // response is an instance of type HttpServletReponse
+		}
+		
 		response.sendRedirect(request.getContextPath() + "/AccueilConnecter");
 
 //		

@@ -15,14 +15,14 @@
 
 <body>
 
-			<nav class="navbar navbar-light bg-light">
-				<a class="navbar-brand" href="./AccueilConnecter"> ENI-Enchères</a>
-				<div class="btn-group" role="group" aria-label="ez">
-					<form action="/enchereENI/">
-						<button class="btn btn-info"  type="submit">Accueil</button>
-					</form>
-				</div>
-			</nav>
+	<nav class="navbar navbar-light bg-light">
+		<a class="navbar-brand" href="./AccueilConnecter"> ENI-Enchères</a>
+		<div class="btn-group" role="group" aria-label="ez">
+			<form action="/enchereENI/">
+				<button class="btn btn-info" type="submit">Accueil</button>
+			</form>
+		</div>
+	</nav>
 
 
 	<div class="container">
@@ -33,7 +33,7 @@
 						:&nbsp;</label> <input type="text" class="form-control" name="username"
 						id="username" />
 				</div>
-				
+
 				<div class="form-group" style="">
 					<label style="float: left;" for="password">Mot de passe
 						:&nbsp;</label> <input type="text" class="form-control" name="password"
@@ -41,32 +41,28 @@
 				</div>
 
 				<button type="submit" class="btn btn-primary">Connexion</button>
-				
 
-			
 
-			
+
+
+				<div class="form-group mt-5">
+
+					<input type="checkbox" id="rememberMe" name="rememberMe" /> <label class="checkbox"
+						for="rememberMe">Se souvenir de moi </label> </label>
+				</div>
+				<a href="/enchereENI/">Mot de passe oublié</a>
 			</form>
 			<br>
 			<form action="/enchereENI/Inscription">
-				<input type="submit" class="btn btn-primary" value="Créer un compte"  />
+				<input type="submit" class="btn btn-primary" value="Créer un compte" />
 			</form>
-			
-			<ul class="list-group" style="">
-			
-				<li class="list-group-item"
-					style="background-color: rgb(233, 236, 239); border-width: 0px;">
-					<label class="checkbox" style=""> <input type="checkbox">&nbsp;Se souvenir de moi 
-					<br> 
-					<a href="/enchereENI/">Mot de passe oublié</a>
-					</label>
-				</li>
-				
-				
-			</ul>
-				
-					
-			
+
+
+
+
+
+
+
 			<c:if test="${hasErrors != null}">
 				<div class="alert alert-danger">${hasErrors}</div>
 			</c:if>
