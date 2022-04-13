@@ -66,7 +66,13 @@
 				</form>
 			</c:if>
 			<c:if test="${peuxEncherir == false }">
-				<div class="alert alert-warning">Vous ne pouvez pas enchérir actuellement</div>
+				<div class="alert alert-warning">Vous ne pouvez pas enchérir
+					actuellement</div>
+			</c:if>
+
+			<c:if test="${canModif == true }">
+				<a class="card-text"
+					href="${'/enchereENI/ModifierArticle?no_article='}${article.noArticle}"><button class="btn btn-primary" type="button">Modifier</button></a>
 			</c:if>
 		</div>
 	</div>

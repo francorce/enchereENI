@@ -81,6 +81,24 @@ public class encherirServlet extends HttpServlet {
 			request.setAttribute("peuxEncherir", false);
 		}
 		
+		HttpSession session = request.getSession();
+		User currentUser = (User) session.getAttribute("user");
+		Boolean isVendeur = false;
+		Boolean enchereStarted = true;
+		
+		if(article.getVendeur().equals(currentUser)) {
+			isVendeur=true;
+		}
+		if(now.isBefore(article.getDebutEnchere())) {
+			enchereStarted=false;
+		}
+		
+		if(isVendeur && !enchereStarted) {
+			request.setAttribute("canModif", true);
+		} else {
+			request.setAttribute("canModif", false);
+
+		}
 		this.getServletContext().getRequestDispatcher("/WEB-INF/encherir.jsp").forward(request, response);
 	}
 

@@ -57,7 +57,7 @@ public class AdminSuppUser extends HttpServlet {
 
 		
 		} catch (SQLException e) {
-		throw new ServletException("Erreur suppression");
+		throw new ServletException("Erreur suppression",e );
 		}
 		response.sendRedirect(request.getContextPath() + "/PageAdmin");
 
