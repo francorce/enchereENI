@@ -94,17 +94,9 @@
 					Achats
 					<ul>
 
-						<li class="list-group-item"
-							style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input
-							name="check" type="checkbox" id="myCheck1"> enchère
-							ouvertes</li>
-						<li class="list-group-item"
-							style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input
-							name="check" type="checkbox" id="myCheck2"> mes enchères</li>
-						<li class="list-group-item"
-							style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input
-							name="check" type="checkbox" id="myCheck3"> mes enchères
-							remportées</li>
+						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck1"> enchère ouvertes</li>
+						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck2"> mes enchères</li>
+						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck3"> mes enchères	remportées</li>
 
 					</ul>
 				</div>
@@ -114,18 +106,9 @@
 					<ul>
 
 
-						<li class="list-group-item"
-							style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input
-							name="check" type="checkbox" id="myCheck4"> mes ventes en
-							cours</li>
-						<li class="list-group-item"
-							style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input
-							name="check" type="checkbox" id="myCheck5"> ventes non
-							débutées</li>
-						<li class="list-group-item"
-							style="background-color: rgb(233, 236, 239); border-width: 0px; padding-top: 0px; padding-bottom: 0px;"><input
-							name="check" type="checkbox" id="myCheck6"> ventes
-							termiées</li>
+						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck4"> mes ventes en cours</li>
+						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck5"> ventes non	débutées</li>
+						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck6"> ventes	termiées</li>
 
 					</ul>
 				</div>
