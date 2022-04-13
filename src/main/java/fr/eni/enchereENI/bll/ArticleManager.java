@@ -50,7 +50,6 @@ public class ArticleManager {
 						userManager.update(vendeur);
 						article.setSold(true);
 						articleDao.updateStateArticle(article);
-						System.out.println(gagnant);
 					}
 				}
 			}
@@ -236,5 +235,8 @@ public class ArticleManager {
 		}
 		return listeArticle;
 	}
+	
+	
+
 
 }

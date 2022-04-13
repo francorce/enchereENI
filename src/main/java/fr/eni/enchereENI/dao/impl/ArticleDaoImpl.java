@@ -66,8 +66,7 @@ public class ArticleDaoImpl implements ArticleDao {
 			article.setCategorie(cat);
 			articlesEnchereFini.add(article);
 		}
-		con.close();
-		rs.close();
+
 		return articlesEnchereFini;
 	}
 
