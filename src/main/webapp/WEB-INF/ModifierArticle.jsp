@@ -23,13 +23,13 @@
 			<div class="d-flex justify-content-center">
 				<h2>Vendre un article</h2>
 			</div>
-			<form action="ModifierArticle" method="post" class="d-flex flex-column">
-			
-			<input type="hidden" value="${no_article}" name="no_article" id="no_article"/>
-			
-				<label for="nomArticle">Article</label> <input class="form-control"
-					type="text" id="nomArticle" name="nomArticle" class="form-control"
-					value="${nomArticle}" />
+			<form action="ModifierArticle" method="post"
+				class="d-flex flex-column">
+
+				<input type="hidden" value="${no_article}" name="no_article"
+					id="no_article" /> <label for="nomArticle">Article</label> <input
+					class="form-control" type="text" id="nomArticle" name="nomArticle"
+					class="form-control" value="${nomArticle}" />
 				<c:forEach items="${hasErrors}" var="entry">
 					<c:if test="${entry.key == 'nom' && entry.value==true}">
 						<div class="alert alert-danger">Le nom n'est pas valide</div>
@@ -135,14 +135,14 @@
 					<button class="btn btn-primary" type="submit">Enregistrer</button>
 					<a class="card-text" href="${'/enchereENI/AccueilConnecter'}">
 						<button class="btn btn-primary" type="button">Annuler</button>
+					</a> <a class="card-text" href="${'/enchereENI/SupprimerArticle?no_article='}${no_article}">
+						<button class="btn btn-primary" type="button">Annuler la
+							vente</button>
 					</a>
-					<button class="btn btn-primary" type="submit">Annuler la
-						vente</button>
-
-
 				</div>
 			</form>
 		</div>
 	</div>
 </body>
 </html>
+

@@ -24,7 +24,8 @@ public class ArticleDaoImpl implements ArticleDao {
 	private static String UPDATE = "UPDATE articles_vendus SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
 	private static String SELECT_ARTICLE_ENCHERE_FINI = "SELECT * FROM articles_vendus WHERE date_fin_encheres < ?";
 	private static String UPDATE_ARTICLE_STATE = "UPDATE articles_vendus SET isSold = ? WHERE no_article = ?";
-	
+	private static String DELETE = "DELETE from articles_vendus where no_article = ?";
+
 	
 	public void updateStateArticle(Article article) throws SQLException {
 		Connection con;
@@ -172,8 +173,11 @@ public class ArticleDaoImpl implements ArticleDao {
 
 	@Override
 	public void delete(Article a) throws SQLException {
-		// TODO Auto-generated method stub
-
+		Connection con = ConnectionProvider.getConnection();
+		PreparedStatement deleteUser = con.prepareStatement(DELETE);
+		deleteUser.setInt(1, a.getNoArticle());
+		Boolean requesteIsOk = deleteUser.execute();
+		con.close();
 	}
 
 	@Override
