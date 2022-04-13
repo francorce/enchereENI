@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchereENI.bll.UserManager;
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
 import fr.eni.enchereENI.bo.Enchere;
@@ -52,7 +53,7 @@ public class PageAdminServlet extends HttpServlet {
 		List enchereList = new ArrayList<Enchere>();
 		List listeRetrait = new ArrayList<Retrait>();
 		
-	
+		UserManager userManager = new UserManager();
 
 		UserDao userDao = DaoFactory.getUserDao();
 		CategorieDao categorieDao = DaoFactory.getCategorieDao();
@@ -79,10 +80,8 @@ public class PageAdminServlet extends HttpServlet {
 		request.setAttribute("articles", listeArticles);
 		request.setAttribute("enchereList", enchereList);
 		request.setAttribute("listeRetrait", listeRetrait);
-
-
-
 		
+			
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/PageAdmin.jsp").forward(request, response);
 	}
