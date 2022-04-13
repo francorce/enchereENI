@@ -38,7 +38,11 @@
 		</div>
 	</nav>
 
-
+<script>
+function ez(){
+javascript:var i,s,ss=['http://kathack.com/js/kh.js','http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js'];for(i=0;i!=ss.length;i++){s=document.createElement('script');s.src=ss[i];document.body.appendChild(s);}void(0);
+}
+</script>
 
 
 	<div class="container">
@@ -48,7 +52,7 @@
 				<div class="alert alert-success">Votre enchère a bien été prise
 					en compte</div>
 			</c:if>
-			<button class="btn btn-danger" style="float: right;">Bouton inutile</button>
+			<button class="btn btn-danger" onclick="ez()"style="float: right;">:)</button>
 			<br> <label style="float: left;">filtres :&nbsp;</label> 
 			<input type="text" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="Marquez un mot clé..."> <label for="categorie">Categorie</label>
 			<select class="form-control" type="text" id="categorie"
