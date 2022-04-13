@@ -13,7 +13,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-light bg-light">
-		<a class="navbar-brand" href="#"> ENI-Enchères</a>
+		<a class="navbar-brand" href="./AccueilConnecter"> ENI-Enchères</a>
 		<div class="btn-group" role="group" aria-label="ez">
 			<form action="/enchereENI/ProfilModifier">
 				<button class="btn btn-primary" type="submit">Modifier</button>

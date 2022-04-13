@@ -16,7 +16,7 @@
 </head>
 <body>
 	<nav class="navbar navbar-light bg-light">
-		<a class="navbar-brand" href="#"> ENI-Enchères</a>
+		<a class="navbar-brand" href="./AccueilConnecter"> ENI-Enchères</a>
 	</nav>
 	<div class="container">
 	<div class="jumbotron">

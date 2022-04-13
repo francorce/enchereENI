@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="header clearfix">
-	<h3 class="text-muted">ENI - Enchère</h3>
+	<a class="navbar-brand" href="./AccueilConnecter"> ENI-Enchères</a>
     </div>
     	<div class="container"><h1 style="float: none;">Profil :</h1>      
       		<div class="jumbotron">

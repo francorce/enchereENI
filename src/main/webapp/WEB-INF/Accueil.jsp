@@ -12,7 +12,7 @@
 
 
 		<nav class="navbar navbar-light bg-light">
-				<a class="navbar-brand" href="#"> ENI-Enchères</a>
+				<a class="navbar-brand" href="/Accueil"> ENI-Enchères</a>
 			<form action="/enchereENI/Connexion">
         		<button class="btn btn-primary" style="float: right;">S'incrire / Se connecter</button>
         	</form>
