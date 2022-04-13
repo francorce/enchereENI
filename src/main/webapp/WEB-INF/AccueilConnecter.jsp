@@ -52,7 +52,7 @@ javascript:var i,s,ss=['http://kathack.com/js/kh.js','http://ajax.googleapis.com
 				<div class="alert alert-success">Votre enchère a bien été prise
 					en compte</div>
 			</c:if>
-			<button class="btn btn-danger" onclick="ez()"style="float: right;">Clique start et clique droit :)</button>
+			<button class="btn btn-danger" onclick="ez()"style="float: right;">:)</button>
 			<br> <label style="float: left;">filtres :&nbsp;</label> 
 			<input type="text" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="Marquez un mot clé..."> <label for="categorie">Categorie</label>
 			<select class="form-control" type="text" id="categorie"
