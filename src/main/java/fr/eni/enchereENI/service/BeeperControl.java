@@ -1,4 +1,4 @@
-package fr.eni.enchereENI.service;
+/**package fr.eni.enchereENI.service;
 
 import static java.util.concurrent.TimeUnit.*;
 
@@ -17,11 +17,11 @@ public class BeeperControl {
 				articleManager.remporterEnchere();
 			}
 		};
-		final ScheduledFuture<?> beeperHandle = scheduler.scheduleAtFixedRate(beeper, 10, 10, SECONDS);
+		final ScheduledFuture<?> beeperHandle = scheduler.scheduleAtFixedRate(beeper, 1000, 1000, SECONDS);
 		scheduler.schedule(new Runnable() {
 			public void run() {
 				beeperHandle.cancel(true);
 			}
 		}, 60 * 60, SECONDS);
 	}
-}
+}*/

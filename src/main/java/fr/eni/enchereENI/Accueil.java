@@ -20,7 +20,7 @@ import fr.eni.enchereENI.bo.Categorie;
 import fr.eni.enchereENI.bo.Enchere;
 import fr.eni.enchereENI.dao.impl.ArticleDaoImpl;
 import fr.eni.enchereENI.dao.impl.EnchereDaoImpl;
-import fr.eni.enchereENI.service.BeeperControl;
+/**import fr.eni.enchereENI.service.BeeperControl;*/
 
 /**
  * Servlet implementation class Accueil
@@ -43,8 +43,8 @@ public class Accueil extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		BeeperControl beeper = new BeeperControl();
-		beeper.beepForAnHour();
+		/**BeeperControl beeper = new BeeperControl();
+		beeper.beepForAnHour();*/
 		CategorieManager categorieManager = new CategorieManager();
 		List<Categorie> listeCategorie = categorieManager.getAll();
 		request.setAttribute("listeCategorie", listeCategorie);

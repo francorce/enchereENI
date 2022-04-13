@@ -1,17 +1,14 @@
 package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import fr.eni.enchereENI.bll.ArticleManager;
 import fr.eni.enchereENI.bll.EnchereManager;
 import fr.eni.enchereENI.bll.RetraitManager;
@@ -19,8 +16,7 @@ import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Enchere;
 import fr.eni.enchereENI.bo.Retrait;
 import fr.eni.enchereENI.bo.User;
-import fr.eni.enchereENI.dao.DaoFactory;
-import fr.eni.enchereENI.dao.EnchereDao;
+
 
 /**
  * Servlet implementation class encherirServlet
@@ -76,6 +72,14 @@ public class encherirServlet extends HttpServlet {
 		request.setAttribute("rue", retraitRue);
 		request.setAttribute("cp", retraitCp);
 		request.setAttribute("ville", retraitVille);
+		
+		
+		LocalDateTime now = LocalDateTime.now();
+		if(article.getDebutEnchere().isBefore(now) && article.getFinEnchere().isAfter(now)) {
+			request.setAttribute("peuxEncherir", true);
+		} else {
+			request.setAttribute("peuxEncherir", false);
+		}
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/encherir.jsp").forward(request, response);
 	}
