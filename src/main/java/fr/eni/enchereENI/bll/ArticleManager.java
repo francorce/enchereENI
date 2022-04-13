@@ -19,6 +19,17 @@ import fr.eni.enchereENI.dao.DaoFactory;
 public class ArticleManager {
 	private static ArticleDao articleDao = DaoFactory.getArticleDao();
 	
+	public void deleteArticle(User currentUser, Article a) {
+		LocalDateTime now =  LocalDateTime.now();
+		if(a.getVendeur().equals(currentUser) && now.isBefore(a.getDebutEnchere())) {
+			try {
+				articleDao.delete(a);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 	
 
 	public void remporterEnchere() {
