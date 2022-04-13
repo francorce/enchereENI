@@ -73,4 +73,41 @@ public class RetraitManager {
 		
 		return hasErrors;
 	}
+	
+	public static  Map<String, Boolean> updateRetrait(int noArticle, String rue, String cp, String ville){
+		Map<String, Boolean> hasErrors = validateRetrait(rue, cp, ville);
+		RetraitDao retraitDao = DaoFactory.getRetraitDao();
+
+		Retrait retrait = null;
+		try {
+			retrait = retraitDao.geyByArticleId(noArticle);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		boolean hasError = false;
+		Iterator it = hasErrors.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry) it.next();
+			if (pair.getValue() == (Boolean) true) {
+				hasError = true;
+			}
+		}
+		if (hasError) {
+			return hasErrors;
+		} else {
+			retrait.setCp(cp);
+			retrait.setRue(rue);
+			retrait.setVille(ville);
+			try {
+				retraitDao.update(retrait);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return hasErrors;
+
+	}
 }

@@ -20,7 +20,7 @@ public class RetraitDaoImpl implements RetraitDao {
 	private static String SAVE = "INSERT into retraits ( no_article,rue, code_postal, ville) VALUES(?, ?, ?, ?)";
 	private static String GET_BY_ARTICLEID = "SELECT * from retraits WHERE no_article = ?";
 	private static String GET_ALL = "SELECT * from retraits";
-	
+	private static String UPDATE = "UPDATE retraits SET rue = ?, code_postal = ?, ville = ? WHERE no_article = ?";
 	
 	
 	@Override
@@ -71,8 +71,13 @@ public class RetraitDaoImpl implements RetraitDao {
 
 	@Override
 	public void update(Retrait t) throws SQLException {
-		// TODO Auto-generated method stub
-		
+		Connection con = ConnectionProvider.getConnection();
+		PreparedStatement updateRetrait = con.prepareStatement(UPDATE);
+		updateRetrait.setString(1, t.getRue());
+		updateRetrait.setString(2, t.getCp());
+		updateRetrait.setString(3, t.getVille());
+		updateRetrait.setInt(4, t.getArticle().getNoArticle());
+		updateRetrait.executeUpdate();
 	}
 	
 	
@@ -105,6 +110,12 @@ public class RetraitDaoImpl implements RetraitDao {
 		con.close();
 		getByArticle.close();
 		return retrait;
+	}
+
+	@Override
+	public void updateRetrait(Retrait retrait) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
