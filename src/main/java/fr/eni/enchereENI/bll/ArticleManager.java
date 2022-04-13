@@ -183,6 +183,87 @@ public class ArticleManager {
 
 		return hasErrors;
 	}
+	
+	public Map<String, Boolean> updateArticle(int noArticle, String nom, String description, String categorieLibelle, String prixDepart,
+			String debutEnchereString, String finEnchereString, User vendeur, String rue, String cp, String ville) {
+		Article articleAModifier = getById(noArticle);
+
+		Map<String, Boolean> hasErrors = new HashMap<String, Boolean>();
+		Map<String, Boolean> hasErrorsRetrait = new HashMap<String, Boolean>();
+
+		if (nom != null && !nom.isEmpty()) {
+			articleAModifier.setNomArticle(nom);
+		} else {
+			hasErrors.put("nom", true);
+		}
+
+		if (description != null && !description.isEmpty()) {
+			articleAModifier.setDescription(description);
+		} else {
+			hasErrors.put("description", true);
+		}
+		if (categorieLibelle != null && !categorieLibelle.isEmpty()) {
+			Categorie categorie = null;
+			CategorieManager categorieManager = new CategorieManager();
+			categorie = categorieManager.getByLibelle(categorieLibelle);
+			articleAModifier.setCategorie(categorie);
+		} else {
+			hasErrors.put("categorieLibelle", true);
+		}
+
+		if (prixDepart != null && !prixDepart.isEmpty() && isInteger(prixDepart)) {
+			articleAModifier.setPrixInitial(Integer.parseInt(prixDepart));
+			articleAModifier.setPrixVente(Integer.parseInt(prixDepart));
+		} else {
+			hasErrors.put("prixDepart", true);
+		}
+
+		if (finEnchereString != null && !finEnchereString.isEmpty() && debutEnchereString != null
+				&& !debutEnchereString.isEmpty()) {
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm", Locale.FRANCE);
+			LocalDateTime debutEnchere = LocalDateTime.parse(debutEnchereString, formatter);
+			LocalDateTime finEnchere = LocalDateTime.parse(finEnchereString, formatter);
+
+			if (validateDate(debutEnchere, finEnchere)) {
+				articleAModifier.setDebutEnchere(debutEnchere);
+				articleAModifier.setFinEnchere(finEnchere);
+			} else {
+				hasErrors.put("finEnchereString", true);
+			}
+
+		} else {
+			hasErrors.put("finEnchereString", true);
+		}
+
+		hasErrorsRetrait = RetraitManager.validateRetrait(rue, cp, ville);
+		hasErrors.putAll(hasErrorsRetrait);
+		Iterator it = hasErrors.entrySet().iterator();
+		boolean hasError = false;
+		while (it.hasNext()) {
+			Map.Entry pair = (Map.Entry) it.next();
+			if (pair.getValue() == (Boolean) true) {
+				hasError = true;
+			}
+		}
+		if (hasError) {
+			return hasErrors;
+		} else {
+			articleAModifier.setSold(false);
+			articleAModifier.setVendeur(vendeur);
+			try {
+				articleDao.update(articleAModifier);
+				hasErrorsRetrait = RetraitManager.updateRetrait(articleAModifier.getNoArticle(), rue, cp, ville);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		hasErrors.putAll(hasErrorsRetrait);
+
+		return hasErrors;
+	}
+	
 
 	public boolean validateDate(LocalDateTime debutEnchere, LocalDateTime finEnchere) {
 		boolean dateValid = true;

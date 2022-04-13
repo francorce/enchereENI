@@ -16,14 +16,17 @@
 </head>
 <body>
 	<nav class="navbar navbar-light bg-light">
-		<a class="navbar-brand" href="./AccueilConnecter"> ENI-Enchères</a>
+		<a class="navbar-brand" href="#"> ENI-Enchères</a>
 	</nav>
 	<div class="container">
 		<div class="jumbotron">
 			<div class="d-flex justify-content-center">
 				<h2>Vendre un article</h2>
 			</div>
-			<form action="VendreArticle" method="post" class="d-flex flex-column">
+			<form action="ModifierArticle" method="post" class="d-flex flex-column">
+			
+			<input type="hidden" value="${no_article}" name="no_article" id="no_article"/>
+			
 				<label for="nomArticle">Article</label> <input class="form-control"
 					type="text" id="nomArticle" name="nomArticle" class="form-control"
 					value="${nomArticle}" />
@@ -128,10 +131,15 @@
 					</c:forEach>
 				</fieldset>
 				<div class="d-flex justify-content-around mt-5">
+
 					<button class="btn btn-primary" type="submit">Enregistrer</button>
 					<a class="card-text" href="${'/enchereENI/AccueilConnecter'}">
 						<button class="btn btn-primary" type="button">Annuler</button>
 					</a>
+					<button class="btn btn-primary" type="submit">Annuler la
+						vente</button>
+
+
 				</div>
 			</form>
 		</div>
