@@ -1,16 +1,21 @@
 package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
-
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+
+
 import fr.eni.enchereENI.bll.ArticleManager;
 import fr.eni.enchereENI.bll.CategorieManager;
 import fr.eni.enchereENI.bo.Categorie;
@@ -19,6 +24,7 @@ import fr.eni.enchereENI.bo.User;
 /**
  * Servlet implementation class VendreArticleServlet
  */
+@MultipartConfig
 @WebServlet("/VendreArticle")
 public class VendreArticleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -76,8 +82,13 @@ public class VendreArticleServlet extends HttpServlet {
 		
 		String nomArticle = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
-		String photo = request.getParameter("photo");
-		byte[] photoTab = photo.getBytes();
+		
+		Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
+	    String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
+	    InputStream fileContent = filePart.getInputStream();
+		
+	    byte[] photoTab = fileContent.readAllBytes();
+
 		String categorie = request.getParameter("categorie");
 		String prixDepart = request.getParameter("prixDepart");
 		String debutEnchere = request.getParameter("debutEnchere");	

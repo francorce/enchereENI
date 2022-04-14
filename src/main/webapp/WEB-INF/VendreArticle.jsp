@@ -23,7 +23,7 @@
 			<div class="d-flex justify-content-center">
 				<h2>Vendre un article</h2>
 			</div>
-			<form action="VendreArticle" method="post" class="d-flex flex-column">
+			<form action="VendreArticle" method="post" class="d-flex flex-column" enctype="multipart/form-data">
 				<label for="nomArticle">Article</label> <input class="form-control"
 					type="text" id="nomArticle" name="nomArticle" class="form-control"
 					value="${nomArticle}" />
@@ -70,8 +70,11 @@
 					</c:if>
 				</c:forEach>
 
-				<label for="buttonPhoto">Photo de l'article</label> <input
-					type="text" name="file" size="50" /><br> <label
+				<label for="buttonPhoto">Photo de l'article</label>
+				 <input type="file" name="file" size="50" />
+					<br>
+					
+					 <label
 					for="prixDepart">Mise à prix</label> 
 					<input class="form-control"
 					class="form-control" id="prixDepart" name="prixDepart"

@@ -22,11 +22,13 @@ public class Article {
 	private User vendeur;
 	private Categorie categorie;
 	private boolean isSold;
-	
+	private String base64image;
 
-	public Article(int noArticle, String nomArticle, String description, byte[] photo,LocalDateTime debutEnchere,
-			LocalDateTime finEnchere, String finEnchereStr, int prixInitial, int prixVente, User vendeur,
-			Categorie categorie, boolean isSold) {
+
+
+	public Article(int noArticle, String nomArticle, String description, byte[] photo, LocalDateTime debutEnchere,
+			LocalDateTime finEnchere, int prixInitial, int prixVente, User vendeur, Categorie categorie, boolean isSold,
+			String base64image) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -34,14 +36,27 @@ public class Article {
 		this.photo = photo;
 		this.debutEnchere = debutEnchere;
 		this.finEnchere = finEnchere;
-		this.finEnchereStr = finEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-		this.debutEnchereStr = debutEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 		this.prixInitial = prixInitial;
 		this.prixVente = prixVente;
 		this.vendeur = vendeur;
 		this.categorie = categorie;
 		this.isSold = isSold;
+		this.base64image = base64image;
 	}
+	
+	
+
+	public String getBase64image() {
+		return base64image;
+	}
+
+
+
+	public void setBase64image(String base64image) {
+		this.base64image = base64image;
+	}
+
+
 
 	public Article() {
 		super();

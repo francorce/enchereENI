@@ -127,6 +127,14 @@ public class ArticleManager {
 		} else {
 			hasErrors.put("nom", true);
 		}
+		
+		if(photo != null && photo.length>0) {
+			articleAAjouter.setPhoto(photo);
+		} else {
+			// photo non obligatoire
+			//hasErrors.put("photo", true);
+		}
+		
 
 		if (description != null && !description.isEmpty()) {
 			articleAAjouter.setDescription(description);
