@@ -12,9 +12,23 @@ import fr.eni.enchereENI.dao.DaoFactory;
 import fr.eni.enchereENI.dao.EnchereDao;
 
 public class EnchereManager {
+	private static EnchereDao enchereDao = DaoFactory.getEnchereDao();
+	
+	
+	public List<Enchere> getByArticleAndUserId(int articleId, int userId){
+		List<Enchere> listeEnchere = new ArrayList<Enchere>();
+		try {
+			listeEnchere = enchereDao.getByArticleAndUserId(articleId, userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return listeEnchere;
+	}
+	
 	public List<Enchere> getAll() {
 		List<Enchere> listeEnchere = new ArrayList();
-		EnchereDao enchereDao = DaoFactory.getEnchereDao();
+		
 		try {
 			listeEnchere = enchereDao.getAll();
 		} catch (SQLException e) {
@@ -26,7 +40,6 @@ public class EnchereManager {
 
 	public List<Enchere> getByUserId(int userId) {
 		List<Enchere> listeEnchere = new ArrayList();
-		EnchereDao enchereDao = DaoFactory.getEnchereDao();
 		try {
 			listeEnchere = enchereDao.getByUserId(userId);
 		} catch (SQLException e) {
@@ -38,7 +51,6 @@ public class EnchereManager {
 
 	public List<Enchere> getByArticleId(int userId) {
 		List<Enchere> listeEnchere = new ArrayList();
-		EnchereDao enchereDao = DaoFactory.getEnchereDao();
 		try {
 			listeEnchere = enchereDao.getByArticleId(userId);
 		} catch (SQLException e) {

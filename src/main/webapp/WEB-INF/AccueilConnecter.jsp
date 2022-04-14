@@ -152,7 +152,7 @@ function myFunction() {
                     <div class="col-sm-4" style=""data-category="${listArticles.categorie.libelle}">
                         
                         <div class="card"  id="${listArticles.categorie.libelle}" >
-                            <img class="card-img-top" src="https://thumbs.dreamstime.com/b/no-image-available-icon-photo-camera-flat-vector-illustration-132483141.jpg" alt="Card image cap" style="float: left;">
+                            <img class="card-img-top" src="data:image/jpeg;base64,${listArticles.base64image}" alt="Card image cap" style="float: left;">
                             <div class="card-body" >
                                 <h4 class="card-title">
                                     <a class="card-text"
