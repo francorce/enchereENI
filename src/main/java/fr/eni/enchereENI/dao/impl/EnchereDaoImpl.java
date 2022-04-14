@@ -22,7 +22,8 @@ public class EnchereDaoImpl implements EnchereDao {
 	private static String GET_BY_ARTICLE_ID = "SELECT * from encheres WHERE no_article = ?";
 	private static String SAVE = "INSERT into encheres (date_enchere, montant_enchere, no_article, no_utilisateur) VALUES(?, ?, ?, ?)";
 	private static String GET_ENCHERE_FINI = "SELECT enchere.no_utilisateur, enchere.no_article from encheres, article_vendus WHERE encheres.no_article = article_vendus.no_article AND articles_vendus.date_fin_encheres > ?";
-
+	private static String GET_BY_ARTICLE_AND_USER_ID = "SELECT * FROM encheres WHERE no_utilisateur = ?  AND no_article = ?";
+	
 	private static class Gagnant{
 		int noUtilisateur;
 		int noArticle;
@@ -161,6 +162,41 @@ public class EnchereDaoImpl implements EnchereDao {
 		PreparedStatement getAllEnchereByUserId = con.prepareStatement(GET_BY_ARTICLE_ID);
 		getAllEnchereByUserId.setInt(1, articleId);
 		rs = getAllEnchereByUserId.executeQuery();
+
+		while (rs.next()) {
+			Enchere enchere = new Enchere();
+			enchere.setNoEnchere(rs.getInt("no_enchere"));
+			enchere.setDateEnchere(rs.getTimestamp("date_enchere").toLocalDateTime());
+			enchere.setMontantEnchere(rs.getInt("montant_enchere"));
+
+			User acheteur = new User();
+			acheteur = DaoFactory.getUserDao().get(rs.getInt("no_utilisateur"));
+			enchere.setEncherisseur(acheteur);
+
+			Article article = new Article();
+			article = DaoFactory.getArticleDao().get(rs.getInt("no_article"));
+			enchere.setArticles(article);
+			enchereList.add(enchere);
+		}
+		con.close();
+		rs.close();
+		return enchereList;
+	}
+
+
+
+
+	@Override
+	public List<Enchere> getByArticleAndUserId(int articleId, int userId) throws SQLException {
+		List<Enchere> enchereList = new ArrayList<Enchere>();
+		Connection con;
+		ResultSet rs;
+		con = ConnectionProvider.getConnection();
+		PreparedStatement getAllEnchereByUserIdAndArticleID = con.prepareStatement(GET_BY_ARTICLE_AND_USER_ID);
+		getAllEnchereByUserIdAndArticleID.setInt(1, userId);
+		getAllEnchereByUserIdAndArticleID.setInt(2, articleId);
+
+		rs = getAllEnchereByUserIdAndArticleID.executeQuery();
 
 		while (rs.next()) {
 			Enchere enchere = new Enchere();

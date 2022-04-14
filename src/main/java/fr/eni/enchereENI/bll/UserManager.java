@@ -2,7 +2,14 @@ package fr.eni.enchereENI.bll;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -16,8 +23,51 @@ import fr.eni.enchereENI.dao.DaoFactory;
 public class UserManager {
 
 	private static UserDao userDao = DaoFactory.getUserDao();;
+
+	public Map<User, Enchere> getEncherisseur(Article article) {
+		List<User> listEncherisseur = new ArrayList<User>();
+		List<Enchere> listEnchere = new ArrayList<Enchere>();
+		EnchereManager enchereManager = new EnchereManager();
+		listEnchere = enchereManager.getByArticleId(article.getNoArticle());
+
+		Map<User, Enchere> listeFinal = new HashMap<User, Enchere>();
+
+		// on recupere tout les encherisseur
+		for (Enchere enchere : listEnchere) {
+			if (!listEncherisseur.contains(enchere.getEncherisseur())) {
+				listEncherisseur.add(enchere.getEncherisseur());
+			}
+		}
+
+		// on recupere toutes les encheres de chaque user pour l'article donnée
+		for (User encherisseur : listEncherisseur) {
+			List<Enchere> enchereArticle = new ArrayList<Enchere>();
+			enchereArticle = enchereManager.getByArticleAndUserId(article.getNoArticle(),
+					encherisseur.getNo_utilisateur());
+			int montantEnchereMax = 0;
+			Enchere enchereMax = null;
+			for(Enchere enchere : enchereArticle) {
+				if(enchere.getMontantEnchere()>montantEnchereMax) {
+					enchereMax = enchere;
+				}
+			}
 	
+			
+			listeFinal.put(encherisseur, enchereMax);
+		}
+		Map<User, Enchere> resultSet = listeFinal.entrySet()
+                .stream()
+                .sorted(Comparator.comparingInt(e -> -(int)e.getValue().getMontantEnchere()))
+                .collect(Collectors.toMap(Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (left, right) -> left,
+                        LinkedHashMap::new));
+		
+		
+		return resultSet;
+	}
 	
+
 	public User getByUUID(String UUID) {
 		User user = null;
 		try {
@@ -28,8 +78,8 @@ public class UserManager {
 		}
 		return user;
 	}
-	
-	public  void setUUID(User user, String uuid) {
+
+	public void setUUID(User user, String uuid) {
 		user.setUUID(uuid);
 		try {
 			userDao.setUUID(user);
@@ -38,8 +88,8 @@ public class UserManager {
 			e.printStackTrace();
 		}
 	}
-	
-	public void update (User user) {
+
+	public void update(User user) {
 		try {
 			userDao.update(user);
 		} catch (SQLException e) {
@@ -103,17 +153,17 @@ public class UserManager {
 				if (article.getFinEnchere().isAfter(todaysDate) || article.getDebutEnchere().isAfter(todaysDate)) {
 					hasArticle = true;
 				}
-				
+
 			}
 		}
 
 		if (enchereUser.size() > 0) {
 			int offreMax = 0;
 			for (Enchere enchere : enchereUser) {
-				if(enchere.getMontantEnchere()>offreMax) {
-					offreMax= (int) enchere.getMontantEnchere();
-					if(enchere.getEncherisseur().equals(user)) {
-						hasEnchere=true;
+				if (enchere.getMontantEnchere() > offreMax) {
+					offreMax = (int) enchere.getMontantEnchere();
+					if (enchere.getEncherisseur().equals(user)) {
+						hasEnchere = true;
 					}
 				}
 			}

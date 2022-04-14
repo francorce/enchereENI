@@ -3,6 +3,8 @@ package fr.eni.enchereENI.ihm;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import fr.eni.enchereENI.bll.ArticleManager;
 import fr.eni.enchereENI.bll.EnchereManager;
 import fr.eni.enchereENI.bll.RetraitManager;
+import fr.eni.enchereENI.bll.UserManager;
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Enchere;
 import fr.eni.enchereENI.bo.Retrait;
@@ -49,7 +52,7 @@ public class encherirServlet extends HttpServlet {
 		ArticleManager articleManager = new ArticleManager();
 		EnchereManager enchereManager = new EnchereManager();
 		RetraitManager retraitManager = new RetraitManager();
-		
+		UserManager userManager = new UserManager();
 		Article article = articleManager.getById(numArticle);
 		Retrait retrait = retraitManager.getByArticleId(numArticle);
 		
@@ -97,8 +100,15 @@ public class encherirServlet extends HttpServlet {
 			request.setAttribute("canModif", true);
 		} else {
 			request.setAttribute("canModif", false);
-
 		}
+		
+		if(isVendeur) {
+			Map<User, Enchere> listeEncherisseur = userManager.getEncherisseur(article);
+			request.setAttribute("listeEncherisseur", listeEncherisseur);
+			request.setAttribute("isVendeur", isVendeur);
+		}
+		
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/encherir.jsp").forward(request, response);
 	}
 

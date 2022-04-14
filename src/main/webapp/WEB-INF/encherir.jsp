@@ -72,8 +72,20 @@
 
 			<c:if test="${canModif == true }">
 				<a class="card-text"
-					href="${'/enchereENI/ModifierArticle?no_article='}${article.noArticle}"><button class="btn btn-primary" type="button">Modifier</button></a>
+					href="${'/enchereENI/ModifierArticle?no_article='}${article.noArticle}"><button
+						class="btn btn-primary" type="button">Modifier</button></a>
 			</c:if>
+
+			<c:if test="${isVendeur == true }">
+			Listes des enchères : 
+			<ul>
+					<c:forEach var="entry" items="${listeEncherisseur}">
+						<li>Utilisateur : <c:out value="${entry.key.pseudo}" /> / Montant enchère : <c:out
+								value="${entry.value.montantEnchere}" />
+						</li>
+					</c:forEach>
+			</c:if>
+			</ul>
 		</div>
 	</div>
 
