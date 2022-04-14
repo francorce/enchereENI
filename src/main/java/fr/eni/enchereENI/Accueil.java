@@ -62,30 +62,31 @@ public class Accueil extends HttpServlet {
 
 		listArticles = articleManager.getAll();
 		request.getSession().setAttribute("listArticles", listArticles); // add to session
-		
-		//rememberMe
+
+		// rememberMe
 		Cookie[] cookies = request.getCookies(); // request is an instance of type
 		// HttpServletRequest
 		boolean foundCookie = false;
 		String uuid = null;
-		for (int i = 0; i < cookies.length; i++) {
-			Cookie c = cookies[i];
-			if (c.getName().equals("userid")) {
-				uuid = c.getValue();
-				foundCookie = true;
+		if (cookies.length > 0) {
+
+			for (int i = 0; i < cookies.length; i++) {
+				Cookie c = cookies[i];
+				if (c.getName().equals("userid")) {
+					uuid = c.getValue();
+					foundCookie = true;
+				}
 			}
 		}
-		
 		UserManager userManager = new UserManager();
-		
-		if(foundCookie==true) {
+
+		if (foundCookie == true) {
 			User rememberMeUser = userManager.getByUUID(uuid);
 			HttpSession session = request.getSession();
 			session.setAttribute("user", rememberMeUser);
 			response.sendRedirect(request.getContextPath() + "/AccueilConnecter");
 			return;
 		}
-
 
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Accueil.jsp").forward(request, response);
 	}
