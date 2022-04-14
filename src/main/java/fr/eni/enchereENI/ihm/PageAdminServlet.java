@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchereENI.bll.CategorieManager;
 import fr.eni.enchereENI.bll.UserManager;
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
@@ -54,6 +55,7 @@ public class PageAdminServlet extends HttpServlet {
 		List listeRetrait = new ArrayList<Retrait>();
 		
 		UserManager userManager = new UserManager();
+		CategorieManager categorieManager = new CategorieManager();
 
 		UserDao userDao = DaoFactory.getUserDao();
 		CategorieDao categorieDao = DaoFactory.getCategorieDao();

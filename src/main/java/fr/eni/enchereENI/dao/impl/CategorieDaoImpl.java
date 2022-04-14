@@ -16,6 +16,7 @@ public class CategorieDaoImpl implements CategorieDao {
 	private static String GET_BY_ID = "SELECT * from categories where no_categorie = ?";
 	private static String GET_BY_LIBELLE = "SELECT * from categories where libelle = ?";
 	private static String GET_ALL = "SELECT * from categories";
+	private static String DELETE = "DELETE from categories where no_categorie = ?";
 
 	@Override
 	public Categorie get(int id) throws SQLException {
@@ -56,7 +57,11 @@ public class CategorieDaoImpl implements CategorieDao {
 
 	@Override
 	public void delete(Categorie t) throws SQLException {
-		// TODO Auto-generated method stub
+		Connection con = ConnectionProvider.getConnection();
+		PreparedStatement deleteCategorie = con.prepareStatement(DELETE);
+		deleteCategorie.setInt(1, t.getNoCategorie());
+		Boolean requesteIsOk = deleteCategorie.execute();
+		con.close();
 
 	}
 

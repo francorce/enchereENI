@@ -11,22 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.enchereENI.bll.UserManager;
-import fr.eni.enchereENI.dao.UserDao;
-import fr.eni.enchereENI.bo.User;
+import fr.eni.enchereENI.bll.CategorieManager;
+import fr.eni.enchereENI.bo.Categorie;
+import fr.eni.enchereENI.dao.CategorieDao;
 import fr.eni.enchereENI.dao.DaoFactory;
 
 /**
  * Servlet implementation class AdminSuppUser
  */
-@WebServlet("/AdminSuppUser")
-public class AdminSuppUser extends HttpServlet {
+@WebServlet("/AdminSuppCate")
+public class AdminSuppCate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminSuppUser() {
+    public AdminSuppCate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,23 +40,25 @@ public class AdminSuppUser extends HttpServlet {
 		
 
 		
-		UserManager userManager = new UserManager();
+		CategorieManager categorieManager = new CategorieManager();
 		
-		int numUtilisateur = Integer.parseInt(request.getParameter("id"));
-		System.out.println(numUtilisateur);
+		int numCategorie = Integer.parseInt(request.getParameter("id"));
+		System.out.println(numCategorie);
 	
 	
 
-		UserDao userDao = DaoFactory.getUserDao();
-		User utilisateur = new User();
+		CategorieDao categorieDao = DaoFactory.getCategorieDao();
+		Categorie categorie = new Categorie();
 		
 		try {
-			utilisateur = userDao.get(numUtilisateur);
-			 userDao.delete(utilisateur);
+			categorie = categorieDao.get(numCategorie);
+			categorieDao.delete(categorie);
 
 		
 		} catch (SQLException e) {
+			System.out.println("erreur suppression cate");
 		throw new ServletException("Erreur suppression",e );
+		
 		}
 		response.sendRedirect(request.getContextPath() + "/PageAdmin");
 

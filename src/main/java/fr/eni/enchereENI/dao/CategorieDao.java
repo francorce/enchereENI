@@ -9,5 +9,8 @@ public interface CategorieDao extends Dao<Categorie>{
 	
 	public Categorie getByLibelle(String libelle) throws SQLException;
 	
+	@Override
+	public void delete(Categorie t) throws SQLException;
+	
 
 }
