@@ -75,23 +75,24 @@ public class encherirServlet extends HttpServlet {
 		request.setAttribute("rue", retraitRue);
 		request.setAttribute("cp", retraitCp);
 		request.setAttribute("ville", retraitVille);
-		
+		Boolean isVendeur = false;
+
+		HttpSession session = request.getSession();
+		User currentUser = (User) session.getAttribute("user");
+		if(article.getVendeur().equals(currentUser)) {
+			isVendeur=true;
+		}
 		
 		LocalDateTime now = LocalDateTime.now();
-		if(article.getDebutEnchere().isBefore(now) && article.getFinEnchere().isAfter(now)) {
+		if(article.getDebutEnchere().isBefore(now) && article.getFinEnchere().isAfter(now) && isVendeur==false) {
 			request.setAttribute("peuxEncherir", true);
 		} else {
 			request.setAttribute("peuxEncherir", false);
 		}
-		
-		HttpSession session = request.getSession();
-		User currentUser = (User) session.getAttribute("user");
-		Boolean isVendeur = false;
+
 		Boolean enchereStarted = true;
 		
-		if(article.getVendeur().equals(currentUser)) {
-			isVendeur=true;
-		}
+
 		if(now.isBefore(article.getDebutEnchere())) {
 			enchereStarted=false;
 		}
