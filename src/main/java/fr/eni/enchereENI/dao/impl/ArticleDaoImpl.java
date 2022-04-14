@@ -1,5 +1,6 @@
 package fr.eni.enchereENI.dao.impl;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +9,8 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
@@ -19,7 +22,7 @@ import fr.eni.enchereENI.dao.DaoFactory;
 public class ArticleDaoImpl implements ArticleDao {
 	private static String GET_BY_ID = "SELECT * from articles_vendus where no_article = ?";
 	private static String GET_ALL = "SELECT * from articles_vendus";
-	private static String SAVE = "INSERT into articles_vendus (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+	private static String SAVE = "INSERT into articles_vendus (nom_article, description, photo, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static String GET_BY_USER_ID = "SELECT * from articles_vendus WHERE no_utilisateur =  ?";
 	private static String UPDATE = "UPDATE articles_vendus SET nom_article = ?, description = ?, date_debut_encheres = ?, date_fin_encheres = ?, prix_initial = ?, prix_vente = ?, no_utilisateur = ?, no_categorie = ? WHERE no_article = ?";
 	private static String SELECT_ARTICLE_ENCHERE_FINI = "SELECT * FROM articles_vendus WHERE date_fin_encheres < ?";
@@ -115,6 +118,8 @@ public class ArticleDaoImpl implements ArticleDao {
 			article.setNoArticle(rs.getInt("no_article"));
 			article.setNomArticle(rs.getString("nom_article"));
 			article.setDescription(rs.getString("description"));
+			Blob blob =  rs.getBlob("photo");
+			article.setPhoto(blob.getBytes(0, (int) blob.length()));
 			article.setDebutEnchere(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
 			article.setFinEnchere(rs.getTimestamp("date_fin_encheres").toLocalDateTime());
 			article.setPrixInitial(rs.getInt("prix_initial"));
@@ -138,14 +143,18 @@ public class ArticleDaoImpl implements ArticleDao {
 		Connection con = ConnectionProvider.getConnection();
 		PreparedStatement saveArticle = con.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS);
 		int id = 0;
+		
 		saveArticle.setString(1, a.getNomArticle());
 		saveArticle.setString(2, a.getDescription());
-		saveArticle.setTimestamp(3, java.sql.Timestamp.valueOf(a.getDebutEnchere()));
-		saveArticle.setTimestamp(4, java.sql.Timestamp.valueOf(a.getFinEnchere()));
-		saveArticle.setInt(5, a.getPrixInitial());
-		saveArticle.setInt(6, a.getPrixVente());
-		saveArticle.setInt(7, a.getVendeur().getNo_utilisateur());
-		saveArticle.setInt(8, a.getCategorie().getNoCategorie());
+		Blob blob = con.createBlob();
+		blob.setBytes(id, a.getPhoto());
+		saveArticle.setBlob(3,blob);
+		saveArticle.setTimestamp(4, java.sql.Timestamp.valueOf(a.getDebutEnchere()));
+		saveArticle.setTimestamp(5, java.sql.Timestamp.valueOf(a.getFinEnchere()));
+		saveArticle.setInt(6, a.getPrixInitial());
+		saveArticle.setInt(7, a.getPrixVente());
+		saveArticle.setInt(8, a.getVendeur().getNo_utilisateur());
+		saveArticle.setInt(9, a.getCategorie().getNoCategorie());
 		int affectedRows = saveArticle.executeUpdate();
 		ResultSet keys = saveArticle.getGeneratedKeys();
 		if (keys.next()) {

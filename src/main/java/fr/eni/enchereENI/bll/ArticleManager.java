@@ -9,6 +9,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import com.mysql.cj.jdbc.Blob;
+
 import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
 import fr.eni.enchereENI.bo.Enchere;
@@ -112,7 +115,7 @@ public class ArticleManager {
 		return listeArticles;
 	}
 
-	public Map<String, Boolean> addArticle(String nom, String description, String categorieLibelle, String prixDepart,
+	public Map<String, Boolean> addArticle(String nom, String description, byte[] photo, String categorieLibelle, String prixDepart,
 			String debutEnchereString, String finEnchereString, User vendeur, String rue, String cp, String ville) {
 		Article articleAAjouter = new Article();
 

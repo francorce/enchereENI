@@ -1,6 +1,7 @@
 package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -75,6 +76,8 @@ public class VendreArticleServlet extends HttpServlet {
 		
 		String nomArticle = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
+		String photo = request.getParameter("photo");
+		byte[] photoTab = photo.getBytes();
 		String categorie = request.getParameter("categorie");
 		String prixDepart = request.getParameter("prixDepart");
 		String debutEnchere = request.getParameter("debutEnchere");	
@@ -87,7 +90,7 @@ public class VendreArticleServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		User vendeur = (User) session.getAttribute("user");
 		
-		Map<String, Boolean> hasErrors = articleManager.addArticle(nomArticle, description, categorie, prixDepart, debutEnchere, finEnchere, vendeur, rue, cp, ville);
+		Map<String, Boolean> hasErrors = articleManager.addArticle(nomArticle, description, photoTab, categorie, prixDepart, debutEnchere, finEnchere, vendeur, rue, cp, ville);
 		
 		 Iterator it = hasErrors.entrySet().iterator();
 		  while (it.hasNext()) {

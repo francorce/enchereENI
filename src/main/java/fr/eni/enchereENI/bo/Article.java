@@ -1,15 +1,18 @@
 package fr.eni.enchereENI.bo;
 
+import java.sql.Blob;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+
 
 public class Article {
 
 	private int noArticle;
 	private String nomArticle;
 	private String description;
+	private byte[] photo;
 	private LocalDateTime debutEnchere;
 	private LocalDateTime finEnchere;
 	private String finEnchereStr;
@@ -19,14 +22,16 @@ public class Article {
 	private User vendeur;
 	private Categorie categorie;
 	private boolean isSold;
+	
 
-	public Article(int noArticle, String nomArticle, String description, LocalDateTime debutEnchere,
+	public Article(int noArticle, String nomArticle, String description, byte[] photo,LocalDateTime debutEnchere,
 			LocalDateTime finEnchere, String finEnchereStr, int prixInitial, int prixVente, User vendeur,
 			Categorie categorie, boolean isSold) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
+		this.photo = photo;
 		this.debutEnchere = debutEnchere;
 		this.finEnchere = finEnchere;
 		this.finEnchereStr = finEnchere.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -79,6 +84,14 @@ public class Article {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public byte[] getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(byte[] photo) {
+		this.photo = photo;
 	}
 
 	public LocalDateTime getDebutEnchere() {
@@ -133,7 +146,7 @@ public class Article {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(categorie, debutEnchere, description, finEnchere, isSold, noArticle, nomArticle,
+		return Objects.hash(categorie, debutEnchere, description, photo, finEnchere, isSold, noArticle, nomArticle,
 				prixInitial, prixVente, vendeur);
 	}
 
@@ -146,16 +159,20 @@ public class Article {
 		if (getClass() != obj.getClass())
 			return false;
 		Article other = (Article) obj;
-		return Objects.equals(categorie, other.categorie) && Objects.equals(debutEnchere, other.debutEnchere)
-				&& Objects.equals(description, other.description) && Objects.equals(finEnchere, other.finEnchere)
+		return Objects.equals(categorie, other.categorie) && 
+				Objects.equals(debutEnchere, other.debutEnchere)
+				&& Objects.equals(description, other.description)
+				&& Objects.equals(finEnchere, other.finEnchere)
+				&& Objects.equals(photo, other.photo)
 				&& isSold == other.isSold && noArticle == other.noArticle
 				&& Objects.equals(nomArticle, other.nomArticle) && prixInitial == other.prixInitial
-				&& prixVente == other.prixVente && Objects.equals(vendeur, other.vendeur);
+				&& prixVente == other.prixVente 
+				&& Objects.equals(vendeur, other.vendeur);
 	}
 
 	@Override
 	public String toString() {
-		return "Article [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
+		return "Article [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description + ", photo=" + photo
 				+ ", debutEnchere=" + debutEnchere + ", finEnchere=" + finEnchere + ", prixInitial=" + prixInitial
 				+ ", prixVente=" + prixVente + ", vendeur=" + vendeur + ", categorie=" + categorie + ", isSold="
 				+ isSold + "]";

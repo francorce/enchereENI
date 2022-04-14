@@ -71,8 +71,9 @@
 				</c:forEach>
 
 				<label for="buttonPhoto">Photo de l'article</label> <input
-					type="file" name="file" size="50" /><br> <label
-					for="prixDepart">Mise à prix</label> <input class="form-control"
+					type="text" name="file" size="50" /><br> <label
+					for="prixDepart">Mise à prix</label> 
+					<input class="form-control"
 					class="form-control" id="prixDepart" name="prixDepart"
 					type="number" value="${prixDepart }" />
 
