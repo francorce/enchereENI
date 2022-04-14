@@ -51,7 +51,7 @@ public class AccueilConnecterServlet extends HttpServlet {
 		request.getSession().setAttribute("listArticles", listArticles); // add to session
 		
 		
-		
+
 		request.setAttribute("succes", request.getParameter("succes"));
 		this.getServletContext().getRequestDispatcher("/WEB-INF/AccueilConnecter.jsp").forward(request, response);
 		request.getSession().removeAttribute("succes");
