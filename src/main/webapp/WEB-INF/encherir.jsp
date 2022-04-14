@@ -43,9 +43,13 @@
 				class="form-label" for="form9Example4">Description : </label> </b><br>
 			${article.description}<br> <br> <b><label
 				class="form-label" for="form9Example4">Catégorie : </b>
-			${article.categorie.libelle}</label><br> <b><label
+			${article.categorie.libelle}</label><br> <b>
+			<hr>
+			<label
 				class="form-label" for="form9Example4">Meilleure offre :</b>
-			${article.prixVente} </label><br> <b><label class="form-label"
+			${article.prixVente} </label><hr>
+			
+			<br> <b><label class="form-label"
 				for="form9Example4">Mise à prix :</b> ${article.prixInitial}
 			crédits</label><br> <b><label class="form-label" for="form9Example4">Fin
 					de l'enchère :</b> ${article.finEnchereStr}</label><br> <b><label
@@ -75,6 +79,7 @@
 					href="${'/enchereENI/ModifierArticle?no_article='}${article.noArticle}"><button
 						class="btn btn-primary" type="button">Modifier</button></a>
 			</c:if>
+			<br>
 
 			<c:if test="${isVendeur == true }">
 			Listes des enchères : 
