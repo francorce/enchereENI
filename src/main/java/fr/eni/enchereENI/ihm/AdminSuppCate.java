@@ -51,7 +51,7 @@ public class AdminSuppCate extends HttpServlet {
 		Categorie categorie = new Categorie();
 		
 		try {
-			categorie = categorieDao.get(numCategorie);
+			categorie = categorieDao.getById(numCategorie);
 			categorieDao.delete(categorie);
 
 		
