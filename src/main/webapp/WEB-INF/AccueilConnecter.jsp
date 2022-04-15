@@ -140,7 +140,7 @@ function myFunction() {
 
 </script>
 
-			<div class="row" id="listeArticles">
+			<div class="row" id="art">
 				<ul
 					style="list-style: none; display: flex; flex-wrap: wrap; border: 0; padding: 0; margin: 0;"
 					id="myUL">
@@ -161,7 +161,7 @@ function myFunction() {
 									<p class="card-text">Catégorie :
 										${listArticles.categorie.libelle}</p>
 									<p class="card-text">Fin de l'enchère :
-										${listArticles.finEnchere}</p>
+										${article.finEnchereStr}</p>
 									Vendeur : <a class="card-text"
 										href="${'/enchereENI/Profil?no_utilisateur='}${listArticles.vendeur.no_utilisateur}">${listArticles.vendeur.pseudo}</a>
 								</div>
