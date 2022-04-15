@@ -2,7 +2,6 @@ package fr.eni.enchereENI.ihm;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,22 +10,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchereENI.bll.ArticleManager;
 import fr.eni.enchereENI.bll.CategorieManager;
+import fr.eni.enchereENI.bll.RetraitManager;
+import fr.eni.enchereENI.bo.Article;
 import fr.eni.enchereENI.bo.Categorie;
+import fr.eni.enchereENI.bo.Retrait;
 import fr.eni.enchereENI.dao.CategorieDao;
 import fr.eni.enchereENI.dao.DaoFactory;
 
 /**
- * Servlet implementation class AdminSuppUser
+ * Servlet implementation class AdminModifCate
  */
-@WebServlet("/AdminSuppCate")
-public class AdminSuppCate extends HttpServlet {
+@WebServlet("/AdminModifCate")
+public class AdminModifCate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminSuppCate() {
+    public AdminModifCate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,10 +38,6 @@ public class AdminSuppCate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-	
-		
-
 		
 		CategorieManager categorieManager = new CategorieManager();
 		
@@ -52,7 +51,7 @@ public class AdminSuppCate extends HttpServlet {
 		
 		try {
 			categorie = categorieDao.getById(numCategorie);
-			categorieDao.delete(categorie);
+			categorieDao.update(categorie);
 
 		
 		} catch (SQLException e) {
@@ -60,8 +59,8 @@ public class AdminSuppCate extends HttpServlet {
 		throw new ServletException("Erreur suppression",e );
 		
 		}
-		response.sendRedirect(request.getContextPath() + "/PageAdmin");
-
+		
+        this.getServletContext().getRequestDispatcher("/WEB-INF/ModifierArticle.jsp").forward(request, response);
 	}
 
 	/**

@@ -74,7 +74,6 @@
 											<td>${ utilisateur.password }</td>
 											<td>${ utilisateur.credit }</td>
 											<td><a onclick="return confirm('Etes-vous sûr de supprimer cette user')" href="AdminSuppUser?id=${utilisateur.no_utilisateur }">Supprimer</a></td>
-											<td><a href="editer?id=${utilisateur.pseudo }">Modifier</a></td>
 										</tr>
 										
 									</c:forEach>
@@ -106,7 +105,7 @@
 											<td>${ categorie.noCategorie }</td>
 											<td>${ categorie.libelle }</td>
 											<td><a onclick="return confirm('Etes-vous sûr de supprimer cette catégorie')" href="AdminSuppCate?id=${categorie.noCategorie }">Supprimer</a></td>
-											<td><a href="editer?id=${utilisateur.pseudo }">Modifier</a></td>
+										
 										</tr>
 									</c:forEach>
 								</tbody>

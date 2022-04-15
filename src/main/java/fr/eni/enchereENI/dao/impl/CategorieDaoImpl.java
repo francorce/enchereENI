@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.enchereENI.bo.Categorie;
+import fr.eni.enchereENI.bo.User;
 import fr.eni.enchereENI.dal.ConnectionProvider;
 import fr.eni.enchereENI.dao.CategorieDao;
 
@@ -17,7 +18,8 @@ public class CategorieDaoImpl implements CategorieDao {
 	private static String GET_BY_LIBELLE = "SELECT * from categories where libelle = ?";
 	private static String GET_ALL = "SELECT * from categories";
 	private static String DELETE = "DELETE from categories where no_categorie = ?";
-
+	private static String UPDATE = "UPDATE categories SET libelle = ? WHERE no_utilisateur = ?";
+	
 	@Override
 	public Categorie get(int id) throws SQLException {
 		// TODO Auto-generated method stub
@@ -51,7 +53,11 @@ public class CategorieDaoImpl implements CategorieDao {
 
 	@Override
 	public void update(Categorie t) throws SQLException {
-		// TODO Auto-generated method stub
+		Connection con = ConnectionProvider.getConnection();
+		PreparedStatement updateUser = con.prepareStatement(UPDATE);
+		updateUser.setString(1, t.getLibelle());
+		updateUser.setInt(2, t.getNoCategorie());
+		updateUser.executeUpdate();
 
 	}
 
