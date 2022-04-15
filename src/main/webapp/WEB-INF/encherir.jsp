@@ -83,14 +83,14 @@
 				<div class="alert alert-warning">Vous ne pouvez pas enchérir
 					actuellement</div>
 			</c:if>
-
+			<br>
 			<c:if test="${canModif == true }">
 				<a class="card-text"
 					href="${'/enchereENI/ModifierArticle?no_article='}${article.noArticle}"><button
-						class="btn btn-primary" type="button">Modifier</button></a>
+						class="btn btn-warning" type="button">Modifier</button></a>
 			</c:if>
 			<br>
-
+<br>
 			<c:if test="${isVendeur == true }">
 			Listes des enchères : 
 			<ul>
