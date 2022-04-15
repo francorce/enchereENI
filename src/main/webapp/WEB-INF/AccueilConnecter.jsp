@@ -51,7 +51,7 @@
 				placeholder="Rechercher"> <label for="categorie">Categorie</label>
 			<select class="form-control" type="text" id="categorie"
 				name="categorie" xxxonchange="yesnoCheck(this);">
-				<option>Afficher tout</option>
+				<option>Afficher Tout</option>
 
 
 				<c:forEach items="${listeCategorie}" var="categorie">
@@ -141,8 +141,9 @@ function myFunction() {
 </script>
 
 			<div class="row" id="art">
-				
-				
+				<ul
+					style="list-style: none; display: flex; flex-wrap: wrap; border: 0; padding: 0; margin: 0;"
+					id="myUL">
 					<c:forEach items="${listArticles}" var="listArticles">
 						<div class="col-sm-4" style=""
 							data-category="${listArticles.categorie.libelle}">
@@ -160,14 +161,14 @@ function myFunction() {
 									<p class="card-text">Catégorie :
 										${listArticles.categorie.libelle}</p>
 									<p class="card-text">Fin de l'enchère :
-										${article.finEnchereStr}</p>
+										${listArticles.finEnchere}</p>
 									Vendeur : <a class="card-text"
 										href="${'/enchereENI/Profil?no_utilisateur='}${listArticles.vendeur.no_utilisateur}">${listArticles.vendeur.pseudo}</a>
 								</div>
 							</div>
 						</div>
 					</c:forEach>
-				
+				</ul>
 			</div>
 		</div>
 		</div>

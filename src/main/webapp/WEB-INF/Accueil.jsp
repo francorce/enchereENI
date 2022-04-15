@@ -33,7 +33,7 @@
 				type="text" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="Rechercher"> <label for="categorie">Categorie</label>
 			<select class="form-control" type="text" id="categorie"
 				name="categorie" xxxonchange="yesnoCheck(this);">
-				<option>Afficher tout</option>
+				<option>Afficher Tout</option>
 
 
 				<c:forEach items="${listeCategorie}" var="categorie">

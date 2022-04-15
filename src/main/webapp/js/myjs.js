@@ -8,6 +8,9 @@ function filtrer(){
 		if(laDiv.getAttribute('data-category')==option){
 			laDiv.style.display='block';
 			
+		}else if(option == "Afficher Tout"){
+			
+			laDiv.style.display='block';
 		}else{
 			console.log(option)
 			laDiv.style.display='none';
