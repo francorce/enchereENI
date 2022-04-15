@@ -35,40 +35,31 @@
 		</div>
 	</nav>
 
-	<div class="container">
+	<div class="container" >
 		<div class="jumbotron">
+			<div class="row" id="article">
+				<div class="col-sm-6">
+					<h2>Détail vente</h2>
+					<br>
+					<b><h4>${article.nomArticle}</h4></b><br> <b> <label
+						class="form-label">Description : </label>
+					</b> <br> ${article.description} <br> <br> <b> <label
+						class="form-label">Catégorie : </b>
+					${article.categorie.libelle}</label><br> <b>
 
-			<h2>Détail vente</h2>
-			<br><b><h4>${article.nomArticle}</h4></b><br> 
-			
-			<b>
-			<label class="form-label" >Description : </label> 
-			</b>
-			<br> ${article.description}
-			<br>
-			<br>
-			<b>
-			<label class="form-label" >Catégorie : </b> ${article.categorie.libelle}</label><br> 
-			<b>
-			
-			<hr>
-			<label class="form-label" >Meilleure offre :</b> ${article.prixVente} </label>
-			<hr>
+						<hr> <label class="form-label">Meilleure offre :
+					</b> ${article.prixVente} </label>
+					<hr>
 
-			<br> 
-			<b>
-			<label class="form-label" >Mise à prix :</b> ${article.prixInitial} crédits</label><br> <b>
-			
-			<label class="form-label" >Fin de l'enchère :</b> ${article.finEnchereStr}</label><br> <b>
-					
-			<label class="form-label">Rue :</b> ${rue}</label><br>
-			
-			<b><label class="form-label" >Code postal :</b> ${cp}</label><br> <b>
-			
-			<label class="form-label" >Ville : </b> ${ville}</label><br> 
-			
-			<b>Vendeur :</b>
-			<a class="card-text" href="${'/enchereENI/Profil?no_utilisateur='}${article.vendeur.no_utilisateur}">${article.vendeur.pseudo}</a>
+					<br> <b> <label class="form-label">Mise à prix :</b>
+					${article.prixInitial} crédits</label><br> <b> <label
+						class="form-label">Fin de l'enchère :</b>
+					${article.finEnchereStr}</label><br> <b> <label class="form-label">Rue
+							:</b> ${rue}</label><br> <b><label class="form-label">Code
+							postal :</b> ${cp}</label><br> <b> <label class="form-label">Ville
+							: </b> ${ville}</label><br> <b>Vendeur :</b> <a class="card-text"
+						href="${'/enchereENI/Profil?no_utilisateur='}${article.vendeur.no_utilisateur}">${article.vendeur.pseudo}</a>
+
 
 			<c:if test="${peuxEncherir == true }">
 				<form action="encherir" method="post">
@@ -92,15 +83,24 @@
 			<br>
 <br>
 			<c:if test="${isVendeur == true }">
+
 			Listes des enchères : 
 			<ul>
-					<c:forEach var="entry" items="${listeEncherisseur}">
-						<li>Utilisateur : <c:out value="${entry.key.pseudo}" /> / Montant enchère : <c:out
-								value="${entry.value.montantEnchere}" />
-						</li>
-					</c:forEach>
-			</c:if>
-			</ul>
+							<c:forEach var="entry" items="${listeEncherisseur}">
+								<li>Utilisateur : <c:out value="${entry.key.pseudo}" /> /
+									Montant enchère : <c:out value="${entry.value.montantEnchere}" />
+								</li>
+							</c:forEach>
+					</c:if>
+					</ul>
+				</div>
+				<div class="col-sm-6">
+					<img class="card-img-top"
+						src="data:image/jpeg;base64,${article.base64image}"
+						alt="Card image cap" style="float: left;">
+				</div>
+			</div>
+
 		</div>
 	</div>
 

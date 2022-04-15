@@ -131,7 +131,19 @@ public class ArticleDaoImpl implements ArticleDao {
 			article.setNomArticle(rs.getString("nom_article"));
 			article.setDescription(rs.getString("description"));
 			Blob blob = rs.getBlob("photo");
-			article.setPhoto(blob.getBytes(1, (int) blob.length()));
+			if (blob != null) {
+				byte[] encodeBase64 = Base64.encodeBase64(blob.getBytes(1, (int) blob.length()));
+				String base64EncodedStr = null;
+				try {
+					base64EncodedStr = new String(encodeBase64, "UTF-8");
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				article.setBase64image(base64EncodedStr);
+				article.setPhoto(blob.getBytes(1, (int) blob.length()));
+			}
+			
 			article.setDebutEnchere(rs.getTimestamp("date_debut_encheres").toLocalDateTime());
 			article.setFinEnchere(rs.getTimestamp("date_fin_encheres").toLocalDateTime());
 			article.setPrixInitial(rs.getInt("prix_initial"));
