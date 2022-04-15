@@ -86,7 +86,7 @@ public class EnchereManager {
 			// check si le montant est supérieur au prix vente
 			if (article.getPrixVente() < montantEnchere) {
 				// check si la date est ok
-				if (article.getDebutEnchere().isBefore(now) && article.getFinEnchere().isAfter(now)) {
+				//if (article.getDebutEnchere().isBefore(now) && article.getFinEnchere().isAfter(now)) {
 					// check si l'utilisateur a assez de crédit
 					if (user.getCredit() >= montantEnchere) {
 						// si tout est ok on crée l'enchere
@@ -130,7 +130,7 @@ public class EnchereManager {
 							e.printStackTrace();
 						}
 					}
-				}
+				//}
 			}
 		}
 		return isOk;
