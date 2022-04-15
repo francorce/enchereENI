@@ -36,7 +36,7 @@
 
 				<div class="form-group" style="">
 					<label style="float: left;" for="password">Mot de passe
-						:&nbsp;</label> <input type="text" class="form-control" name="password"
+						:&nbsp;</label> <input type="password" class="form-control" name="password"
 						id="password">
 				</div>
 
