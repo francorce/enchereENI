@@ -141,9 +141,8 @@ function myFunction() {
 </script>
 
 			<div class="row" id="art">
-				<ul
-					style="list-style: none; display: flex; flex-wrap: wrap; border: 0; padding: 0; margin: 0;"
-					id="myUL">
+				
+				
 					<c:forEach items="${listArticles}" var="listArticles">
 						<div class="col-sm-4" style=""
 							data-category="${listArticles.categorie.libelle}">
@@ -168,7 +167,7 @@ function myFunction() {
 							</div>
 						</div>
 					</c:forEach>
-				</ul>
+				
 			</div>
 		</div>
 		</div>
