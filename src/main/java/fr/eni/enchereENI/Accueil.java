@@ -56,6 +56,7 @@ public class Accueil extends HttpServlet {
 		CategorieManager categorieManager = new CategorieManager();
 		List<Categorie> listeCategorie = categorieManager.getAll();
 		request.setAttribute("listeCategorie", listeCategorie);
+		UserManager userManager = new UserManager();
 
 		ArticleManager articleManager = new ArticleManager();
 		List<Article> listArticles = new ArrayList<Article>();
@@ -64,8 +65,9 @@ public class Accueil extends HttpServlet {
 		request.getSession().setAttribute("listArticles", listArticles); // add to session
 
 		// rememberMe
-		Cookie[] cookies = request.getCookies(); // request is an instance of type
-		// HttpServletRequest
+		Cookie[] cookies = request.getCookies();
+
+		// on recherche si le cookie userid existe et on recupere l'uuid si oui
 		boolean foundCookie = false;
 		String uuid = null;
 		if (cookies != null &&  cookies.length > 0) {
@@ -77,8 +79,8 @@ public class Accueil extends HttpServlet {
 				}
 			}
 		}
-		UserManager userManager = new UserManager();
 
+		//on recupere le user qui correspond a cette uuid et on l'ajoute a la session
 		if (foundCookie == true) {
 			User rememberMeUser = userManager.getByUUID(uuid);
 			HttpSession session = request.getSession();
