@@ -89,6 +89,7 @@ public class encherirServlet extends HttpServlet {
 		} else {
 			request.setAttribute("peuxEncherir", false);
 		}
+		request.setAttribute("peuxEncherir", true);
 
 		Boolean enchereStarted = true;
 		
