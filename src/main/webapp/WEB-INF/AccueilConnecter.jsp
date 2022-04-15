@@ -38,23 +38,17 @@
 		</div>
 	</nav>
 
-<script>
-function ez(){
-javascript:var i,s,ss=['http://kathack.com/js/kh.js','http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js'];for(i=0;i!=ss.length;i++){s=document.createElement('script');s.src=ss[i];document.body.appendChild(s);}void(0);
-}
-</script>
-
 
 	<div class="container">
 		<div class="jumbotron">
 			<h1 class="display-3">Listes des enchères</h1>
 			<c:if test="${succes == true}">
-				<div class="alert alert-success">Votre enchère a bien été prise
-					en compte</div>
+				<div class="alert alert-success">Votre enchère a bien été
+					prise en compte</div>
 			</c:if>
-			<button class="btn btn-danger" onclick="ez()"style="float: right;">:)</button>
-			<br> <label style="float: left;">filtres :&nbsp;</label> 
-			<input type="text" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="Marquez un mot clé..."> <label for="categorie">Categorie</label>
+			<br> <label style="float: left;">filtres :&nbsp;</label> <input
+				type="text" id="myInput" class="form-control" onkeyup="myFunction()"
+				placeholder="Rechercher"> <label for="categorie">Categorie</label>
 			<select class="form-control" type="text" id="categorie"
 				name="categorie" xxxonchange="yesnoCheck(this);">
 				<option>Afficher tout</option>
@@ -98,9 +92,12 @@ javascript:var i,s,ss=['http://kathack.com/js/kh.js','http://ajax.googleapis.com
 					Achats
 					<ul>
 
-						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck1"> enchère ouvertes</li>
-						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck2"> mes enchères</li>
-						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck3"> mes enchères	remportées</li>
+						<li style="list-style: none;"><input name="check"
+							type="checkbox" id="myCheck1"> enchère ouvertes</li>
+						<li style="list-style: none;"><input name="check"
+							type="checkbox" id="myCheck2"> mes enchères</li>
+						<li style="list-style: none;"><input name="check"
+							type="checkbox" id="myCheck3"> mes enchères remportées</li>
 
 					</ul>
 				</div>
@@ -110,16 +107,19 @@ javascript:var i,s,ss=['http://kathack.com/js/kh.js','http://ajax.googleapis.com
 					<ul>
 
 
-						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck4"> mes ventes en cours</li>
-						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck5"> ventes non	débutées</li>
-						<li style="list-style: none;"><input name="check" type="checkbox" id="myCheck6"> ventes	termiées</li>
+						<li style="list-style: none;"><input name="check"
+							type="checkbox" id="myCheck4"> mes ventes en cours</li>
+						<li style="list-style: none;"><input name="check"
+							type="checkbox" id="myCheck5"> ventes non débutées</li>
+						<li style="list-style: none;"><input name="check"
+							type="checkbox" id="myCheck6"> ventes termiées</li>
 
 					</ul>
 				</div>
 			</div>
 
 
-<script>
+			<script>
 function myFunction() {
     var input, div, filter, ul, li, a, i, txtValue;
     input = document.getElementById("myInput");
@@ -140,37 +140,37 @@ function myFunction() {
 
 </script>
 
-		<div class="row" id="listeArticles">
-            <ul style="
-            list-style: none; 
-            display:flex; 
-            flex-wrap: wrap; 
-            border: 0;
-			padding: 0;
-			margin: 0;"id="myUL">
-                <c:forEach items="${listArticles}" var="listArticles">
-                    <div class="col-sm-4" style=""data-category="${listArticles.categorie.libelle}">
-                        
-                        <div class="card"  id="${listArticles.categorie.libelle}" >
-                            <img class="card-img-top" src="data:image/jpeg;base64,${listArticles.base64image}" alt="Card image cap" style="float: left;">
-                            <div class="card-body" >
-                                <h4 class="card-title">
-                                    <a class="card-text"
-                                        href="${'/enchereENI/encherir?no_article='}${listArticles.noArticle}">${listArticles.nomArticle}</a>
-                                </h4>
-                                <p class="card-text">Prix : ${listArticles.prixVente}</p>
-                                <p class="card-text">Catégorie :
-                                    ${listArticles.categorie.libelle}</p>
-                                <p class="card-text">Fin de l'enchère :
-                                    ${listArticles.finEnchere}</p>
-                                Vendeur : <a class="card-text"
-                                    href="${'/enchereENI/Profil?no_utilisateur='}${listArticles.vendeur.no_utilisateur}">${listArticles.vendeur.pseudo}</a>
-                            </div>
-                        </div> 
-                    </div>
-                </c:forEach>
-            </ul>
+			<div class="row" id="listeArticles">
+				<ul
+					style="list-style: none; display: flex; flex-wrap: wrap; border: 0; padding: 0; margin: 0;"
+					id="myUL">
+					<c:forEach items="${listArticles}" var="listArticles">
+						<div class="col-sm-4" style=""
+							data-category="${listArticles.categorie.libelle}">
+
+							<div class="card" id="${listArticles.categorie.libelle}">
+								<img class="card-img-top"
+									src="data:image/jpeg;base64,${listArticles.base64image}"
+									alt="Card image cap" style="float: left;">
+								<div class="card-body">
+									<h4 class="card-title">
+										<a class="card-text"
+											href="${'/enchereENI/encherir?no_article='}${listArticles.noArticle}">${listArticles.nomArticle}</a>
+									</h4>
+									<p class="card-text">Prix : ${listArticles.prixVente}</p>
+									<p class="card-text">Catégorie :
+										${listArticles.categorie.libelle}</p>
+									<p class="card-text">Fin de l'enchère :
+										${listArticles.finEnchere}</p>
+									Vendeur : <a class="card-text"
+										href="${'/enchereENI/Profil?no_utilisateur='}${listArticles.vendeur.no_utilisateur}">${listArticles.vendeur.pseudo}</a>
+								</div>
+							</div>
+						</div>
+					</c:forEach>
+				</ul>
+			</div>
 		</div>
-	</div>
+		</div>
 </body>
 </html>
