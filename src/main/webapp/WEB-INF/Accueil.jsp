@@ -84,7 +84,7 @@ function myFunction() {
 									<p class="card-text">Catégorie :
 										${listArticles.categorie.libelle}</p>
 									<p class="card-text">Fin de l'enchère :
-										${article.finEnchereStr}</p>
+										${listArticles.finEnchere}</p>
 									Vendeur : <a class="card-text"
 										>${listArticles.vendeur.pseudo}</a>
 								</div>
