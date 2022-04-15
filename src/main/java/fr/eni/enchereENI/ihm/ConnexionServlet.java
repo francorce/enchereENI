@@ -74,13 +74,14 @@ public class ConnexionServlet extends HttpServlet {
 
 		
 	
+		// si remember me est check on genere un identifiant, on le stock en bdd et dans un cookie
 		if(rememberMe!=null && rememberMe.equals("on"))
 		{
 		    UUID uuid = UUID.randomUUID();
 		    Cookie c = new Cookie("userid", String.valueOf(uuid));
 		    c.setMaxAge(24*60*60);
 		    userManager.setUUID(user, String.valueOf(uuid));
-		    response.addCookie(c);  // response is an instance of type HttpServletReponse
+		    response.addCookie(c); 
 		}
 		
 		response.sendRedirect(request.getContextPath() + "/AccueilConnecter");
